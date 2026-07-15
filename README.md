@@ -12,10 +12,11 @@ public/                  ← carpeta que se despliega (raíz del sitio)
 ├── js/main.js           Copiar IP, barra sticky y stats en vivo
 ├── fonts/               Montserrat y Manrope autoalojadas (woff2, licencia OFL)
 ├── img/logo.svg         Logo «Rayo del Olimpo» · img/favicon.svg
-├── _headers             Cabeceras de seguridad para Cloudflare Pages
+├── _headers             (solo tendría efecto en Cloudflare Pages; en el VPS puede borrarse)
 └── robots.txt
+deploy/nginx-hyperionsmc.conf   Configuración de nginx para el VPS
 docs/superpowers/        Spec y plan de diseño
-Hyperions MC Landing.dc.html   Plantilla de diseño original (no se despliega)
+Hyperions MC Landing.dc.html    Plantilla de diseño original (no se despliega)
 ```
 
 ## Probar en local
@@ -25,7 +26,7 @@ python -m http.server 8123 -d public
 # o: npx serve public -l 8123
 ```
 
-Abrir <http://localhost:8123>. Nota: el archivo `_headers` solo tiene efecto en Cloudflare Pages.
+Abrir <http://localhost:8123>.
 
 ## Stats en vivo
 
@@ -34,73 +35,80 @@ Abrir <http://localhost:8123>. Nota: el archivo `_headers` solo tiene efecto en 
 la barra de ocupación, la versión de Java y el badge de estado (en línea / offline / desconocido).
 Los valores se validan (`Number()` + acotado) y se insertan solo con `textContent`.
 
-## Desplegar en Cloudflare Pages
+## DNS (estado final — ya configurado)
 
-1. En el panel de Cloudflare: **Workers & Pages → Create → Pages → Upload assets**.
-2. Nombre del proyecto: `hyperionsmc` (dará `hyperionsmc.pages.dev`).
-3. Arrastrar **el contenido de la carpeta `public/`** (o la carpeta entera) y desplegar.
-4. Comprobar que `https://hyperionsmc.pages.dev` funciona.
-5. Para actualizar la web más adelante: mismo proyecto → **Create new deployment** → subir `public/` otra vez.
+Todo cuelga del dominio raíz; los jugadores de **Java y Bedrock** y el navegador usan
+`hyperionsmc.com` a secas:
 
-## DNS: web y servidor de Minecraft en el mismo dominio
+| Tipo | Name | Valor | Proxy |
+|------|------|-------|-------|
+| A | `@` (hyperionsmc.com) | `82.208.23.8` (VPS) | **DNS only (nube gris)** — nunca activar el proxy naranja: rompería Minecraft |
+| SRV | `_minecraft._tcp` | target `hyperionsmc.com`, puerto `25565` | DNS only |
 
-> **La IP que escriben los jugadores de Java es `hyperionsmc.com`, a secas.**
-> El registro `mc` de abajo es interno: un SRV no puede apuntar a una IP, necesita un
-> nombre intermedio que resuelva al VPS. Nadie lo escribe ni lo ve en la web
-> (solo los jugadores de Bedrock, que no soportan SRV, lo usan como dirección).
+- El SRV es redundante con el A del apex (no hace daño; puede quedarse o borrarse).
+- Bedrock: `hyperionsmc.com`, puerto `19132` (o el configurado en Geyser).
+- Opcional: registro A `www` → misma IP (DNS only) si se quiere que `www.hyperionsmc.com` funcione.
 
-⚠️ **Orden importante.** Ahora mismo `hyperionsmc.com` (apex) apunta a la IP del VPS de Minecraft.
-Si conectas el apex a Pages sin preparar antes el SRV, los jugadores de Java perderán la conexión.
-Sigue este orden:
+## Despliegue: en el VPS con nginx
 
-### Paso 1 — Crear el subdominio del servidor (antes de tocar nada)
+La web se sirve desde el mismo VPS del servidor de Minecraft (`82.208.23.8`).
+Pasos (Ubuntu/Debian; ajustar `root@` si se usa otro usuario):
 
-En **DNS → Records** de Cloudflare:
+### 1. Instalar nginx y certbot (una sola vez, en el VPS)
 
-| Tipo | Nombre | Contenido | Proxy |
-|------|--------|-----------|-------|
-| A | `mc` | IP del VPS de Minecraft | **DNS only (nube gris)** — el proxy de Cloudflare no soporta el protocolo de Minecraft |
+```bash
+ssh root@82.208.23.8
+apt update && apt install -y nginx certbot python3-certbot-nginx
+mkdir -p /var/www/hyperionsmc
+exit
+```
 
-### Paso 2 — Crear el registro SRV para Java
+### 2. Subir la web y la configuración (desde este PC, en la carpeta del proyecto)
 
-Campos **tal y como aparecen en el panel de Cloudflare** al añadir un registro SRV:
+```powershell
+scp -r public/* root@82.208.23.8:/var/www/hyperionsmc/
+scp deploy/nginx-hyperionsmc.conf root@82.208.23.8:/etc/nginx/sites-available/hyperionsmc.conf
+```
 
-| Campo (Cloudflare) | Valor |
-|--------------------|-------|
-| Type | `SRV` |
-| **Name** | **`@`** ← el SRV cuelga del dominio raíz |
-| Service | `_minecraft` |
-| Protocol | `TCP` |
-| Priority | `0` |
-| Weight | `5` |
-| Port | `25565` (o el puerto real del servidor) |
-| **Target** | `mc.hyperionsmc.com` ← aquí es el único sitio donde aparece `mc`: Cloudflare no admite una IP en este campo, solo un nombre (el del Paso 1) |
+### 3. Activar el sitio (en el VPS)
 
-Verifica que puedes entrar al servidor en Minecraft Java tanto con `mc.hyperionsmc.com`
-como con `hyperionsmc.com` (esta última ya resuelve vía SRV).
+```bash
+ssh root@82.208.23.8
+ln -s /etc/nginx/sites-available/hyperionsmc.conf /etc/nginx/sites-enabled/
+rm -f /etc/nginx/sites-enabled/default
+nginx -t && systemctl reload nginx
+```
 
-### Paso 3 — Conectar el dominio a la web
+Si hay firewall UFW activo: `ufw allow 'Nginx Full'`.
+Probar: <http://hyperionsmc.com> debe mostrar la web.
 
-En el proyecto de Pages: **Custom domains → Set up a domain** → `hyperionsmc.com` y también `www.hyperionsmc.com`.
-Cloudflare sustituirá el registro A del apex por la ruta hacia Pages (proxied, nube naranja).
-Los jugadores de Java no se ven afectados: el SRV del Paso 2 sigue resolviendo al VPS.
+### 4. HTTPS con Let's Encrypt (en el VPS)
 
-### Bedrock (importante)
+```bash
+certbot --nginx -d hyperionsmc.com
+# (añadir -d www.hyperionsmc.com solo si se creó el registro A www)
+certbot renew --dry-run   # comprobar la renovación automática
+```
 
-Bedrock **no soporta registros SRV**. Los jugadores de Bedrock deben conectarse con:
-**Dirección:** `mc.hyperionsmc.com` · **Puerto:** `19132` (o el que tengas configurado con Geyser).
+Certbot configura el certificado, la redirección HTTP→HTTPS y la renovación sola cada ~60 días.
 
-### TLS
+### Actualizar la web más adelante
 
-En **SSL/TLS**: modo **Full (strict)**. Opcional pero recomendado: activar **HSTS**
-en Edge Certificates una vez comprobado que todo carga por HTTPS.
+Repetir solo el `scp` del paso 2 (primera línea). Nada más.
 
 ## Seguridad
 
-- CSP estricta sin `unsafe-inline` (ver `public/_headers`): solo scripts/estilos/fuentes propios
-  y `connect-src` limitado a la API de stats. Sin cookies, formularios ni almacenamiento.
+- CSP estricta sin `unsafe-inline` (en `deploy/nginx-hyperionsmc.conf`): solo scripts/estilos/fuentes
+  propios y `connect-src` limitado a la API de stats. Sin cookies, formularios ni almacenamiento.
 - `X-Frame-Options: DENY`, `nosniff`, `Referrer-Policy`, `Permissions-Policy`, COOP/CORP.
 - Datos externos al DOM únicamente con `textContent` (anti-XSS).
+- HSTS: activarlo en la config de nginx (línea comentada) cuando HTTPS lleve unos días estable.
+
+## Alternativa descartada: Cloudflare Pages
+
+Se descartó por decisión de diseño del DNS: alojar la web en Pages exige que el apex `@`
+apunte a Cloudflare, lo que obliga a crear un nombre auxiliar (p. ej. `mc.`) como target del SRV
+para que Java siga llegando al VPS. Se prefirió mantener todo el DNS en `@`.
 
 ## Pendientes (TODO)
 
