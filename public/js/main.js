@@ -10,6 +10,15 @@
   const REFRESH_MS = 60000;
   const MAX_PLAYERS_CAP = 100000;
 
+  /* Textos según el idioma de la página (lang del <html>) */
+  const EN = document.documentElement.lang === 'en';
+  const TXT = {
+    online: EN ? 'SERVER ONLINE' : 'SERVIDOR EN LÍNEA',
+    offline: EN ? 'SERVER OFFLINE' : 'SERVIDOR OFFLINE',
+    unknown: EN ? 'STATUS UNKNOWN' : 'ESTADO DESCONOCIDO',
+    copied: EN ? 'Copied!' : '¡Copiada!',
+  };
+
   const $ = (id) => document.getElementById(id);
   const els = {
     stickyBar: $('sticky-bar'),
@@ -22,18 +31,19 @@
   };
 
   /* --- Copiar IP (con feedback y fallback sin Clipboard API) --- */
+  /* El texto original se lee del propio HTML, así vale para cualquier idioma */
   const copyButtons = [
-    { btn: $('hero-copy-btn'), label: $('hero-copy-label'), original: 'Copiar IP' },
-    { btn: $('sticky-copy-btn'), label: $('sticky-copy-label'), original: 'Copiar' },
-    { btn: $('join-btn'), label: $('join-label'), original: '¡Únete ya!' },
-  ];
+    { btn: $('hero-copy-btn'), label: $('hero-copy-label') },
+    { btn: $('sticky-copy-btn'), label: $('sticky-copy-label') },
+    { btn: $('join-btn'), label: $('join-label') },
+  ].map((x) => ({ ...x, original: x.label ? x.label.textContent : '' }));
   let copyTimer = 0;
 
   function showCopied() {
     copyButtons.forEach(({ btn, label }) => {
       if (!btn || !label) return;
       btn.classList.add('is-copied');
-      label.textContent = '¡Copiada!';
+      label.textContent = TXT.copied;
     });
     clearTimeout(copyTimer);
     copyTimer = setTimeout(() => {
@@ -127,19 +137,19 @@
         const online = boundedOnline === null ? 0 : boundedOnline;
 
         if (els.statMax) els.statMax.textContent = String(max);
-        setStatus('is-online', 'SERVIDOR EN LÍNEA');
+        setStatus('is-online', TXT.online);
         animateCount(online, max);
 
         const version = typeof data.version === 'string' ? data.version.slice(0, 40) : '';
         if (version && els.versionLabel) els.versionLabel.textContent = 'Java ' + version + ' · Bedrock';
       } else {
         cancelAnimationFrame(rafId);
-        setStatus('is-offline', 'SERVIDOR OFFLINE');
+        setStatus('is-offline', TXT.offline);
         renderCount(0, 1);
       }
     } catch (_err) {
       cancelAnimationFrame(rafId);
-      setStatus('is-unknown', 'ESTADO DESCONOCIDO');
+      setStatus('is-unknown', TXT.unknown);
       if (els.statCount) els.statCount.textContent = '—';
       if (els.statBar) els.statBar.style.width = '0%';
     } finally {

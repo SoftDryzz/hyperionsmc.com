@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rangos — Hyperions MC</title>
-  <meta name="description" content="Comparativa de rangos de Hyperions MC: Mortal, Hero, Demigod, Titan y Olympian. Descubre los perks y comandos de cada rango del servidor survival.">
+  <title>Ranks — Hyperions MC</title>
+  <meta name="description" content="Hyperions MC rank comparison: Mortal, Hero, Demigod, Titan and Olympian. Discover the perks and commands of every rank on the survival server.">
   <meta name="theme-color" content="#050409">
-  <link rel="canonical" href="https://hyperionsmc.com/rangos/">
+  <link rel="canonical" href="https://hyperionsmc.com/en/ranks/">
   <link rel="alternate" hreflang="es" href="https://hyperionsmc.com/rangos/">
   <link rel="alternate" hreflang="en" href="https://hyperionsmc.com/en/ranks/">
   <link rel="alternate" hreflang="x-default" href="https://hyperionsmc.com/en/ranks/">
@@ -14,10 +14,10 @@
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Hyperions MC">
-  <meta property="og:title" content="Rangos — Hyperions MC">
-  <meta property="og:description" content="De Mortal a Olympian: comparativa completa de perks y comandos de los rangos de Hyperions MC. Cada rango es acumulativo.">
-  <meta property="og:url" content="https://hyperionsmc.com/rangos/">
-  <meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="Ranks — Hyperions MC">
+  <meta property="og:description" content="From Mortal to Olympian: the full perk and command comparison for Hyperions MC ranks. Every rank is cumulative.">
+  <meta property="og:url" content="https://hyperionsmc.com/en/ranks/">
+  <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://hyperionsmc.com/img/hyperions-logo-a-1024.png">
 
   <link rel="icon" type="image/png" href="/img/hyperions-logo-a-64.png">
@@ -28,7 +28,7 @@
 </head>
 <body>
 
-  <!-- Barra sticky con la IP (aparece al hacer scroll) -->
+  <!-- Sticky IP bar (appears on scroll) -->
   <div id="sticky-bar" class="sticky-bar">
     <div class="sticky-bar__inner">
       <div class="sticky-bar__info">
@@ -37,14 +37,14 @@
       </div>
       <button id="sticky-copy-btn" class="btn-copy-outline" type="button">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>
-        <span id="sticky-copy-label">Copiar</span>
+        <span id="sticky-copy-label">Copy</span>
       </button>
     </div>
   </div>
 
   <header class="site-header">
     <div class="site-header__inner">
-      <a href="/" class="brand">
+      <a href="/en/" class="brand">
         <img class="brand__logo" src="/img/hyperions-logo-a-64.png" width="38" height="38" alt="" aria-hidden="true">
         <span class="brand__text">
           <span class="brand__name">HYPERIONS</span>
@@ -52,32 +52,32 @@
         </span>
       </a>
       <div class="site-header__actions">
-        <a href="/rangos/" class="nav-link">Rangos</a>
-        <button id="lang-switch" class="lang-switch" type="button" aria-label="Switch to English">EN</button>
-        <!-- TODO: enlace real de Discord (discord.gg/...) -->
+        <a href="/en/ranks/" class="nav-link">Ranks</a>
+        <button id="lang-switch" class="lang-switch" type="button" aria-label="Cambiar a español">ES</button>
+        <!-- TODO: real Discord invite link (discord.gg/...) -->
         <a href="#" aria-label="Discord" class="icon-btn icon-btn--violet">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.27 5.33A16.6 16.6 0 0 0 15.1 4l-.2.4a13.2 13.2 0 0 1 3.7 1.9 12.8 12.8 0 0 0-11-.02A13 13 0 0 1 11.3 4.4L11.1 4a16.6 16.6 0 0 0-4.17 1.33C4.3 9.24 3.58 13.06 3.94 16.82A16.7 16.7 0 0 0 9 19.4l.4-.56a10.9 10.9 0 0 1-1.7-.82c.14-.1.28-.21.41-.32a11.9 11.9 0 0 0 10.18 0c.14.11.27.22.41.32-.54.32-1.11.6-1.7.82l.4.56a16.6 16.6 0 0 0 5.06-2.58c.42-4.35-.72-8.14-3.2-11.49ZM9.68 14.5c-.99 0-1.8-.9-1.8-2.02 0-1.11.79-2.02 1.8-2.02s1.82.91 1.8 2.02c0 1.11-.8 2.02-1.8 2.02Zm4.64 0c-.99 0-1.8-.9-1.8-2.02 0-1.11.79-2.02 1.8-2.02s1.82.91 1.8 2.02c0 1.11-.8 2.02-1.8 2.02Z"></path></svg>
         </a>
-        <a href="/tienda/" class="btn-shop">
+        <a href="/en/store/" class="btn-shop">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-          Tienda
+          Store
         </a>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- ============ HERO DE LA PÁGINA ============ -->
+    <!-- ============ PAGE HERO ============ -->
     <section class="rg-hero">
       <div class="rg-hero__bg" aria-hidden="true"></div>
       <div class="rg-container rg-hero__container">
-        <div class="eyebrow">Info de rangos</div>
-        <h1 class="rg-hero__title">De <span class="rg-gray">Mortal</span> a <span class="grad-gold">Olympian</span></h1>
-        <p class="rg-hero__lead">Comparativa completa de la vía de jugador. Cada rango es <strong>acumulativo</strong>: hereda todo lo del anterior y añade lo suyo. Mortal es el rango gratuito con el que entras al servidor.</p>
+        <div class="eyebrow">Rank info</div>
+        <h1 class="rg-hero__title">From <span class="rg-gray">Mortal</span> to <span class="grad-gold">Olympian</span></h1>
+        <p class="rg-hero__lead">The full comparison of the player path. Every rank is <strong>cumulative</strong>: it inherits everything from the previous one and adds its own perks. Mortal is the free rank you start with when you join the server.</p>
       </div>
     </section>
 
-    <!-- ============ COMPARATIVA ============ -->
+    <!-- ============ COMPARISON ============ -->
     <section class="rg-compare">
       <div class="rg-container">
 
@@ -85,12 +85,12 @@
           <table class="rg-table">
             <thead>
               <tr>
-                <th class="rg-th-feature" scope="col">Perk / Comando</th>
-                <th class="rg-th rg-th--dim" scope="col"><span class="rg-rank rg-rank--mortal">[Mortal]</span><div class="rg-price">GRATIS</div></th>
-                <th class="rg-th" scope="col"><span class="rg-rank rg-rank--hero">[HERO]</span><div class="rg-price">4,99&nbsp;€/MES</div></th>
-                <th class="rg-th" scope="col"><span class="rg-rank rg-rank--demigod">[DEMIGOD]</span><div class="rg-price">9,99&nbsp;€/MES</div></th>
-                <th class="rg-th" scope="col"><span class="rg-rank rg-rank--titan">[TITAN]</span><div class="rg-price">19,99&nbsp;€/MES</div></th>
-                <th class="rg-th rg-th--oly" scope="col"><span class="rg-rank rg-rank--oly">[OLYMPIAN]</span><div class="rg-price">34,99&nbsp;€/MES</div></th>
+                <th class="rg-th-feature" scope="col">Perk / Command</th>
+                <th class="rg-th rg-th--dim" scope="col"><span class="rg-rank rg-rank--mortal">[Mortal]</span><div class="rg-price">FREE</div></th>
+                <th class="rg-th" scope="col"><span class="rg-rank rg-rank--hero">[HERO]</span><div class="rg-price">€4.99/MO</div></th>
+                <th class="rg-th" scope="col"><span class="rg-rank rg-rank--demigod">[DEMIGOD]</span><div class="rg-price">€9.99/MO</div></th>
+                <th class="rg-th" scope="col"><span class="rg-rank rg-rank--titan">[TITAN]</span><div class="rg-price">€19.99/MO</div></th>
+                <th class="rg-th rg-th--oly" scope="col"><span class="rg-rank rg-rank--oly">[OLYMPIAN]</span><div class="rg-price">€34.99/MO</div></th>
               </tr>
             </thead>
             <tbody>
@@ -104,7 +104,7 @@
                 <td class="rg-td rg-td--oly rg-val-oly">40</td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">Esenciales (15 comandos)</div><div class="rg-perk-desc">/spawn /tpa /msg /pay /warp /balance…</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">Essentials (15 commands)</div><div class="rg-perk-desc">/spawn /tpa /msg /pay /warp /balance…</div></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A9A4B8" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
@@ -112,9 +112,9 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
 
-              <tr><td colspan="6" class="rg-td-section">Hero añade</td></tr>
+              <tr><td colspan="6" class="rg-td-section">Hero adds</td></tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">/back</div><div class="rg-perk-desc">vuelve a tu última muerte o sitio anterior</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">/back</div><div class="rg-perk-desc">return to your last death or previous spot</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
@@ -122,7 +122,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">/hat</div><div class="rg-perk-desc">ponte cualquier bloque de sombrero</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">/hat</div><div class="rg-perk-desc">wear any block as a hat</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
@@ -130,7 +130,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">/afk</div><div class="rg-perk-desc">márcate como ausente</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">/afk</div><div class="rg-perk-desc">mark yourself as away</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
@@ -138,9 +138,9 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
 
-              <tr><td colspan="6" class="rg-td-section">Demigod añade</td></tr>
+              <tr><td colspan="6" class="rg-td-section">Demigod adds</td></tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">TP instantáneo <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2.2" class="rg-lock" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></div><div class="rg-perk-desc">teletransporte sin espera</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">Instant TP <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2.2" class="rg-lock" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></div><div class="rg-perk-desc">teleport with no wait time</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
@@ -148,7 +148,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">/enderchest</div><div class="rg-perk-desc">ender chest portátil</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">/enderchest</div><div class="rg-perk-desc">portable ender chest</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
@@ -156,7 +156,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">/nick</div><div class="rg-perk-desc">cambia tu nick, con colores</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">/nick</div><div class="rg-perk-desc">change your nick, with colors</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
@@ -164,7 +164,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">/feed</div><div class="rg-perk-desc">rellena el hambre</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">/feed</div><div class="rg-perk-desc">refill your hunger</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
@@ -172,7 +172,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">/near</div><div class="rg-perk-desc">ver jugadores cercanos</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">/near</div><div class="rg-perk-desc">see nearby players</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
@@ -180,7 +180,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">/tpahere</div><div class="rg-perk-desc">pide que vengan a ti</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">/tpahere</div><div class="rg-perk-desc">ask players to teleport to you</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
@@ -188,9 +188,9 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
 
-              <tr><td colspan="6" class="rg-td-section">Titan añade</td></tr>
+              <tr><td colspan="6" class="rg-td-section">Titan adds</td></tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">/heal <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2.2" class="rg-lock" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></div><div class="rg-perk-desc">cúrate al instante</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">/heal <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2.2" class="rg-lock" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></div><div class="rg-perk-desc">heal yourself instantly</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
@@ -198,7 +198,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">/repair <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2.2" class="rg-lock" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></div><div class="rg-perk-desc">repara item y armadura</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">/repair <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2.2" class="rg-lock" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></div><div class="rg-perk-desc">repair items and armor</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
@@ -206,7 +206,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">/workbench</div><div class="rg-perk-desc">mesa de crafteo portátil</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">/workbench</div><div class="rg-perk-desc">portable crafting table</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
@@ -214,7 +214,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">/tptoggle</div><div class="rg-perk-desc">bloquea o permite TPs hacia ti</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">/tptoggle</div><div class="rg-perk-desc">block or allow TPs to you</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
@@ -222,7 +222,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">Inmune a AFK-kick</div><div class="rg-perk-desc">no te expulsan por ausencia</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">AFK-kick immune</div><div class="rg-perk-desc">never get kicked for being away</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
@@ -230,9 +230,9 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
 
-              <tr><td colspan="6" class="rg-td-section">Olympian añade</td></tr>
+              <tr><td colspan="6" class="rg-td-section">Olympian adds</td></tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">/anvil</div><div class="rg-perk-desc">yunque portátil</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">/anvil</div><div class="rg-perk-desc">portable anvil</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
@@ -240,7 +240,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">/skull</div><div class="rg-perk-desc">obtén cabezas de jugadores</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">/skull</div><div class="rg-perk-desc">get player heads</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
@@ -248,7 +248,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">/condense</div><div class="rg-perk-desc">compacta items 9→1</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">/condense</div><div class="rg-perk-desc">compact items 9→1</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
@@ -256,7 +256,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">/ping</div><div class="rg-perk-desc">mide tu conexión</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">/ping</div><div class="rg-perk-desc">check your connection</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
@@ -264,9 +264,9 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
 
-              <tr><td colspan="6" class="rg-td-section">Incluido en tu rango · se activa próximamente</td></tr>
+              <tr><td colspan="6" class="rg-td-section">Included in your rank · activating soon</td></tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">Multiplicador XP/dinero <span class="rg-soon">PRÓXIMAMENTE</span></div><div class="rg-perk-desc">de 1.1x a 2x según rango</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">XP/money multiplier <span class="rg-soon">COMING SOON</span></div><div class="rg-perk-desc">from 1.1x to 2x by rank</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
@@ -274,7 +274,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">Kits exclusivos <span class="rg-soon">PRÓXIMAMENTE</span></div><div class="rg-perk-desc">de 2 a 10 kits según rango</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">Exclusive kits <span class="rg-soon">COMING SOON</span></div><div class="rg-perk-desc">from 2 to 10 kits by rank</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
@@ -282,7 +282,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">Llaves de crate <span class="rg-soon">PRÓXIMAMENTE</span></div><div class="rg-perk-desc">de 1 a 4 al mes según rango</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">Crate keys <span class="rg-soon">COMING SOON</span></div><div class="rg-perk-desc">from 1 to 4 per month by rank</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
@@ -290,7 +290,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">Vaults privados <span class="rg-soon">PRÓXIMAMENTE</span></div><div class="rg-perk-desc">de 1 a 5 según rango</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">Private vaults <span class="rg-soon">COMING SOON</span></div><div class="rg-perk-desc">from 1 to 5 by rank</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
@@ -298,7 +298,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">Chest shops <span class="rg-soon">PRÓXIMAMENTE</span></div><div class="rg-perk-desc">de 20 a 100 tiendas según rango</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">Chest shops <span class="rg-soon">COMING SOON</span></div><div class="rg-perk-desc">from 20 to 100 shops by rank</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
@@ -306,7 +306,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">Protecciones extra <span class="rg-soon">PRÓXIMAMENTE</span></div><div class="rg-perk-desc">de 2 a 5 claims según rango</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">Extra protections <span class="rg-soon">COMING SOON</span></div><div class="rg-perk-desc">from 2 to 5 claims by rank</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
@@ -314,7 +314,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">Cosméticos <span class="rg-soon">PRÓXIMAMENTE</span></div><div class="rg-perk-desc">partículas, mascotas y alas</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">Cosmetics <span class="rg-soon">COMING SOON</span></div><div class="rg-perk-desc">particles, pets and wings</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
@@ -322,7 +322,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">/friends <span class="rg-soon">PRÓXIMAMENTE</span></div><div class="rg-perk-desc">de 15 a 30 amigos según rango</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">/friends <span class="rg-soon">COMING SOON</span></div><div class="rg-perk-desc">from 15 to 30 friends by rank</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
@@ -330,7 +330,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">Recompensa diaria <span class="rg-soon">PRÓXIMAMENTE</span></div><div class="rg-perk-desc">premio por conectarte cada día</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">Daily reward <span class="rg-soon">COMING SOON</span></div><div class="rg-perk-desc">a prize for logging in every day</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
@@ -338,7 +338,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">Cola prioritaria <span class="rg-soon">PRÓXIMAMENTE</span></div><div class="rg-perk-desc">entra antes cuando el servidor está lleno</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">Priority queue <span class="rg-soon">COMING SOON</span></div><div class="rg-perk-desc">get in first when the server is full</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
@@ -346,7 +346,7 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
-                <td class="rg-td-feature"><div class="rg-perk">Prefijo personalizado <span class="rg-soon">PRÓXIMAMENTE</span></div><div class="rg-perk-desc">tu propio prefijo único en el chat</div></td>
+                <td class="rg-td-feature"><div class="rg-perk">Custom prefix <span class="rg-soon">COMING SOON</span></div><div class="rg-perk-desc">your own unique prefix in chat</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
@@ -358,17 +358,17 @@
         </div>
 
         <div class="rg-legend">
-          <span class="rg-legend__item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2.2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg> Se bloquea en combate (ProCombat): fuera de combate funciona normal.</span>
-          <span class="rg-legend__item"><span class="rg-soon rg-soon--lg">PRÓXIMAMENTE</span> Perk incluido en el rango; se activa cuando se lance el sistema.</span>
+          <span class="rg-legend__item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2.2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg> Locked in combat (ProCombat) · works normally out of combat.</span>
+          <span class="rg-legend__item"><span class="rg-soon rg-soon--lg">COMING SOON</span> Perk included in your rank; activates when the system launches.</span>
         </div>
 
-        <!-- Banda CTA -->
+        <!-- CTA band -->
         <div class="rg-cta">
           <div class="rg-cta__text">
-            <div class="rg-cta__title">¿Listo para ascender?</div>
-            <p class="rg-cta__desc">Empieza gratis como Mortal y sube peldaño a peldaño — o reclama tu trono de una vez.</p>
+            <div class="rg-cta__title">Ready to ascend?</div>
+            <p class="rg-cta__desc">Start free as a Mortal and climb step by step — or claim your throne at once.</p>
           </div>
-          <a href="/tienda/" class="rg-cta__btn">Ir a la Tienda
+          <a href="/en/store/" class="rg-cta__btn">Go to the Store
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
           </a>
         </div>
@@ -384,39 +384,39 @@
           <img src="/img/hyperions-logo-a-64.png" width="34" height="34" alt="" aria-hidden="true">
           <span class="footer-brand__name">HYPERIONS MC</span>
         </div>
-        <p class="footer-brand__desc">El Olimpo de los supervivientes. Forja tu leyenda, nos vemos en la cima.</p>
+        <p class="footer-brand__desc">The Olympus of survivors. Forge your legend — see you at the top.</p>
         <div class="footer-social">
-          <!-- TODO: enlace real de Discord -->
+          <!-- TODO: real Discord link -->
           <a href="#" aria-label="Discord" class="icon-btn icon-btn--sm icon-btn--violet"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.27 5.33A16.6 16.6 0 0 0 15.1 4l-.2.4a13.2 13.2 0 0 1 3.7 1.9 12.8 12.8 0 0 0-11-.02A13 13 0 0 1 11.3 4.4L11.1 4a16.6 16.6 0 0 0-4.17 1.33C4.3 9.24 3.58 13.06 3.94 16.82A16.7 16.7 0 0 0 9 19.4l.4-.56a10.9 10.9 0 0 1-1.7-.82c.14-.1.28-.21.41-.32a11.9 11.9 0 0 0 10.18 0c.14.11.27.22.41.32-.54.32-1.11.6-1.7.82l.4.56a16.6 16.6 0 0 0 5.06-2.58c.42-4.35-.72-8.14-3.2-11.49ZM9.68 14.5c-.99 0-1.8-.9-1.8-2.02 0-1.11.79-2.02 1.8-2.02s1.82.91 1.8 2.02c0 1.11-.8 2.02-1.8 2.02Zm4.64 0c-.99 0-1.8-.9-1.8-2.02 0-1.11.79-2.02 1.8-2.02s1.82.91 1.8 2.02c0 1.11-.8 2.02-1.8 2.02Z"></path></svg></a>
-          <!-- TODO: enlace real de YouTube -->
+          <!-- TODO: real YouTube link -->
           <a href="#" aria-label="YouTube" class="icon-btn icon-btn--sm icon-btn--gold"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 12s0-3.5-.44-5.17a2.78 2.78 0 0 0-1.96-1.96C18.93 4.43 12 4.43 12 4.43s-6.93 0-8.6.44a2.78 2.78 0 0 0-1.96 1.96C1 8.5 1 12 1 12s0 3.5.44 5.17a2.78 2.78 0 0 0 1.96 1.96c1.67.44 8.6.44 8.6.44s6.93 0 8.6-.44a2.78 2.78 0 0 0 1.96-1.96C23 15.5 23 12 23 12ZM9.75 15.25v-6.5L15.5 12l-5.75 3.25Z"></path></svg></a>
-          <!-- TODO: enlace real de X -->
+          <!-- TODO: real X link -->
           <a href="#" aria-label="X (Twitter)" class="icon-btn icon-btn--sm icon-btn--white"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.22-6.82-5.97 6.82H1.66l7.73-8.84L1.24 2.25H8.1l4.71 6.23 5.43-6.23Zm-1.16 17.52h1.83L7.01 4.13H5.05l12.03 15.64Z"></path></svg></a>
         </div>
       </div>
 
-      <nav class="footer-col" aria-label="Enlaces del servidor">
-        <div class="footer-col__title">Servidor</div>
+      <nav class="footer-col" aria-label="Server links">
+        <div class="footer-col__title">Server</div>
         <div class="footer-col__links footer-col__links--gold">
-          <a href="/como-entrar/">Cómo entrar</a>
-          <a href="/rangos/">Rangos</a>
-          <a href="/tienda/">Tienda Oficial</a>
-          <a href="/#stats">Estado en vivo</a>
+          <a href="/en/how-to-join/">How to join</a>
+          <a href="/en/ranks/">Ranks</a>
+          <a href="/en/store/">Official Store</a>
+          <a href="/en/#stats">Live status</a>
         </div>
       </nav>
 
-      <nav class="footer-col" aria-label="Enlaces de ayuda">
-        <div class="footer-col__title">Ayuda</div>
+      <nav class="footer-col" aria-label="Help links">
+        <div class="footer-col__title">Help</div>
         <div class="footer-col__links footer-col__links--violet">
-          <!-- TODO: enlace real de Discord -->
+          <!-- TODO: real Discord link -->
           <a href="#">Discord</a>
-          <a href="/reglas/">Reglas</a>
-          <a href="/soporte/">Soporte</a>
+          <a href="/en/rules/">Rules</a>
+          <a href="/en/support/">Support</a>
         </div>
       </nav>
 
       <div class="footer-col">
-        <div class="footer-col__title">Conéctate</div>
+        <div class="footer-col__title">Connect</div>
         <div class="ip-chip">
           <div class="ip-chip__label">IP</div>
           <div class="ip-chip__value">hyperionsmc.com</div>
@@ -426,8 +426,8 @@
 
     <div class="site-footer__bottom">
       <div class="site-footer__bottom-inner">
-        <span>© 2026 Hyperions MC · Hecho por y para la comunidad.</span>
-        <span class="site-footer__legal">No afiliado con Mojang Studios ni Microsoft.</span>
+        <span>© 2026 Hyperions MC · Made by and for the community.</span>
+        <span class="site-footer__legal">Not affiliated with Mojang Studios or Microsoft.</span>
       </div>
     </div>
   </footer>

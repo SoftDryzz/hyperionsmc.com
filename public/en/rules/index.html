@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Reglas — Hyperions MC</title>
-  <meta name="description" content="Las reglas oficiales de Hyperions MC: convivencia, juego limpio, claims, economía, PvP y cuentas, más la escalera de sanciones. Conócelas con /rules.">
+  <title>Rules — Hyperions MC</title>
+  <meta name="description" content="The official Hyperions MC rules: community, fair play, claims, economy, PvP and accounts, plus the punishment ladder. Check them with /rules.">
   <meta name="theme-color" content="#050409">
-  <link rel="canonical" href="https://hyperionsmc.com/reglas/">
+  <link rel="canonical" href="https://hyperionsmc.com/en/rules/">
   <link rel="alternate" hreflang="es" href="https://hyperionsmc.com/reglas/">
   <link rel="alternate" hreflang="en" href="https://hyperionsmc.com/en/rules/">
   <link rel="alternate" hreflang="x-default" href="https://hyperionsmc.com/en/rules/">
@@ -14,10 +14,10 @@
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Hyperions MC">
-  <meta property="og:title" content="Reglas — Hyperions MC">
-  <meta property="og:description" content="Pocas, claras y para todos igual: las normas del servidor y su escalera de sanciones. Al entrar las aceptas.">
-  <meta property="og:url" content="https://hyperionsmc.com/reglas/">
-  <meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="Rules — Hyperions MC">
+  <meta property="og:description" content="Few, clear, and equal for everyone: the server rules and their punishment ladder. By joining you accept them.">
+  <meta property="og:url" content="https://hyperionsmc.com/en/rules/">
+  <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://hyperionsmc.com/img/hyperions-logo-a-1024.png">
 
   <link rel="icon" type="image/png" href="/img/hyperions-logo-a-64.png">
@@ -28,7 +28,7 @@
 </head>
 <body>
 
-  <!-- Barra sticky con la IP (aparece al hacer scroll) -->
+  <!-- Sticky bar with the IP (appears on scroll) -->
   <div id="sticky-bar" class="sticky-bar">
     <div class="sticky-bar__inner">
       <div class="sticky-bar__info">
@@ -37,14 +37,14 @@
       </div>
       <button id="sticky-copy-btn" class="btn-copy-outline" type="button">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>
-        <span id="sticky-copy-label">Copiar</span>
+        <span id="sticky-copy-label">Copy</span>
       </button>
     </div>
   </div>
 
   <header class="site-header rl-header">
     <div class="site-header__inner">
-      <a href="/" class="brand">
+      <a href="/en/" class="brand">
         <img class="brand__logo" src="/img/hyperions-logo-a-64.png" width="38" height="38" alt="" aria-hidden="true">
         <span class="brand__text">
           <span class="brand__name">HYPERIONS</span>
@@ -52,15 +52,15 @@
         </span>
       </a>
       <div class="site-header__actions">
-        <a href="/rangos/" class="nav-link">Rangos</a>
-        <button id="lang-switch" class="lang-switch" type="button" aria-label="Switch to English">EN</button>
+        <a href="/en/ranks/" class="nav-link">Ranks</a>
+        <button id="lang-switch" class="lang-switch" type="button" aria-label="Cambiar a español">ES</button>
         <!-- TODO: enlace real de Discord (discord.gg/...) -->
         <a href="#" aria-label="Discord" class="icon-btn icon-btn--violet">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.27 5.33A16.6 16.6 0 0 0 15.1 4l-.2.4a13.2 13.2 0 0 1 3.7 1.9 12.8 12.8 0 0 0-11-.02A13 13 0 0 1 11.3 4.4L11.1 4a16.6 16.6 0 0 0-4.17 1.33C4.3 9.24 3.58 13.06 3.94 16.82A16.7 16.7 0 0 0 9 19.4l.4-.56a10.9 10.9 0 0 1-1.7-.82c.14-.1.28-.21.41-.32a11.9 11.9 0 0 0 10.18 0c.14.11.27.22.41.32-.54.32-1.11.6-1.7.82l.4.56a16.6 16.6 0 0 0 5.06-2.58c.42-4.35-.72-8.14-3.2-11.49ZM9.68 14.5c-.99 0-1.8-.9-1.8-2.02 0-1.11.79-2.02 1.8-2.02s1.82.91 1.8 2.02c0 1.11-.8 2.02-1.8 2.02Zm4.64 0c-.99 0-1.8-.9-1.8-2.02 0-1.11.79-2.02 1.8-2.02s1.82.91 1.8 2.02c0 1.11-.8 2.02-1.8 2.02Z"></path></svg>
         </a>
-        <a href="/tienda/" class="btn-shop">
+        <a href="/en/store/" class="btn-shop">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-          Tienda
+          Store
         </a>
       </div>
     </div>
@@ -71,13 +71,13 @@
     <section class="rl-hero">
       <div class="rl-hero__bg" aria-hidden="true"></div>
       <div class="rl-container rl-hero__inner">
-        <div class="eyebrow rl-hero__eyebrow">Normas del servidor</div>
-        <h1 class="rl-hero__title">Las Leyes del <span class="grad-gold">Olimpo</span></h1>
-        <p class="rl-hero__lead">Pocas, claras y para todos igual. Al entrar al servidor las aceptas — y el desconocimiento no exime de su cumplimiento. Escríbelas en piedra: <span class="rl-cmd">/rules</span></p>
+        <div class="eyebrow rl-hero__eyebrow">Server rules</div>
+        <h1 class="rl-hero__title">The Laws of <span class="grad-gold">Olympus</span></h1>
+        <p class="rl-hero__lead">Few, clear, and equal for everyone. By joining the server you accept them — and not knowing them is no excuse. Set in stone: <span class="rl-cmd">/rules</span></p>
       </div>
     </section>
 
-    <!-- ============ LISTADO DE REGLAS ============ -->
+    <!-- ============ RULES LIST ============ -->
     <section class="rl-section">
       <div class="rl-container">
         <div class="rl-grid">
@@ -85,92 +85,92 @@
           <article class="card rl-card">
             <div class="rl-card__head">
               <span class="rl-card__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span>
-              <h2 class="rl-card__title">1 · Convivencia y chat</h2>
+              <h2 class="rl-card__title">1 · Community &amp; chat</h2>
             </div>
             <div class="rl-card__list">
-              <div class="rl-item"><span class="rl-item__num">1.1</span><span>Respeto siempre: nada de insultos, acoso, odio ni toxicidad hacia otros jugadores o el staff.</span></div>
-              <div class="rl-item"><span class="rl-item__num">1.2</span><span>Sin spam, flood ni cadenas de mayúsculas en el chat global.</span></div>
-              <div class="rl-item"><span class="rl-item__num">1.3</span><span>Prohibida la publicidad de otros servidores o comunidades.</span></div>
-              <div class="rl-item"><span class="rl-item__num">1.4</span><span>Nada de datos personales — ni tuyos ni de nadie.</span></div>
+              <div class="rl-item"><span class="rl-item__num">1.1</span><span>Respect always: no insults, harassment, hate or toxicity towards other players or the staff.</span></div>
+              <div class="rl-item"><span class="rl-item__num">1.2</span><span>No spam, flood or all-caps chains in global chat.</span></div>
+              <div class="rl-item"><span class="rl-item__num">1.3</span><span>Advertising other servers or communities is forbidden.</span></div>
+              <div class="rl-item"><span class="rl-item__num">1.4</span><span>No personal data — neither yours nor anyone else's.</span></div>
             </div>
           </article>
 
           <article class="card rl-card">
             <div class="rl-card__head">
               <span class="rl-card__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 3 7v6c0 4 3.5 7.5 9 9 5.5-1.5 9-5 9-9V7z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
-              <h2 class="rl-card__title">2 · Juego limpio</h2>
+              <h2 class="rl-card__title">2 · Fair play</h2>
             </div>
             <div class="rl-card__list">
-              <div class="rl-item"><span class="rl-item__num">2.1</span><span>Prohibidos hacks, cheats, X-ray, macros y cualquier mod que dé ventaja injusta.</span></div>
-              <div class="rl-item"><span class="rl-item__num">2.2</span><span>Nada de exploits ni duplicación de items. Si encuentras un bug, repórtalo en <a href="/soporte/">Soporte</a> — abusar de él es sanción.</span></div>
-              <div class="rl-item"><span class="rl-item__num">2.3</span><span>No hagas combat-log: desconectarte en pleno combate tiene castigo automático.</span></div>
+              <div class="rl-item"><span class="rl-item__num">2.1</span><span>Hacks, cheats, X-ray, macros and any mod that gives an unfair advantage are forbidden.</span></div>
+              <div class="rl-item"><span class="rl-item__num">2.2</span><span>No exploits or item duplication. If you find a bug, report it in <a href="/en/support/">Support</a> — abusing it means a punishment.</span></div>
+              <div class="rl-item"><span class="rl-item__num">2.3</span><span>Don't combat-log: disconnecting in the middle of combat carries an automatic penalty.</span></div>
             </div>
           </article>
 
           <article class="card rl-card">
             <div class="rl-card__head">
               <span class="rl-card__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg></span>
-              <h2 class="rl-card__title">3 · Construcción y claims</h2>
+              <h2 class="rl-card__title">3 · Building &amp; claims</h2>
             </div>
             <div class="rl-card__list">
-              <div class="rl-item"><span class="rl-item__num">3.1</span><span>Griefing prohibido: no rompas, robes ni modifiques construcciones ajenas, estén o no protegidas.</span></div>
-              <div class="rl-item"><span class="rl-item__num">3.2</span><span>Protege tu base con claims — es tu responsabilidad. <a href="/como-entrar/">Aprende cómo</a>.</span></div>
-              <div class="rl-item"><span class="rl-item__num">3.3</span><span>Sin construcciones ofensivas ni máquinas de lag (granjas que tumben el TPS).</span></div>
+              <div class="rl-item"><span class="rl-item__num">3.1</span><span>Griefing is forbidden: don't break, steal from or modify other players' builds, protected or not.</span></div>
+              <div class="rl-item"><span class="rl-item__num">3.2</span><span>Protect your base with claims — it's your responsibility. <a href="/en/how-to-join/">Learn how</a>.</span></div>
+              <div class="rl-item"><span class="rl-item__num">3.3</span><span>No offensive builds or lag machines (farms that tank the TPS).</span></div>
             </div>
           </article>
 
           <article class="card rl-card">
             <div class="rl-card__head">
               <span class="rl-card__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6"></circle><path d="M18.09 10.37A6 6 0 1 1 10.34 18"></path><path d="M7 6h1v4"></path><path d="m16.71 13.88.7.71-2.82 2.82"></path></svg></span>
-              <h2 class="rl-card__title">4 · Economía y comercio</h2>
+              <h2 class="rl-card__title">4 · Economy &amp; trading</h2>
             </div>
             <div class="rl-card__list">
-              <div class="rl-item"><span class="rl-item__num">4.1</span><span>Las estafas en tratos entre jugadores están prohibidas y se revierten.</span></div>
-              <div class="rl-item"><span class="rl-item__num">4.2</span><span>Prohibido vender items, dinero del juego o cuentas por dinero real.</span></div>
-              <div class="rl-item"><span class="rl-item__num">4.3</span><span>No abuses de errores de precios o del mercado — repórtalos.</span></div>
+              <div class="rl-item"><span class="rl-item__num">4.1</span><span>Scams in player-to-player deals are forbidden and get reversed.</span></div>
+              <div class="rl-item"><span class="rl-item__num">4.2</span><span>Selling items, in-game money or accounts for real money is forbidden.</span></div>
+              <div class="rl-item"><span class="rl-item__num">4.3</span><span>Don't abuse pricing or market errors — report them.</span></div>
             </div>
           </article>
 
           <article class="card rl-card">
             <div class="rl-card__head">
               <span class="rl-card__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg></span>
-              <h2 class="rl-card__title">5 · PvP y eventos</h2>
+              <h2 class="rl-card__title">5 · PvP &amp; events</h2>
             </div>
             <div class="rl-card__list">
-              <div class="rl-item"><span class="rl-item__num">5.1</span><span>El PvP fuera de eventos es consensuado: si el otro no quiere pelear, respétalo.</span></div>
-              <div class="rl-item"><span class="rl-item__num">5.2</span><span>En eventos mandan las reglas del evento, anunciadas antes de empezar.</span></div>
-              <div class="rl-item"><span class="rl-item__num">5.3</span><span>Matar aprovechando lag, trampas de spawn o zonas seguras es sancionable.</span></div>
+              <div class="rl-item"><span class="rl-item__num">5.1</span><span>PvP outside events is consensual: if the other player doesn't want to fight, respect that.</span></div>
+              <div class="rl-item"><span class="rl-item__num">5.2</span><span>During events, the event rules apply — announced before the start.</span></div>
+              <div class="rl-item"><span class="rl-item__num">5.3</span><span>Killing by exploiting lag, spawn traps or safe zones is punishable.</span></div>
             </div>
           </article>
 
           <article class="card rl-card">
             <div class="rl-card__head">
               <span class="rl-card__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span>
-              <h2 class="rl-card__title">6 · Cuentas</h2>
+              <h2 class="rl-card__title">6 · Accounts</h2>
             </div>
             <div class="rl-card__list">
-              <div class="rl-item"><span class="rl-item__num">6.1</span><span>Una cuenta principal por persona. Usar alts para evadir sanciones es ban permanente.</span></div>
-              <div class="rl-item"><span class="rl-item__num">6.2</span><span>Tu cuenta es tu responsabilidad: lo que haga, cuenta como tuyo.</span></div>
-              <div class="rl-item"><span class="rl-item__num">6.3</span><span>Nicks e skins ofensivos no están permitidos.</span></div>
+              <div class="rl-item"><span class="rl-item__num">6.1</span><span>One main account per person. Using alts to evade punishments means a permanent ban.</span></div>
+              <div class="rl-item"><span class="rl-item__num">6.2</span><span>Your account is your responsibility: whatever it does counts as yours.</span></div>
+              <div class="rl-item"><span class="rl-item__num">6.3</span><span>Offensive nicknames and skins are not allowed.</span></div>
             </div>
           </article>
         </div>
 
-        <!-- Escalera de sanciones -->
+        <!-- Punishment ladder -->
         <div class="rl-sanctions">
-          <h2 class="rl-sanctions__title">Escalera de sanciones</h2>
+          <h2 class="rl-sanctions__title">Punishment ladder</h2>
           <div class="rl-sanctions__row">
-            <span class="rl-pill rl-pill--warn">Advertencia</span>
+            <span class="rl-pill rl-pill--warn">Warning</span>
             <svg class="rl-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#726C82" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
             <span class="rl-pill rl-pill--mute">Mute</span>
             <svg class="rl-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#726C82" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
             <span class="rl-pill rl-pill--kick">Kick</span>
             <svg class="rl-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#726C82" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
-            <span class="rl-pill rl-pill--tempban">Ban temporal</span>
+            <span class="rl-pill rl-pill--tempban">Temp ban</span>
             <svg class="rl-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#726C82" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
-            <span class="rl-pill rl-pill--ban">Ban permanente</span>
+            <span class="rl-pill rl-pill--ban">Permanent ban</span>
           </div>
-          <p class="rl-sanctions__note">El staff aplica la sanción según la gravedad y el historial — los casos graves (hacks, duping, grief masivo) saltan directo al ban. ¿Crees que una sanción es injusta? <a href="/soporte/">Apela en Soporte</a>.</p>
+          <p class="rl-sanctions__note">Staff applies punishments based on severity and history — serious cases (hacks, duping, mass grief) go straight to a ban. Think a punishment is unfair? <a href="/en/support/">Appeal in Support</a>.</p>
         </div>
       </div>
     </section>
@@ -184,7 +184,7 @@
           <img src="/img/hyperions-logo-a-64.png" width="34" height="34" alt="" aria-hidden="true">
           <span class="footer-brand__name">HYPERIONS MC</span>
         </div>
-        <p class="footer-brand__desc">El Olimpo de los supervivientes. Forja tu leyenda, nos vemos en la cima.</p>
+        <p class="footer-brand__desc">The Olympus of survivors. Forge your legend — see you at the top.</p>
         <div class="footer-social">
           <!-- TODO: enlace real de Discord -->
           <a href="#" aria-label="Discord" class="icon-btn icon-btn--sm icon-btn--violet"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.27 5.33A16.6 16.6 0 0 0 15.1 4l-.2.4a13.2 13.2 0 0 1 3.7 1.9 12.8 12.8 0 0 0-11-.02A13 13 0 0 1 11.3 4.4L11.1 4a16.6 16.6 0 0 0-4.17 1.33C4.3 9.24 3.58 13.06 3.94 16.82A16.7 16.7 0 0 0 9 19.4l.4-.56a10.9 10.9 0 0 1-1.7-.82c.14-.1.28-.21.41-.32a11.9 11.9 0 0 0 10.18 0c.14.11.27.22.41.32-.54.32-1.11.6-1.7.82l.4.56a16.6 16.6 0 0 0 5.06-2.58c.42-4.35-.72-8.14-3.2-11.49ZM9.68 14.5c-.99 0-1.8-.9-1.8-2.02 0-1.11.79-2.02 1.8-2.02s1.82.91 1.8 2.02c0 1.11-.8 2.02-1.8 2.02Zm4.64 0c-.99 0-1.8-.9-1.8-2.02 0-1.11.79-2.02 1.8-2.02s1.82.91 1.8 2.02c0 1.11-.8 2.02-1.8 2.02Z"></path></svg></a>
@@ -195,28 +195,28 @@
         </div>
       </div>
 
-      <nav class="footer-col" aria-label="Enlaces del servidor">
-        <div class="footer-col__title">Servidor</div>
+      <nav class="footer-col" aria-label="Server links">
+        <div class="footer-col__title">Server</div>
         <div class="footer-col__links footer-col__links--gold">
-          <a href="/como-entrar/">Cómo entrar</a>
-          <a href="/rangos/">Rangos</a>
-          <a href="/tienda/">Tienda Oficial</a>
-          <a href="/#stats">Estado en vivo</a>
+          <a href="/en/how-to-join/">How to join</a>
+          <a href="/en/ranks/">Ranks</a>
+          <a href="/en/store/">Official Store</a>
+          <a href="/en/#stats">Live status</a>
         </div>
       </nav>
 
-      <nav class="footer-col" aria-label="Enlaces de ayuda">
-        <div class="footer-col__title">Ayuda</div>
+      <nav class="footer-col" aria-label="Help links">
+        <div class="footer-col__title">Help</div>
         <div class="footer-col__links footer-col__links--violet">
           <!-- TODO: enlace real de Discord -->
           <a href="#">Discord</a>
-          <a href="/reglas/">Reglas</a>
-          <a href="/soporte/">Soporte</a>
+          <a href="/en/rules/">Rules</a>
+          <a href="/en/support/">Support</a>
         </div>
       </nav>
 
       <div class="footer-col">
-        <div class="footer-col__title">Conéctate</div>
+        <div class="footer-col__title">Connect</div>
         <div class="ip-chip">
           <div class="ip-chip__label">IP</div>
           <div class="ip-chip__value">hyperionsmc.com</div>
@@ -226,8 +226,8 @@
 
     <div class="site-footer__bottom">
       <div class="site-footer__bottom-inner">
-        <span>© 2026 Hyperions MC · Hecho por y para la comunidad.</span>
-        <span class="site-footer__legal">No afiliado con Mojang Studios ni Microsoft.</span>
+        <span>© 2026 Hyperions MC · Made by and for the community.</span>
+        <span class="site-footer__legal">Not affiliated with Mojang Studios or Microsoft.</span>
       </div>
     </div>
   </footer>

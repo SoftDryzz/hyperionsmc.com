@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Store — Hyperions MC</title>
+  <meta name="description" content="Official Hyperions MC store: Hero, Demigod, Titan and Olympian ranks with cumulative perks. Monthly or permanent payment, no pay-to-win.">
+  <meta name="theme-color" content="#050409">
+  <link rel="canonical" href="https://hyperionsmc.com/en/store/">
+  <link rel="alternate" hreflang="es" href="https://hyperionsmc.com/tienda/">
+  <link rel="alternate" hreflang="en" href="https://hyperionsmc.com/en/store/">
+  <link rel="alternate" hreflang="x-default" href="https://hyperionsmc.com/en/store/">
+  <script src="/js/lang.js"></script>
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Hyperions MC">
+  <meta property="og:title" content="Official Store — Hyperions MC">
+  <meta property="og:description" content="Choose your place in Olympus: cumulative Hero, Demigod, Titan and Olympian ranks. Monthly or permanent · IP: hyperionsmc.com">
+  <meta property="og:url" content="https://hyperionsmc.com/en/store/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://hyperionsmc.com/img/hyperions-logo-a-1024.png">
+
+  <link rel="icon" type="image/png" href="/img/hyperions-logo-a-64.png">
+  <link rel="apple-touch-icon" href="/img/hyperions-logo-a-1024.png">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/tienda.css">
+  <script src="/js/main.js" defer></script>
+  <script src="/js/tienda.js" defer></script>
+</head>
+<body>
+
+  <!-- Sticky bar with the IP (appears on scroll) -->
+  <div id="sticky-bar" class="sticky-bar">
+    <div class="sticky-bar__inner">
+      <div class="sticky-bar__info">
+        <span class="status-dot status-dot--ring"></span>
+        <span class="sticky-bar__ip">hyperionsmc.com</span>
+      </div>
+      <button id="sticky-copy-btn" class="btn-copy-outline" type="button">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>
+        <span id="sticky-copy-label">Copy</span>
+      </button>
+    </div>
+  </div>
+
+  <header class="site-header td-header">
+    <div class="site-header__inner">
+      <a href="/en/" class="brand">
+        <img class="brand__logo" src="/img/hyperions-logo-a-64.png" width="38" height="38" alt="" aria-hidden="true">
+        <span class="brand__text">
+          <span class="brand__name">HYPERIONS</span>
+          <span class="brand__tag">MC · SURVIVAL</span>
+        </span>
+      </a>
+      <div class="site-header__actions">
+        <a href="/en/ranks/" class="nav-link">Ranks</a>
+        <button id="lang-switch" class="lang-switch" type="button" aria-label="Cambiar a español">ES</button>
+        <!-- TODO: real Discord link (discord.gg/...) -->
+        <a href="#" aria-label="Discord" class="icon-btn icon-btn--violet">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.27 5.33A16.6 16.6 0 0 0 15.1 4l-.2.4a13.2 13.2 0 0 1 3.7 1.9 12.8 12.8 0 0 0-11-.02A13 13 0 0 1 11.3 4.4L11.1 4a16.6 16.6 0 0 0-4.17 1.33C4.3 9.24 3.58 13.06 3.94 16.82A16.7 16.7 0 0 0 9 19.4l.4-.56a10.9 10.9 0 0 1-1.7-.82c.14-.1.28-.21.41-.32a11.9 11.9 0 0 0 10.18 0c.14.11.27.22.41.32-.54.32-1.11.6-1.7.82l.4.56a16.6 16.6 0 0 0 5.06-2.58c.42-4.35-.72-8.14-3.2-11.49ZM9.68 14.5c-.99 0-1.8-.9-1.8-2.02 0-1.11.79-2.02 1.8-2.02s1.82.91 1.8 2.02c0 1.11-.8 2.02-1.8 2.02Zm4.64 0c-.99 0-1.8-.9-1.8-2.02 0-1.11.79-2.02 1.8-2.02s1.82.91 1.8 2.02c0 1.11-.8 2.02-1.8 2.02Z"></path></svg>
+        </a>
+        <a href="/en/store/" class="btn-shop">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          Store
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ STORE HERO ============ -->
+    <section class="td-hero">
+      <div class="td-hero__bg" aria-hidden="true"></div>
+      <div class="td-hero__container">
+        <div class="eyebrow td-hero__eyebrow">Official Store</div>
+        <h1 class="td-hero__title">Choose your place in <span class="grad-gold">Olympus</span></h1>
+        <p class="td-hero__lead">Ranks are <strong class="td-strong">cumulative</strong>: each one includes absolutely everything from the previous one, plus its own perks. Pick it monthly, or make it yours forever with a one-time permanent purchase — every purchase keeps the server alive.</p>
+        <div class="td-ladder">
+          <span class="td-ladder__pill td-ladder__pill--mortal">MORTAL · FREE</span>
+          <svg class="td-ladder__arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#726C82" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+          <span class="td-ladder__pill td-ladder__pill--hero">HERO</span>
+          <svg class="td-ladder__arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#726C82" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+          <span class="td-ladder__pill td-ladder__pill--demigod">DEMIGOD</span>
+          <svg class="td-ladder__arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#726C82" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+          <span class="td-ladder__pill td-ladder__pill--titan">TITAN</span>
+          <svg class="td-ladder__arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#726C82" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+          <span class="td-ladder__pill td-ladder__pill--olympian">OLYMPIAN</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RANKS FOR SALE ============ -->
+    <section class="td-shop">
+      <div class="td-shop__container">
+        <div class="td-toggle-row">
+          <div class="td-toggle">
+            <button id="td-btn-mensual" class="td-toggle__btn" type="button" aria-pressed="false">Monthly</button>
+            <button id="td-btn-perm" class="td-toggle__btn is-active" type="button" aria-pressed="true">Permanent</button>
+          </div>
+          <span id="td-savings-note" class="td-savings">Equivalent to just 3.7 months — and it's yours forever.</span>
+        </div>
+
+        <div class="td-grid">
+
+          <!-- HERO -->
+          <div class="td-rango td-rango--hero">
+            <div class="td-rango__top">
+              <span class="td-rango__chip td-rango__chip--hero">[HERO]</span>
+            </div>
+            <div class="td-rango__nombre td-rango__nombre--hero">HERO</div>
+            <div class="td-precio-row">
+              <span id="td-price-hero" class="td-precio">€18.46</span>
+              <span class="td-precio-nota">one-time · yours forever</span>
+            </div>
+            <div class="td-rango__desde">Everything in Mortal, plus</div>
+            <div class="td-perks">
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span class="td-perk__text"><strong class="td-strong">5 homes</strong> (up from 1)</span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span class="td-perk__text"><span class="td-cmd">/back</span> · return to your last death</span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span class="td-perk__text"><span class="td-cmd">/hat</span> · wear any block as a hat</span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span class="td-perk__text"><span class="td-cmd">/afk</span> · mark yourself as away</span></div>
+            </div>
+            <!-- TODO: purchase link (Tebex/CraftingStore) -->
+            <a href="#" class="td-buy td-buy--hero">Buy HERO</a>
+          </div>
+
+          <!-- DEMIGOD -->
+          <div class="td-rango td-rango--demigod">
+            <div class="td-rango__top">
+              <span class="td-rango__chip td-rango__chip--demigod">[DEMIGOD]</span>
+              <span class="td-rango__badge td-rango__badge--demigod">MOST POPULAR</span>
+            </div>
+            <div class="td-rango__nombre td-rango__nombre--demigod">DEMIGOD</div>
+            <div class="td-precio-row">
+              <span id="td-price-demigod" class="td-precio">€36.96</span>
+              <span class="td-precio-nota">one-time · yours forever</span>
+            </div>
+            <div class="td-rango__desde">Everything in Hero, plus</div>
+            <div class="td-perks">
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span class="td-perk__text"><strong class="td-strong">10 homes</strong></span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span class="td-perk__text"><strong class="td-strong">Instant TP</strong> · no waiting <svg class="td-lock" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2.2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span class="td-perk__text"><span class="td-cmd">/enderchest</span> · portable ender chest</span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span class="td-perk__text"><span class="td-cmd">/nick</span> · nickname with colors</span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span class="td-perk__text"><span class="td-cmd">/feed</span> <span class="td-cmd">/near</span> <span class="td-cmd">/tpahere</span></span></div>
+            </div>
+            <!-- TODO: purchase link (Tebex/CraftingStore) -->
+            <a href="#" class="td-buy td-buy--demigod">Buy DEMIGOD</a>
+          </div>
+
+          <!-- TITAN -->
+          <div class="td-rango td-rango--titan">
+            <div class="td-rango__top">
+              <span class="td-rango__chip td-rango__chip--titan">[TITAN]</span>
+            </div>
+            <div class="td-rango__nombre td-rango__nombre--titan">TITAN</div>
+            <div class="td-precio-row">
+              <span id="td-price-titan" class="td-precio">€73.96</span>
+              <span class="td-precio-nota">one-time · yours forever</span>
+            </div>
+            <div class="td-rango__desde">Everything in Demigod, plus</div>
+            <div class="td-perks">
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span class="td-perk__text"><strong class="td-strong">20 homes</strong></span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span class="td-perk__text"><span class="td-cmd">/heal</span> · heal yourself instantly <svg class="td-lock" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2.2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span class="td-perk__text"><span class="td-cmd">/repair</span> · repair items and armor <svg class="td-lock" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2.2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span class="td-perk__text"><span class="td-cmd">/workbench</span> · portable crafting</span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span class="td-perk__text"><span class="td-cmd">/tptoggle</span> + <strong class="td-strong">immune to AFK-kick</strong></span></div>
+            </div>
+            <!-- TODO: purchase link (Tebex/CraftingStore) -->
+            <a href="#" class="td-buy td-buy--titan">Buy TITAN</a>
+          </div>
+
+          <!-- OLYMPIAN -->
+          <div class="td-rango td-rango--olympian">
+            <div class="td-rango__top">
+              <span class="td-rango__chip td-rango__chip--olympian">[OLYMPIAN]</span>
+              <span class="td-rango__badge td-rango__badge--olympian">MAX RANK</span>
+            </div>
+            <div class="td-rango__nombre grad-gold">OLYMPIAN</div>
+            <div class="td-precio-row">
+              <span id="td-price-olympian" class="td-precio">€129.46</span>
+              <span class="td-precio-nota">one-time · yours forever</span>
+            </div>
+            <div class="td-rango__desde">Everything in Titan, plus</div>
+            <div class="td-perks">
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span class="td-perk__text"><strong class="td-strong">40 homes</strong> · the server maximum</span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span class="td-perk__text"><span class="td-cmd">/anvil</span> · portable anvil</span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span class="td-perk__text"><span class="td-cmd">/skull</span> · get player heads</span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span class="td-perk__text"><span class="td-cmd">/condense</span> · compact items 9→1</span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span class="td-perk__text"><span class="td-cmd">/ping</span> · check your connection</span></div>
+            </div>
+            <!-- TODO: purchase link (Tebex/CraftingStore) -->
+            <a href="#" class="td-buy td-buy--olympian">Buy OLYMPIAN</a>
+          </div>
+
+        </div>
+
+        <!-- Notes -->
+        <div class="td-notas">
+          <div class="td-nota">
+            <svg class="td-nota__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20"></path><path d="m17 7-5-5-5 5"></path></svg>
+            <span class="td-nota__text"><strong class="td-strong">Truly cumulative:</strong> when you rank up you keep absolutely everything from before. You only pay the difference on your way to Olympus.</span>
+          </div>
+          <div class="td-nota">
+            <svg class="td-nota__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+            <span class="td-nota__text"><strong class="td-strong">Fair play:</strong> perks marked with the padlock are locked in combat (ProCombat). Convenience yes, PvP advantage no.</span>
+          </div>
+          <a href="/en/ranks/" class="td-nota td-nota--link">
+            <span class="td-nota__link-text">See the full rank comparison</span>
+            <svg class="td-nota__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="site-footer__grid">
+      <div class="footer-brand">
+        <div class="footer-brand__row">
+          <img src="/img/hyperions-logo-a-64.png" width="34" height="34" alt="" aria-hidden="true">
+          <span class="footer-brand__name">HYPERIONS MC</span>
+        </div>
+        <p class="footer-brand__desc">The Olympus of survivors. Forge your legend — see you at the top.</p>
+        <div class="footer-social">
+          <!-- TODO: real Discord link -->
+          <a href="#" aria-label="Discord" class="icon-btn icon-btn--sm icon-btn--violet"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.27 5.33A16.6 16.6 0 0 0 15.1 4l-.2.4a13.2 13.2 0 0 1 3.7 1.9 12.8 12.8 0 0 0-11-.02A13 13 0 0 1 11.3 4.4L11.1 4a16.6 16.6 0 0 0-4.17 1.33C4.3 9.24 3.58 13.06 3.94 16.82A16.7 16.7 0 0 0 9 19.4l.4-.56a10.9 10.9 0 0 1-1.7-.82c.14-.1.28-.21.41-.32a11.9 11.9 0 0 0 10.18 0c.14.11.27.22.41.32-.54.32-1.11.6-1.7.82l.4.56a16.6 16.6 0 0 0 5.06-2.58c.42-4.35-.72-8.14-3.2-11.49ZM9.68 14.5c-.99 0-1.8-.9-1.8-2.02 0-1.11.79-2.02 1.8-2.02s1.82.91 1.8 2.02c0 1.11-.8 2.02-1.8 2.02Zm4.64 0c-.99 0-1.8-.9-1.8-2.02 0-1.11.79-2.02 1.8-2.02s1.82.91 1.8 2.02c0 1.11-.8 2.02-1.8 2.02Z"></path></svg></a>
+          <!-- TODO: real YouTube link -->
+          <a href="#" aria-label="YouTube" class="icon-btn icon-btn--sm icon-btn--gold"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 12s0-3.5-.44-5.17a2.78 2.78 0 0 0-1.96-1.96C18.93 4.43 12 4.43 12 4.43s-6.93 0-8.6.44a2.78 2.78 0 0 0-1.96 1.96C1 8.5 1 12 1 12s0 3.5.44 5.17a2.78 2.78 0 0 0 1.96 1.96c1.67.44 8.6.44 8.6.44s6.93 0 8.6-.44a2.78 2.78 0 0 0 1.96-1.96C23 15.5 23 12 23 12ZM9.75 15.25v-6.5L15.5 12l-5.75 3.25Z"></path></svg></a>
+          <!-- TODO: real X link -->
+          <a href="#" aria-label="X (Twitter)" class="icon-btn icon-btn--sm icon-btn--white"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.22-6.82-5.97 6.82H1.66l7.73-8.84L1.24 2.25H8.1l4.71 6.23 5.43-6.23Zm-1.16 17.52h1.83L7.01 4.13H5.05l12.03 15.64Z"></path></svg></a>
+        </div>
+      </div>
+
+      <nav class="footer-col" aria-label="Server links">
+        <div class="footer-col__title">Server</div>
+        <div class="footer-col__links footer-col__links--gold">
+          <a href="/en/how-to-join/">How to join</a>
+          <a href="/en/ranks/">Ranks</a>
+          <a href="/en/store/">Official Store</a>
+          <a href="/en/#stats">Live status</a>
+        </div>
+      </nav>
+
+      <nav class="footer-col" aria-label="Help links">
+        <div class="footer-col__title">Help</div>
+        <div class="footer-col__links footer-col__links--violet">
+          <!-- TODO: real Discord link -->
+          <a href="#">Discord</a>
+          <a href="/en/rules/">Rules</a>
+          <a href="/en/support/">Support</a>
+        </div>
+      </nav>
+
+      <div class="footer-col">
+        <div class="footer-col__title">Connect</div>
+        <div class="ip-chip">
+          <div class="ip-chip__label">IP</div>
+          <div class="ip-chip__value">hyperionsmc.com</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <div class="site-footer__bottom-inner">
+        <span>© 2026 Hyperions MC · Made by and for the community.</span>
+        <span class="site-footer__legal">Not affiliated with Mojang Studios or Microsoft.</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -131,6 +131,13 @@ button { font: inherit; }
 .site-header__actions { display: flex; align-items: center; gap: clamp(8px, 2vw, 14px); }
 .nav-link { font-weight: 600; font-size: .92rem; color: var(--muted); padding: 8px 6px; }
 .nav-link:hover { color: var(--gold-bright); }
+.lang-switch {
+  padding: 8px 10px; border-radius: 9px;
+  border: 1px solid var(--border); background: var(--surface);
+  color: var(--muted); font-weight: 700; font-size: .78rem; letter-spacing: .08em;
+  cursor: pointer; transition: all .2s ease;
+}
+.lang-switch:hover { color: var(--gold-bright); border-color: rgba(244,197,106,.5); }
 
 .icon-btn {
   display: inline-flex; align-items: center; justify-content: center;
@@ -449,8 +456,12 @@ button { font: inherit; }
   .brand__name { font-size: .95rem; letter-spacing: .1em; }
   .brand__tag { letter-spacing: .3em; font-size: .55rem; }
   .nav-link { font-size: .85rem; padding: 6px 2px; }
+  .lang-switch { padding: 7px 7px; font-size: .7rem; letter-spacing: .04em; }
   .icon-btn { width: 38px; height: 38px; border-radius: 10px; }
-  .btn-shop { padding: 9px 12px; font-size: .85rem; gap: 6px; }
+  .btn-shop { padding: 9px 10px; font-size: .85rem; gap: 6px; }
+}
+@media (max-width: 374px) {
+  .nav-link { display: none; }
   .hero__badge { padding: 6px 12px; }
   .hero__badge-text { letter-spacing: .16em; font-size: .62rem; }
 }
