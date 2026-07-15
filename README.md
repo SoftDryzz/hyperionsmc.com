@@ -28,6 +28,16 @@ python -m http.server 8123 -d public
 
 Abrir <http://localhost:8123>.
 
+## Idiomas (ES/EN)
+
+- Español en la raíz (`/`, `/rangos/`, ...) e inglés bajo `/en/` (`/en/ranks/`, `/en/store/`, ...),
+  con `hreflang` cruzados para SEO.
+- `js/lang.js` detecta el idioma del navegador en la primera visita: español → ES;
+  **cualquier otro idioma o desconocido → EN** (inglés como idioma por defecto inclusivo).
+- El botón ES/EN de la cabecera guarda la preferencia manual (localStorage `hy-lang`),
+  que manda sobre la detección automática.
+- `js/main.js` y `js/tienda.js` son bilingües: leen el atributo `lang` del `<html>`.
+
 ## Stats en vivo
 
 `js/main.js` consulta cada 60 s la API pública [mcsrvstat.us](https://api.mcsrvstat.us)
