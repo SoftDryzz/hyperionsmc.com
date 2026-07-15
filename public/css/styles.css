@@ -227,7 +227,7 @@ button { font: inherit; }
 }
 .hero__title-sub {
   display: block; margin-top: .18em; font-size: .44em; font-weight: 800; letter-spacing: .01em;
-  line-height: 1.12; padding-bottom: .1em;
+  line-height: 1.12; padding-bottom: .1em; text-wrap: balance;
   background: linear-gradient(100deg, #FFE7A6 0%, #F4C56A 40%, #D99A2B 70%, #FFE7A6 100%);
   background-size: 220% auto;
   -webkit-background-clip: text; background-clip: text; color: transparent;
