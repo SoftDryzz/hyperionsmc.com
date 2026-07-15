@@ -82,8 +82,12 @@ y lo renueva solo. Comprobar: <https://hyperionsmc.com>.
 
 ```powershell
 scp -r public contabo:~
-ssh contabo "sudo cp -r ~/public/. /var/www/hyperionsmc/"
+ssh -t contabo "sudo cp -r ~/public/. /var/www/hyperionsmc/ && sudo rm -f /var/www/hyperionsmc/_headers && sudo chmod -R a+rX /var/www/hyperionsmc"
 ```
+
+Notas: el `-t` de ssh es imprescindible para que sudo pueda pedir la contraseña en una sola línea;
+el `chmod -R a+rX` también, porque el umask endurecido del VPS crea los archivos copiados por
+root como privados y Caddy devolvería 403/404.
 
 ## Seguridad
 
