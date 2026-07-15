@@ -1,0 +1,160 @@
+/* ==========================================================================
+   Hyperions MC — hyperionsmc.com
+   Estilos específicos de /reglas/ (se carga DESPUÉS de styles.css).
+   Prefijo .rl- para todo lo propio de esta página.
+   ========================================================================== */
+
+/* ---------- Cabecera: variante estática con borde y blur (esta página no
+   tiene hero a pantalla completa, la cabecera no se superpone) ---------- */
+.rl-header {
+  position: relative;
+  z-index: 10;
+  border-bottom: 1px solid var(--border);
+  background: rgba(8,7,14,.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.rl-header .site-header__inner { padding-top: 16px; padding-bottom: 16px; }
+
+.nav-link {
+  font-weight: 600;
+  font-size: .92rem;
+  color: var(--muted);
+  padding: 8px 6px;
+}
+.nav-link:hover { color: var(--gold-bright); }
+
+/* ---------- Contenedor común de la página ---------- */
+.rl-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: clamp(20px, 5vw, 64px);
+  padding-right: clamp(20px, 5vw, 64px);
+}
+
+/* ---------- Hero ---------- */
+.rl-hero {
+  position: relative;
+  padding: clamp(52px, 9vh, 88px) 0 clamp(32px, 5vh, 48px);
+  overflow: hidden;
+}
+.rl-hero__bg {
+  position: absolute;
+  inset: -10%;
+  pointer-events: none;
+  background:
+    radial-gradient(44% 60% at 12% 12%, rgba(244,197,106,.12), transparent 70%),
+    radial-gradient(40% 55% at 90% 88%, rgba(168,85,247,.14), transparent 72%);
+}
+.rl-hero__inner { position: relative; }
+.rl-hero__eyebrow {
+  margin-bottom: 14px;
+  animation: hy-rise .6s cubic-bezier(.2,.7,.2,1) both;
+}
+.rl-hero__title {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.2rem, 6.5vw, 4rem);
+  line-height: 1.02;
+  letter-spacing: -.02em;
+  max-width: 820px;
+  animation: hy-rise .7s cubic-bezier(.2,.7,.2,1) .06s both;
+}
+.rl-hero__lead {
+  margin: 18px 0 0;
+  max-width: 640px;
+  font-size: clamp(1rem, 2.4vw, 1.15rem);
+  color: var(--muted);
+  animation: hy-rise .7s cubic-bezier(.2,.7,.2,1) .12s both;
+}
+.rl-cmd {
+  font-family: ui-monospace, monospace;
+  color: var(--gold-bright);
+  font-weight: 600;
+}
+
+/* ---------- Listado de reglas ---------- */
+.rl-section { padding: 0 0 clamp(50px, 8vh, 80px); }
+.rl-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr));
+  gap: clamp(16px, 2vw, 22px);
+}
+
+/* Tarjeta de regla: reutiliza .card (fondo/borde/radio) con padding propio */
+.rl-card { padding: clamp(24px, 2.8vw, 32px); }
+.rl-card__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.rl-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  background: linear-gradient(150deg, rgba(244,197,106,.16), rgba(168,85,247,.12));
+  border: 1px solid rgba(244,197,106,.3);
+  color: var(--gold-bright);
+  flex: none;
+}
+.rl-card__title {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+.rl-card__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--muted);
+  font-size: .94rem;
+}
+.rl-item { display: flex; gap: 9px; }
+.rl-item__num { color: var(--gold); font-weight: 800; flex: none; }
+
+/* ---------- Escalera de sanciones ---------- */
+.rl-sanctions {
+  margin-top: clamp(28px, 5vh, 44px);
+  padding: clamp(24px, 3vw, 34px);
+  border-radius: 20px;
+  border: 1px solid rgba(244,197,106,.25);
+  background: linear-gradient(135deg, rgba(244,197,106,.06), rgba(168,85,247,.05));
+}
+.rl-sanctions__title {
+  margin: 0 0 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.15rem;
+}
+.rl-sanctions__row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.rl-pill {
+  padding: 7px 14px;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: .78rem;
+}
+.rl-pill--warn { border: 1px solid rgba(169,164,184,.4); background: rgba(169,164,184,.08); color: #A9A4B8; }
+.rl-pill--mute { border: 1px solid rgba(244,197,106,.45); background: rgba(244,197,106,.08); color: #FFD97A; }
+.rl-pill--kick { border: 1px solid rgba(251,146,60,.45); background: rgba(251,146,60,.08); color: #FB923C; }
+.rl-pill--tempban { border: 1px solid rgba(248,113,113,.45); background: rgba(248,113,113,.08); color: #F87171; }
+.rl-pill--ban { border: 1px solid rgba(239,68,68,.55); background: rgba(239,68,68,.12); color: #EF4444; font-weight: 800; }
+.rl-arrow { flex: none; }
+.rl-sanctions__note {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: .92rem;
+  max-width: 720px;
+}
+.rl-sanctions__note a { font-weight: 700; }

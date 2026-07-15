@@ -1,0 +1,159 @@
+/* ==========================================================================
+   Hyperions MC — hyperionsmc.com
+   Estilos específicos de /como-entrar/ (se carga DESPUÉS de styles.css).
+   Prefijo .ce- para todo lo propio de esta página.
+   ========================================================================== */
+
+:root {
+  --cyan: #7DD3FC;
+}
+
+/* ---------- Ajustes de cabecera para página interior ----------
+   En la portada el header flota sobre el hero (position:absolute en styles.css);
+   aquí es una barra normal con borde y blur, como en la plantilla. */
+.site-header {
+  position: relative;
+  border-bottom: 1px solid var(--border);
+  background: rgba(8,7,14,.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.site-header__inner { padding-top: 16px; padding-bottom: 16px; }
+
+.nav-link {
+  font-weight: 600;
+  font-size: .92rem;
+  color: var(--muted);
+  padding: 8px 6px;
+}
+.nav-link:hover { color: var(--gold-bright); }
+
+/* ---------- Contenedor común ---------- */
+.ce-container {
+  width: 100%; max-width: 1280px; margin: 0 auto;
+  padding-left: clamp(20px, 5vw, 64px); padding-right: clamp(20px, 5vw, 64px);
+}
+
+/* ---------- Hero: guía rápida ---------- */
+.ce-hero {
+  position: relative;
+  padding: clamp(52px, 9vh, 88px) 0 clamp(36px, 6vh, 54px);
+  overflow: hidden;
+}
+.ce-hero__bg {
+  position: absolute; inset: -10%; pointer-events: none;
+  background:
+    radial-gradient(44% 60% at 16% 14%, rgba(52,211,153,.1), transparent 70%),
+    radial-gradient(40% 55% at 86% 86%, rgba(168,85,247,.14), transparent 72%);
+}
+.ce-hero__container { position: relative; }
+.ce-hero .eyebrow {
+  margin-bottom: 14px;
+  animation: hy-rise .6s cubic-bezier(.2,.7,.2,1) both;
+}
+.ce-hero__title {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif; font-weight: 900;
+  font-size: clamp(2.2rem, 6.5vw, 4rem); line-height: 1.02; letter-spacing: -.02em;
+  max-width: 820px;
+  animation: hy-rise .7s cubic-bezier(.2,.7,.2,1) .06s both;
+}
+.ce-hero__ipwrap {
+  margin-top: clamp(24px, 4vh, 34px);
+  animation: hy-rise .7s cubic-bezier(.2,.7,.2,1) .12s both;
+}
+
+/* ---------- Sección de pasos ---------- */
+.ce-section { padding: 0 0 clamp(40px, 6vh, 60px); }
+
+.ce-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: clamp(16px, 2vw, 22px);
+}
+
+/* Tarjetas Java / Bedrock (reutilizan .card de styles.css) */
+.ce-panel { padding: clamp(24px, 2.8vw, 32px); }
+.ce-panel__head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; margin-bottom: 20px;
+}
+.ce-panel__title { margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.3rem; }
+.ce-gold { color: var(--gold-bright); }
+.ce-cyan { color: var(--cyan); }
+.ce-chip {
+  padding: 5px 12px; border-radius: 100px;
+  border: 1px solid var(--border); background: var(--surface);
+  font-family: ui-monospace, monospace; font-size: .74rem; color: var(--muted);
+  white-space: nowrap;
+}
+
+.ce-steps { display: flex; flex-direction: column; gap: 16px; }
+.ce-step { display: flex; gap: 14px; }
+.ce-step__num {
+  flex: none; display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: rgba(244,197,106,.1); border: 1px solid rgba(244,197,106,.4);
+  color: var(--gold-bright);
+  font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: .9rem;
+}
+.ce-step__num--cyan {
+  background: rgba(125,211,252,.1); border-color: rgba(125,211,252,.4);
+  color: var(--cyan);
+}
+.ce-step__text { color: var(--muted); font-size: .95rem; padding-top: 5px; }
+.ce-step__text strong { color: var(--text); }
+.ce-mono { font-family: ui-monospace, monospace; color: var(--gold-bright); font-weight: 600; }
+.ce-cmd { font-family: ui-monospace, monospace; color: var(--text); font-weight: 600; }
+
+/* ---------- Primeros pasos como Mortal ---------- */
+.ce-first {
+  margin-top: clamp(28px, 5vh, 44px);
+  padding: clamp(24px, 3vw, 34px); border-radius: 20px;
+  border: 1px solid rgba(52,211,153,.25);
+  background: linear-gradient(135deg, rgba(52,211,153,.06), rgba(168,85,247,.05));
+}
+.ce-first__head { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.ce-first__title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.15rem; }
+.ce-first__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 14px;
+  color: var(--muted); font-size: .94rem;
+}
+.ce-tip { display: flex; gap: 10px; }
+.ce-tip__arrow { color: var(--green); font-weight: 800; flex: none; }
+.ce-strong { color: var(--text); }
+.ce-link { font-weight: 700; }
+
+/* ---------- CTA rangos / tienda ---------- */
+.ce-cta {
+  margin-top: clamp(28px, 5vh, 44px);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 18px; flex-wrap: wrap;
+  padding: clamp(24px, 3vw, 34px); border-radius: 20px;
+  border: 1px solid rgba(244,197,106,.28);
+  background: linear-gradient(135deg, rgba(168,85,247,.12), rgba(244,197,106,.08));
+}
+.ce-cta__title { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(1.3rem, 3vw, 1.7rem); }
+.ce-cta__text { margin: 8px 0 0; color: var(--muted); font-size: .95rem; }
+.ce-cta__actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.ce-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 22px; border-radius: 12px;
+  font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: .95rem;
+}
+.ce-btn--violet {
+  border: 1px solid rgba(199,160,245,.4);
+  background: rgba(168,85,247,.08);
+  color: var(--violet-bright);
+  transition: all .2s ease;
+}
+.ce-btn--violet:hover { background: rgba(168,85,247,.16); color: #fff; }
+.ce-btn--gold {
+  background: linear-gradient(135deg, #FFE7A6, #F4C56A 50%, #D99A2B);
+  color: #1a1206;
+  transition: transform .2s ease;
+}
+.ce-btn--gold:hover { transform: translateY(-2px); color: #1a1206; }

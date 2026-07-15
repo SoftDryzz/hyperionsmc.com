@@ -129,6 +129,8 @@ button { font: inherit; }
 .brand__name { font-family: 'Montserrat', sans-serif; font-weight: 900; letter-spacing: .14em; font-size: clamp(1rem, 2.6vw, 1.2rem); }
 .brand__tag { font-weight: 700; letter-spacing: .42em; font-size: .6rem; color: var(--gold); margin-top: 3px; }
 .site-header__actions { display: flex; align-items: center; gap: clamp(8px, 2vw, 14px); }
+.nav-link { font-weight: 600; font-size: .92rem; color: var(--muted); padding: 8px 6px; }
+.nav-link:hover { color: var(--gold-bright); }
 
 .icon-btn {
   display: inline-flex; align-items: center; justify-content: center;
