@@ -1,0 +1,19 @@
+# Hyperions MC — hyperionsmc.com
+# Bloque para AÑADIR al final de /etc/caddy/Caddyfile del VPS (Contabo).
+# Caddy obtiene y renueva el certificado HTTPS automáticamente (Let's Encrypt).
+
+hyperionsmc.com {
+        root * /var/www/hyperionsmc
+        file_server
+        encode gzip zstd
+
+        header {
+                Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src https://api.mcsrvstat.us; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
+                X-Content-Type-Options "nosniff"
+                X-Frame-Options "DENY"
+                Referrer-Policy "strict-origin-when-cross-origin"
+                Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+                Cross-Origin-Opener-Policy "same-origin"
+                Cross-Origin-Resource-Policy "same-origin"
+        }
+}

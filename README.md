@@ -14,7 +14,7 @@ public/                  ← carpeta que se despliega (raíz del sitio)
 ├── img/logo.svg         Logo «Rayo del Olimpo» · img/favicon.svg
 ├── _headers             (solo tendría efecto en Cloudflare Pages; en el VPS puede borrarse)
 └── robots.txt
-deploy/nginx-hyperionsmc.conf   Configuración de nginx para el VPS
+deploy/Caddyfile-hyperionsmc    Bloque de Caddy para el VPS (web + HTTPS automático)
 docs/superpowers/        Spec y plan de diseño
 Hyperions MC Landing.dc.html    Plantilla de diseño original (no se despliega)
 ```
@@ -49,60 +49,50 @@ Todo cuelga del dominio raíz; los jugadores de **Java y Bedrock** y el navegado
 - Bedrock: `hyperionsmc.com`, puerto `19132` (o el configurado en Geyser).
 - Opcional: registro A `www` → misma IP (DNS only) si se quiere que `www.hyperionsmc.com` funcione.
 
-## Despliegue: en el VPS con nginx
+## Despliegue: en el VPS con Caddy
 
-La web se sirve desde el mismo VPS del servidor de Minecraft (`82.208.23.8`).
-Pasos (Ubuntu/Debian; ajustar `root@` si se usa otro usuario):
+La web se sirve desde el mismo VPS del servidor de Minecraft (`82.208.23.8`, alias SSH `contabo`,
+usuario `hyperion`, puerto 2222). El VPS ya usa **Caddy** como servidor web (sirve también
+`api.softdryzz.com`); Caddy gestiona el certificado HTTPS y su renovación automáticamente,
+así que no hacen falta nginx ni certbot.
 
-### 1. Instalar nginx y certbot (una sola vez, en el VPS)
+Requisitos ya cumplidos: UFW con `Nginx Full` (80/443) permitido y DNS `@` → VPS (DNS only).
 
-```bash
-ssh root@82.208.23.8
-apt update && apt install -y nginx certbot python3-certbot-nginx
-mkdir -p /var/www/hyperionsmc
-exit
-```
-
-### 2. Subir la web y la configuración (desde este PC, en la carpeta del proyecto)
+### 1. Subir la web (desde este PC, en la carpeta del proyecto)
 
 ```powershell
-scp -r public/* root@82.208.23.8:/var/www/hyperionsmc/
-scp deploy/nginx-hyperionsmc.conf root@82.208.23.8:/etc/nginx/sites-available/hyperionsmc.conf
+scp -r public contabo:~
 ```
 
-### 3. Activar el sitio (en el VPS)
+### 2. Colocarla y configurar Caddy (dentro de `ssh contabo`)
 
 ```bash
-ssh root@82.208.23.8
-ln -s /etc/nginx/sites-available/hyperionsmc.conf /etc/nginx/sites-enabled/
-rm -f /etc/nginx/sites-enabled/default
-nginx -t && systemctl reload nginx
+sudo mkdir -p /var/www/hyperionsmc
+sudo cp -r ~/public/. /var/www/hyperionsmc/
+sudo rm -f /var/www/hyperionsmc/_headers   # archivo solo útil en Cloudflare Pages
+# Añadir el bloque de deploy/Caddyfile-hyperionsmc al final de /etc/caddy/Caddyfile
+sudo caddy validate --config /etc/caddy/Caddyfile
+sudo systemctl reload caddy
 ```
 
-Si hay firewall UFW activo: `ufw allow 'Nginx Full'`.
-Probar: <http://hyperionsmc.com> debe mostrar la web.
-
-### 4. HTTPS con Let's Encrypt (en el VPS)
-
-```bash
-certbot --nginx -d hyperionsmc.com
-# (añadir -d www.hyperionsmc.com solo si se creó el registro A www)
-certbot renew --dry-run   # comprobar la renovación automática
-```
-
-Certbot configura el certificado, la redirección HTTP→HTTPS y la renovación sola cada ~60 días.
+Caddy pide el certificado a Let's Encrypt en el primer arranque del sitio (~30 s)
+y lo renueva solo. Comprobar: <https://hyperionsmc.com>.
 
 ### Actualizar la web más adelante
 
-Repetir solo el `scp` del paso 2 (primera línea). Nada más.
+```powershell
+scp -r public contabo:~
+ssh contabo "sudo cp -r ~/public/. /var/www/hyperionsmc/"
+```
 
 ## Seguridad
 
-- CSP estricta sin `unsafe-inline` (en `deploy/nginx-hyperionsmc.conf`): solo scripts/estilos/fuentes
+- CSP estricta sin `unsafe-inline` (en `deploy/Caddyfile-hyperionsmc`): solo scripts/estilos/fuentes
   propios y `connect-src` limitado a la API de stats. Sin cookies, formularios ni almacenamiento.
 - `X-Frame-Options: DENY`, `nosniff`, `Referrer-Policy`, `Permissions-Policy`, COOP/CORP.
 - Datos externos al DOM únicamente con `textContent` (anti-XSS).
-- HSTS: activarlo en la config de nginx (línea comentada) cuando HTTPS lleve unos días estable.
+- HSTS: cuando HTTPS lleve unos días estable, añadir al bloque `header` del Caddyfile:
+  `Strict-Transport-Security "max-age=31536000"`.
 
 ## Alternativa descartada: Cloudflare Pages
 
