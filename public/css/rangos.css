@@ -133,3 +133,13 @@
   transition: transform .2s ease, filter .2s ease;
 }
 .rg-cta__btn:hover { transform: translateY(-3px); filter: brightness(1.05); color: #1a1206; }
+
+/* Encuadre móvil: columna fija más estrecha para que asomen los rangos */
+@media (max-width: 640px) {
+  .rg-table { font-size: .84rem; min-width: 740px; }
+  .rg-th-feature, .rg-td-feature {
+    min-width: 158px; max-width: 176px; width: 176px;
+    padding-left: 12px; padding-right: 12px;
+    box-shadow: 10px 0 14px -10px rgba(0, 0, 0, .9);
+  }
+}
