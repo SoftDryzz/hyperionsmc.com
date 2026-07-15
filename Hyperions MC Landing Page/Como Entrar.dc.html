@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Cómo entrar — Hyperions MC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #050409; color: #F5F3FA; -webkit-font-smoothing: antialiased; }
+  a { color: #C7A0F5; text-decoration: none; transition: color .2s ease; }
+  a:hover { color: #FFD97A; }
+  ::selection { background: rgba(244,197,106,.28); color: #fff; }
+  @keyframes hy-rise { 0% { opacity: 0; transform: translateY(26px); } 100% { opacity: 1; transform: translateY(0); } }
+  @keyframes hy-ring { 0% { box-shadow: 0 0 0 0 rgba(52,211,153,.45); } 100% { box-shadow: 0 0 0 12px rgba(52,211,153,0); } }
+</style>
+</helmet>
+
+<div style="--gold:#F4C56A; --gold-bright:#FFD97A; --violet:#A855F7; --violet-bright:#C7A0F5; --violet-deep:#7C3AED; --green:#34D399; --cyan:#7DD3FC; --text:#F5F3FA; --muted:#A9A4B8; --faint:#726C82; --surface:rgba(255,255,255,.035); --border:rgba(255,255,255,.09); position:relative; min-height:100vh; width:100%; overflow-x:hidden; background:#050409; color:var(--text); font-family:'Manrope',system-ui,sans-serif; line-height:1.55;">
+
+  <header style="position:relative; z-index:10; border-bottom:1px solid var(--border); background:rgba(8,7,14,.72); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);">
+    <div style="width:100%; max-width:1280px; margin:0 auto; padding:16px clamp(20px,5vw,64px); display:flex; align-items:center; justify-content:space-between; gap:14px;">
+      <a href="Hyperions MC Landing.dc.html" style="display:flex; align-items:center; gap:10px; color:var(--text);">
+        <img src="logos/hyperions-logo-a.svg" width="34" height="34" alt="Hyperions MC" style="flex:none;">
+        <span style="display:flex; flex-direction:column; line-height:1;">
+          <span style="font-family:'Montserrat',sans-serif; font-weight:900; letter-spacing:.14em; font-size:1rem;">HYPERIONS</span>
+          <span style="font-weight:700; letter-spacing:.42em; font-size:.55rem; color:var(--gold); margin-top:3px;">MC · SURVIVAL</span>
+        </span>
+      </a>
+      <nav style="display:flex; align-items:center; gap:clamp(14px,3vw,26px);">
+        <a href="Hyperions MC Landing.dc.html" style="font-weight:600; font-size:.92rem; color:var(--muted);" style-hover="color:var(--gold-bright);">Inicio</a>
+        <a href="Rangos.dc.html" style="font-weight:600; font-size:.92rem; color:var(--muted);" style-hover="color:var(--gold-bright);">Rangos</a>
+        <a href="Tienda.dc.html" style="display:inline-flex; align-items:center; gap:7px; padding:9px 16px; border-radius:10px; background:linear-gradient(135deg, var(--violet), var(--violet-deep)); color:#fff; font-weight:700; font-size:.85rem; box-shadow:0 8px 22px -10px rgba(124,58,237,.8); transition:transform .2s ease;" style-hover="transform:translateY(-2px); color:#fff;">Tienda</a>
+      </nav>
+    </div>
+  </header>
+
+  <section data-screen-label="Como entrar hero" style="position:relative; padding:clamp(52px,9vh,88px) 0 clamp(36px,6vh,54px); overflow:hidden;">
+    <div style="position:absolute; inset:-10%; pointer-events:none; background:radial-gradient(44% 60% at 16% 14%, rgba(52,211,153,.1), transparent 70%), radial-gradient(40% 55% at 86% 86%, rgba(168,85,247,.14), transparent 72%);"></div>
+    <div style="position:relative; width:100%; max-width:1280px; margin:0 auto; padding-left:clamp(20px,5vw,64px); padding-right:clamp(20px,5vw,64px);">
+      <div style="font-weight:800; letter-spacing:.28em; font-size:.72rem; text-transform:uppercase; color:var(--gold); margin-bottom:14px; animation:hy-rise .6s cubic-bezier(.2,.7,.2,1) both;">Guía rápida</div>
+      <h1 style="margin:0; font-family:'Montserrat',sans-serif; font-weight:900; font-size:clamp(2.2rem,6.5vw,4rem); line-height:1.02; letter-spacing:-.02em; max-width:820px; animation:hy-rise .7s cubic-bezier(.2,.7,.2,1) .06s both;">Entra al Olimpo en <span style="background:linear-gradient(100deg,#FFE7A6,#F4C56A,#D99A2B); -webkit-background-clip:text; background-clip:text; color:transparent;">1 minuto</span></h1>
+
+      <div style="margin-top:clamp(24px,4vh,34px); animation:hy-rise .7s cubic-bezier(.2,.7,.2,1) .12s both;">
+        <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding:14px 14px 14px 20px; border-radius:16px; background:linear-gradient(180deg, rgba(20,17,30,.72), rgba(12,10,18,.72)); border:1px solid rgba(244,197,106,.34); box-shadow:0 24px 60px -30px rgba(0,0,0,.9); max-width:520px;">
+          <div style="flex:1 1 200px; min-width:0;">
+            <div style="font-weight:700; letter-spacing:.28em; font-size:.62rem; text-transform:uppercase; color:var(--faint); margin-bottom:5px;">IP del servidor · Java y Bedrock</div>
+            <div ref="{{ ipRef }}" style="font-family:ui-monospace,'SFMono-Regular',Menlo,monospace; font-weight:700; font-size:clamp(1.15rem,4vw,1.5rem); color:var(--gold-bright); text-shadow:0 0 20px rgba(244,197,106,.3); word-break:break-all;">play.hyperionsmc.com</div>
+          </div>
+          <button ref="{{ copyBtnRef }}" onClick="{{ copyIp }}" style="flex:none; display:inline-flex; align-items:center; gap:8px; padding:13px 20px; border-radius:12px; border:none; background:linear-gradient(135deg,#FFE7A6,#F4C56A 55%,#D99A2B); color:#1a1206; font-family:'Manrope',sans-serif; font-weight:800; font-size:.95rem; cursor:pointer; transition:transform .18s ease, filter .18s ease;" style-hover="transform:translateY(-2px); filter:brightness(1.06);">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>
+            <span ref="{{ copyLabelRef }}">Copiar IP</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Pasos Java y Bedrock" style="padding:0 0 clamp(40px,6vh,60px);">
+    <div style="width:100%; max-width:1280px; margin:0 auto; padding-left:clamp(20px,5vw,64px); padding-right:clamp(20px,5vw,64px);">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap:clamp(16px,2vw,22px);">
+
+        <!-- JAVA -->
+        <div style="padding:clamp(24px,2.8vw,32px); border-radius:20px; background:linear-gradient(180deg, rgba(22,19,33,.6), rgba(12,10,18,.55)); border:1px solid var(--border);">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:20px;">
+            <h2 style="margin:0; font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.3rem;">Minecraft <span style="color:var(--gold-bright);">Java</span></h2>
+            <span style="padding:5px 12px; border-radius:100px; border:1px solid var(--border); background:var(--surface); font-family:ui-monospace,monospace; font-size:.74rem; color:var(--muted);">1.21.x</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; gap:14px;">
+              <span style="flex:none; display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:rgba(244,197,106,.1); border:1px solid rgba(244,197,106,.4); color:var(--gold-bright); font-family:'Montserrat',sans-serif; font-weight:800; font-size:.9rem;">1</span>
+              <span style="color:var(--muted); font-size:.95rem; padding-top:5px;">Abre Minecraft y entra en <strong style="color:var(--text);">Multijugador</strong>.</span>
+            </div>
+            <div style="display:flex; gap:14px;">
+              <span style="flex:none; display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:rgba(244,197,106,.1); border:1px solid rgba(244,197,106,.4); color:var(--gold-bright); font-family:'Montserrat',sans-serif; font-weight:800; font-size:.9rem;">2</span>
+              <span style="color:var(--muted); font-size:.95rem; padding-top:5px;"><strong style="color:var(--text);">Añadir servidor</strong> y pega la IP <span style="font-family:ui-monospace,monospace; color:var(--gold-bright); font-weight:600;">play.hyperionsmc.com</span>.</span>
+            </div>
+            <div style="display:flex; gap:14px;">
+              <span style="flex:none; display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:rgba(244,197,106,.1); border:1px solid rgba(244,197,106,.4); color:var(--gold-bright); font-family:'Montserrat',sans-serif; font-weight:800; font-size:.9rem;">3</span>
+              <span style="color:var(--muted); font-size:.95rem; padding-top:5px;">Haz doble clic en el servidor y <strong style="color:var(--text);">a sobrevivir</strong>.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BEDROCK -->
+        <div style="padding:clamp(24px,2.8vw,32px); border-radius:20px; background:linear-gradient(180deg, rgba(22,19,33,.6), rgba(12,10,18,.55)); border:1px solid var(--border);">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:20px;">
+            <h2 style="margin:0; font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.3rem;">Minecraft <span style="color:var(--cyan);">Bedrock</span></h2>
+            <span style="padding:5px 12px; border-radius:100px; border:1px solid var(--border); background:var(--surface); font-family:ui-monospace,monospace; font-size:.74rem; color:var(--muted);">móvil · consola · PC</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; gap:14px;">
+              <span style="flex:none; display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:rgba(125,211,252,.1); border:1px solid rgba(125,211,252,.4); color:var(--cyan); font-family:'Montserrat',sans-serif; font-weight:800; font-size:.9rem;">1</span>
+              <span style="color:var(--muted); font-size:.95rem; padding-top:5px;">Toca <strong style="color:var(--text);">Jugar → Servidores → Añadir servidor</strong>.</span>
+            </div>
+            <div style="display:flex; gap:14px;">
+              <span style="flex:none; display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:rgba(125,211,252,.1); border:1px solid rgba(125,211,252,.4); color:var(--cyan); font-family:'Montserrat',sans-serif; font-weight:800; font-size:.9rem;">2</span>
+              <span style="color:var(--muted); font-size:.95rem; padding-top:5px;">Dirección <span style="font-family:ui-monospace,monospace; color:var(--gold-bright); font-weight:600;">play.hyperionsmc.com</span> · Puerto <span style="font-family:ui-monospace,monospace; color:var(--gold-bright); font-weight:600;">19132</span>.</span>
+            </div>
+            <div style="display:flex; gap:14px;">
+              <span style="flex:none; display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:rgba(125,211,252,.1); border:1px solid rgba(125,211,252,.4); color:var(--cyan); font-family:'Montserrat',sans-serif; font-weight:800; font-size:.9rem;">3</span>
+              <span style="color:var(--muted); font-size:.95rem; padding-top:5px;">Guarda, entra y <strong style="color:var(--text);">reclama tu leyenda</strong>.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- primeros pasos -->
+      <div style="margin-top:clamp(28px,5vh,44px); padding:clamp(24px,3vw,34px); border-radius:20px; border:1px solid rgba(52,211,153,.25); background:linear-gradient(135deg, rgba(52,211,153,.06), rgba(168,85,247,.05));">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
+          <span style="width:9px; height:9px; border-radius:50%; background:var(--green); box-shadow:0 0 10px var(--green); animation:hy-ring 2.2s ease-out infinite;"></span>
+          <div style="font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.15rem;">Tus primeros pasos como Mortal</div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap:14px; color:var(--muted); font-size:.94rem;">
+          <div style="display:flex; gap:10px;"><span style="color:var(--green); font-weight:800; flex:none;">→</span><span>Lee las normas con <span style="font-family:ui-monospace,monospace; color:var(--text); font-weight:600;">/rules</span> — están también en <a href="Reglas.dc.html" style="font-weight:700;">Reglas</a>.</span></div>
+          <div style="display:flex; gap:10px;"><span style="color:var(--green); font-weight:800; flex:none;">→</span><span>Protege tu base: consigue una <strong style="color:var(--text);">pala dorada</strong> y marca dos esquinas de tu terreno.</span></div>
+          <div style="display:flex; gap:10px;"><span style="color:var(--green); font-weight:800; flex:none;">→</span><span>Guarda tu casa con <span style="font-family:ui-monospace,monospace; color:var(--text); font-weight:600;">/sethome</span> y vuelve con <span style="font-family:ui-monospace,monospace; color:var(--text); font-weight:600;">/home</span>.</span></div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div style="margin-top:clamp(28px,5vh,44px); display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap; padding:clamp(24px,3vw,34px); border-radius:20px; border:1px solid rgba(244,197,106,.28); background:linear-gradient(135deg, rgba(168,85,247,.12), rgba(244,197,106,.08));">
+        <div>
+          <div style="font-family:'Montserrat',sans-serif; font-weight:900; font-size:clamp(1.3rem,3vw,1.7rem);">¿Quieres más poder desde el día uno?</div>
+          <p style="margin:8px 0 0; color:var(--muted); font-size:.95rem;">Mira lo que desbloquea cada rango — de Mortal a Olympian.</p>
+        </div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="Rangos.dc.html" style="display:inline-flex; align-items:center; gap:8px; padding:13px 22px; border-radius:12px; border:1px solid rgba(199,160,245,.4); background:rgba(168,85,247,.08); color:var(--violet-bright); font-family:'Montserrat',sans-serif; font-weight:800; font-size:.95rem; transition:all .2s ease;" style-hover="background:rgba(168,85,247,.16); color:#fff;">Ver rangos</a>
+          <a href="Tienda.dc.html" style="display:inline-flex; align-items:center; gap:8px; padding:13px 22px; border-radius:12px; background:linear-gradient(135deg,#FFE7A6,#F4C56A 50%,#D99A2B); color:#1a1206; font-family:'Montserrat',sans-serif; font-weight:800; font-size:.95rem; transition:transform .2s ease;" style-hover="transform:translateY(-2px); color:#1a1206;">Ir a la Tienda</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer data-screen-label="Footer" style="border-top:1px solid var(--border); background:linear-gradient(180deg, #07060C, #030308);">
+    <div style="width:100%; max-width:1280px; margin:0 auto; padding:26px clamp(20px,5vw,64px); display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+      <a href="Hyperions MC Landing.dc.html" style="display:flex; align-items:center; gap:9px; color:var(--text);">
+        <img src="logos/hyperions-logo-a.svg" width="26" height="26" alt="" style="flex:none;">
+        <span style="font-family:'Montserrat',sans-serif; font-weight:900; letter-spacing:.12em; font-size:.95rem;">HYPERIONS MC</span>
+      </a>
+      <div style="display:flex; gap:clamp(14px,3vw,24px); flex-wrap:wrap;">
+        <a href="Hyperions MC Landing.dc.html" style="color:var(--muted); font-size:.88rem;" style-hover="color:var(--gold-bright);">Inicio</a>
+        <a href="Rangos.dc.html" style="color:var(--muted); font-size:.88rem;" style-hover="color:var(--gold-bright);">Rangos</a>
+        <a href="Tienda.dc.html" style="color:var(--muted); font-size:.88rem;" style-hover="color:var(--gold-bright);">Tienda</a>
+        <a href="Soporte.dc.html" style="color:var(--muted); font-size:.88rem;" style-hover="color:var(--violet-bright);">Soporte</a>
+      </div>
+      <span style="font-size:.74rem; color:var(--faint);">No afiliado con Mojang Studios ni Microsoft.</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  ipRef = React.createRef();
+  copyBtnRef = React.createRef();
+  copyLabelRef = React.createRef();
+
+  copyIp = () => {
+    const el = this.ipRef.current;
+    const ip = (el ? el.textContent : 'play.hyperionsmc.com').trim();
+    const done = () => this.showCopied();
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(ip).then(done, done);
+      } else { done(); }
+    } catch (e) { done(); }
+  };
+
+  showCopied() {
+    const lab = this.copyLabelRef.current, btn = this.copyBtnRef.current;
+    if (lab) lab.textContent = '¡Copiada!';
+    if (btn) {
+      if (btn._orig === undefined) btn._orig = btn.style.cssText;
+      btn.style.background = 'linear-gradient(135deg,#7CF0B5,#34D399)';
+      btn.style.color = '#08130d';
+    }
+    clearTimeout(this._ct);
+    this._ct = setTimeout(() => {
+      if (lab) lab.textContent = 'Copiar IP';
+      if (btn && btn._orig !== undefined) btn.style.cssText = btn._orig;
+    }, 1800);
+  }
+
+  componentWillUnmount() { clearTimeout(this._ct); }
+
+  renderVals() {
+    return { ipRef: this.ipRef, copyBtnRef: this.copyBtnRef, copyLabelRef: this.copyLabelRef, copyIp: this.copyIp };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #050409; color: #F5F3FA; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  a { color: #C7A0F5; text-decoration: none; transition: color .2s ease; }
+  a:hover { color: #FFD97A; }
+  ::selection { background: rgba(244,197,106,.28); color: #fff; }
+  @keyframes hy-pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(.7); } }
+  @keyframes hy-ring { 0% { box-shadow: 0 0 0 0 rgba(52,211,153,.45); } 100% { box-shadow: 0 0 0 12px rgba(52,211,153,0); } }
+  @keyframes hy-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+  @keyframes hy-aurora { 0% { transform: translate(-4%,-2%) scale(1); } 50% { transform: translate(4%,3%) scale(1.09); } 100% { transform: translate(-4%,-2%) scale(1); } }
+  @keyframes hy-rise { 0% { opacity: 0; transform: translateY(26px); } 100% { opacity: 1; transform: translateY(0); } }
+  @keyframes hy-sheen { 0% { background-position: 0% 50%; } 100% { background-position: 220% 50%; } }
+  @keyframes hy-glow { 0%,100% { box-shadow: 0 14px 44px -14px rgba(244,197,106,.55), 0 0 0 1px rgba(255,217,122,.35) inset; } 50% { box-shadow: 0 18px 60px -12px rgba(244,197,106,.85), 0 0 0 1px rgba(255,217,122,.55) inset; } }
+</style>
+</helmet>
+
+<div style="--bg:#08070E; --bg2:#050409; --gold:#F4C56A; --gold-bright:#FFD97A; --gold-deep:#D99A2B; --violet:#A855F7; --violet-bright:#C7A0F5; --violet-deep:#7C3AED; --green:#34D399; --text:#F5F3FA; --muted:#A9A4B8; --faint:#726C82; --surface:rgba(255,255,255,.035); --border:rgba(255,255,255,.09); position:relative; min-height:100vh; width:100%; overflow-x:hidden; background:var(--bg2); color:var(--text); font-family:'Manrope',system-ui,sans-serif; line-height:1.55;">
+
+  <!-- ============ STICKY IP BAR (scroll-triggered) ============ -->
+  <div ref="{{ stickyRef }}" style="position:fixed; top:0; left:0; right:0; z-index:80; transform:translateY(-115%); opacity:0; pointer-events:none; transition:transform .45s cubic-bezier(.2,.8,.2,1), opacity .35s ease; display:flex; align-items:center; justify-content:center;">
+    <div style="width:100%; max-width:1200px; margin:0 auto; padding:11px clamp(16px,4vw,32px); display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; background:rgba(10,9,16,.82); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border-bottom:1px solid rgba(244,197,106,.22); box-shadow:0 18px 40px -22px rgba(0,0,0,.9);">
+      <div style="display:flex; align-items:center; gap:10px; min-width:0;">
+        <span style="width:9px; height:9px; border-radius:50%; background:var(--green); box-shadow:0 0 10px var(--green); flex:none; animation:hy-ring 2.2s ease-out infinite;"></span>
+        <span style="font-family:'Manrope',monospace; font-weight:700; letter-spacing:.02em; color:var(--gold-bright); font-size:clamp(.86rem,2.6vw,1.02rem); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">play.hyperionsmc.com</span>
+      </div>
+      <button ref="{{ stickyCopyBtnRef }}" onClick="{{ copyIp }}" style="flex:none; display:inline-flex; align-items:center; gap:7px; padding:8px 16px; border-radius:9px; border:1px solid rgba(244,197,106,.4); background:rgba(244,197,106,.08); color:var(--gold-bright); font-family:'Manrope',sans-serif; font-weight:700; font-size:.82rem; cursor:pointer; transition:all .18s ease;" style-hover="background:rgba(244,197,106,.18); border-color:var(--gold);">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>
+        <span ref="{{ stickyCopyLabelRef }}">Copiar</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header style="position:absolute; top:0; left:0; right:0; z-index:40;">
+    <div style="width:100%; max-width:1280px; margin:0 auto; padding:clamp(18px,3.5vw,30px) clamp(20px,5vw,64px); display:flex; align-items:center; justify-content:space-between; gap:16px;">
+      <a href="#top" style="display:flex; align-items:center; gap:11px; color:var(--text);">
+        <img src="logos/hyperions-logo-a.svg" width="38" height="38" alt="Hyperions MC" style="flex:none; filter:drop-shadow(0 3px 8px rgba(168,85,247,.4));">
+        <span style="display:flex; flex-direction:column; line-height:1;">
+          <span style="font-family:'Montserrat',sans-serif; font-weight:900; letter-spacing:.14em; font-size:clamp(1rem,2.6vw,1.2rem);">HYPERIONS</span>
+          <span style="font-family:'Manrope',sans-serif; font-weight:700; letter-spacing:.42em; font-size:.6rem; color:var(--gold); margin-top:3px;">MC · SURVIVAL</span>
+        </span>
+      </a>
+      <div style="display:flex; align-items:center; gap:clamp(8px,2vw,14px);">
+        <a href="Rangos.dc.html" style="font-weight:600; font-size:.92rem; color:var(--muted); padding:8px 6px;" style-hover="color:var(--gold-bright);">Rangos</a>
+        <a href="#" aria-label="Discord" style="display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; border-radius:11px; border:1px solid var(--border); background:var(--surface); color:var(--muted); transition:all .2s ease;" style-hover="color:var(--violet-bright); border-color:rgba(168,85,247,.5); background:rgba(168,85,247,.1);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.27 5.33A16.6 16.6 0 0 0 15.1 4l-.2.4a13.2 13.2 0 0 1 3.7 1.9 12.8 12.8 0 0 0-11-.02A13 13 0 0 1 11.3 4.4L11.1 4a16.6 16.6 0 0 0-4.17 1.33C4.3 9.24 3.58 13.06 3.94 16.82A16.7 16.7 0 0 0 9 19.4l.4-.56a10.9 10.9 0 0 1-1.7-.82c.14-.1.28-.21.41-.32a11.9 11.9 0 0 0 10.18 0c.14.11.27.22.41.32-.54.32-1.11.6-1.7.82l.4.56a16.6 16.6 0 0 0 5.06-2.58c.42-4.35-.72-8.14-3.2-11.49ZM9.68 14.5c-.99 0-1.8-.9-1.8-2.02 0-1.11.79-2.02 1.8-2.02s1.82.91 1.8 2.02c0 1.11-.8 2.02-1.8 2.02Zm4.64 0c-.99 0-1.8-.9-1.8-2.02 0-1.11.79-2.02 1.8-2.02s1.82.91 1.8 2.02c0 1.11-.8 2.02-1.8 2.02Z"></path></svg>
+        </a>
+        <a href="Tienda.dc.html" style="display:inline-flex; align-items:center; gap:8px; padding:11px clamp(16px,2.5vw,22px); border-radius:11px; background:linear-gradient(135deg, var(--violet), var(--violet-deep)); color:#fff; font-weight:700; font-size:.92rem; box-shadow:0 8px 26px -10px rgba(124,58,237,.8); transition:transform .2s ease, box-shadow .2s ease; white-space:nowrap;" style-hover="transform:translateY(-2px); box-shadow:0 14px 34px -10px rgba(124,58,237,.95);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          Tienda
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section id="top" data-screen-label="Hero" style="position:relative; min-height:100vh; display:flex; align-items:center; padding:clamp(130px,20vh,190px) 0 clamp(60px,9vh,110px);">
+    <!-- background stack -->
+    <div style="position:absolute; inset:0; z-index:0; overflow:hidden;">
+      <div style="position:absolute; inset:0;">
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="hero-bg" shape="rect" fit="cover" placeholder="Arrastra un render o screenshot del servidor" hint-size="100%,100%"></x-import>
+      </div>
+      <div style="position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg, rgba(5,4,9,.5) 0%, rgba(5,4,9,.28) 32%, rgba(5,4,9,.8) 80%, #050409 100%);"></div>
+      <div style="position:absolute; inset:0; pointer-events:none; background:linear-gradient(100deg, rgba(5,4,9,.94) 0%, rgba(5,4,9,.66) 44%, rgba(5,4,9,0) 84%);"></div>
+      <div style="position:absolute; inset:-12%; pointer-events:none; animation:hy-aurora 20s ease-in-out infinite; background:radial-gradient(42% 55% at 16% 20%, rgba(168,85,247,.3), transparent 70%), radial-gradient(44% 52% at 84% 80%, rgba(244,197,106,.22), transparent 72%);"></div>
+      <div style="position:absolute; inset:0; pointer-events:none; opacity:.45; background-image:linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size:66px 66px; -webkit-mask-image:radial-gradient(95% 80% at 45% 28%, #000 38%, transparent 100%); mask-image:radial-gradient(95% 80% at 45% 28%, #000 38%, transparent 100%);"></div>
+      <div style="position:absolute; left:14%; top:30%; width:6px; height:6px; border-radius:50%; background:var(--gold); box-shadow:0 0 12px var(--gold); opacity:.7; pointer-events:none; animation:hy-float 7s ease-in-out infinite;"></div>
+      <div style="position:absolute; left:38%; top:70%; width:4px; height:4px; border-radius:50%; background:var(--violet-bright); box-shadow:0 0 10px var(--violet); opacity:.6; pointer-events:none; animation:hy-float 9s ease-in-out infinite .8s;"></div>
+      <div style="position:absolute; left:70%; top:24%; width:5px; height:5px; border-radius:50%; background:var(--gold-bright); box-shadow:0 0 12px var(--gold); opacity:.5; pointer-events:none; animation:hy-float 8s ease-in-out infinite 1.4s;"></div>
+    </div>
+
+    <!-- hero content -->
+    <div style="position:relative; z-index:2; width:100%; max-width:1280px; margin:0 auto; padding-left:clamp(20px,5vw,64px); padding-right:clamp(20px,5vw,64px);">
+      <div style="max-width:760px;">
+        <div style="display:inline-flex; align-items:center; gap:10px; padding:7px 16px; border-radius:100px; border:1px solid rgba(244,197,106,.28); background:rgba(244,197,106,.06); margin-bottom:clamp(22px,4vh,32px); animation:hy-rise .7s cubic-bezier(.2,.7,.2,1) both;">
+          <span style="width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 9px var(--green); animation:hy-pulse 1.8s ease-in-out infinite;"></span>
+          <span style="font-family:'Manrope',sans-serif; font-weight:700; letter-spacing:.24em; font-size:.68rem; text-transform:uppercase; color:var(--gold-bright);">Java + Bedrock · Temporada I abierta</span>
+        </div>
+
+        <h1 style="margin:0; font-family:'Montserrat',sans-serif; font-weight:900; font-size:clamp(2.9rem,10vw,6.4rem); line-height:.92; letter-spacing:-.02em; animation:hy-rise .8s cubic-bezier(.2,.7,.2,1) .08s both;">
+          <span style="display:block; background:linear-gradient(180deg,#FFFFFF 0%, #E9E4F2 60%, #B9B2C9 100%); -webkit-background-clip:text; background-clip:text; color:transparent;">HYPERIONS MC</span>
+          <span style="display:block; margin-top:.14em; font-size:.44em; font-weight:800; letter-spacing:.01em; background:linear-gradient(100deg,#FFE7A6 0%, #F4C56A 40%, #D99A2B 70%, #FFE7A6 100%); background-size:220% auto; -webkit-background-clip:text; background-clip:text; color:transparent; animation:hy-sheen 6s linear infinite;">El Olimpo de los Supervivientes</span>
+        </h1>
+
+        <p style="margin:clamp(20px,3.5vh,28px) 0 0; max-width:560px; font-size:clamp(1.02rem,2.6vw,1.24rem); line-height:1.6; color:var(--muted); animation:hy-rise .8s cubic-bezier(.2,.7,.2,1) .16s both;">
+          Levanta tu imperio, forja alianzas y conquista un mundo que nunca duerme. Miles de supervivientes ya escriben su leyenda entre dioses y titanes. <span style="color:var(--text); font-weight:600;">Tu trono te espera.</span>
+        </p>
+
+        <!-- IP COPY-BOX -->
+        <div style="margin-top:clamp(28px,4.5vh,40px); animation:hy-rise .8s cubic-bezier(.2,.7,.2,1) .24s both;">
+          <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding:14px 14px 14px 20px; border-radius:16px; background:linear-gradient(180deg, rgba(20,17,30,.72), rgba(12,10,18,.72)); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border:1px solid rgba(244,197,106,.34); box-shadow:0 24px 60px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(255,217,122,.06) inset; max-width:520px;">
+            <div style="flex:1 1 200px; min-width:0;">
+              <div style="font-family:'Manrope',sans-serif; font-weight:700; letter-spacing:.28em; font-size:.62rem; text-transform:uppercase; color:var(--faint); margin-bottom:5px;">IP del servidor</div>
+              <div ref="{{ ipRef }}" style="font-family:ui-monospace,'SFMono-Regular',Menlo,monospace; font-weight:700; font-size:clamp(1.15rem,4vw,1.6rem); letter-spacing:.01em; color:var(--gold-bright); text-shadow:0 0 20px rgba(244,197,106,.3); word-break:break-all;">play.hyperionsmc.com</div>
+            </div>
+            <button ref="{{ heroCopyBtnRef }}" onClick="{{ copyIp }}" style="flex:none; display:inline-flex; align-items:center; gap:8px; padding:13px 20px; border-radius:12px; border:none; background:linear-gradient(135deg,#FFE7A6,#F4C56A 55%,#D99A2B); color:#1a1206; font-family:'Manrope',sans-serif; font-weight:800; font-size:.95rem; cursor:pointer; transition:transform .18s ease, filter .18s ease;" style-hover="transform:translateY(-2px); filter:brightness(1.06);">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>
+              <span ref="{{ heroCopyLabelRef }}">Copiar IP</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- CTA buttons -->
+        <div style="display:flex; flex-wrap:wrap; gap:14px; margin-top:clamp(22px,3.5vh,30px); animation:hy-rise .8s cubic-bezier(.2,.7,.2,1) .32s both;">
+          <button onClick="{{ copyIp }}" style="flex:1 1 210px; display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:17px 30px; border-radius:14px; border:none; background:linear-gradient(135deg,#FFE7A6,#F4C56A 50%,#D99A2B); color:#1a1206; font-family:'Montserrat',sans-serif; font-weight:800; font-size:clamp(1rem,2.6vw,1.12rem); letter-spacing:.01em; cursor:pointer; animation:hy-glow 3.4s ease-in-out infinite; transition:transform .2s ease;" style-hover="transform:translateY(-3px);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+            ¡Únete ya!
+          </button>
+          <a href="Tienda.dc.html" style="flex:1 1 210px; display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:17px 30px; border-radius:14px; border:1px solid rgba(199,160,245,.4); background:rgba(168,85,247,.08); color:var(--violet-bright); font-family:'Montserrat',sans-serif; font-weight:800; font-size:clamp(1rem,2.6vw,1.12rem); letter-spacing:.01em; transition:all .2s ease;" style-hover="transform:translateY(-3px); border-color:var(--violet); background:rgba(168,85,247,.16); color:#fff;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            Tienda Oficial
+          </a>
+        </div>
+
+        <!-- gamemode tags -->
+        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:clamp(26px,4vh,34px); animation:hy-rise .8s cubic-bezier(.2,.7,.2,1) .4s both;">
+          <span style="padding:6px 14px; border-radius:100px; border:1px solid var(--border); background:var(--surface); font-size:.74rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--muted);">Survival</span>
+          <span style="padding:6px 14px; border-radius:100px; border:1px solid var(--border); background:var(--surface); font-size:.74rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--muted);">Economía</span>
+          <span style="padding:6px 14px; border-radius:100px; border:1px solid var(--border); background:var(--surface); font-size:.74rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--muted);">Clanes</span>
+          <span style="padding:6px 14px; border-radius:100px; border:1px solid var(--border); background:var(--surface); font-size:.74rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--muted);">Eventos PvP</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- scroll hint -->
+    <div style="position:absolute; bottom:26px; left:50%; transform:translateX(-50%); z-index:2; display:flex; flex-direction:column; align-items:center; gap:8px; pointer-events:none; opacity:.65;">
+      <span style="font-size:.62rem; font-weight:700; letter-spacing:.28em; text-transform:uppercase; color:var(--faint);">Descubre</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:hy-float 2.4s ease-in-out infinite;"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+    </div>
+  </section>
+
+  <!-- ============ WHY HYPERIONS ============ -->
+  <section id="por-que" data-screen-label="Por que Hyperions" style="position:relative; padding:clamp(76px,13vh,140px) 0;">
+    <div style="position:absolute; top:0; left:50%; transform:translateX(-50%); width:70%; height:1px; background:linear-gradient(90deg, transparent, rgba(244,197,106,.4), transparent);"></div>
+    <div style="width:100%; max-width:1280px; margin:0 auto; padding-left:clamp(20px,5vw,64px); padding-right:clamp(20px,5vw,64px);">
+      <div style="max-width:640px; margin-bottom:clamp(40px,6vh,64px);">
+        <div style="font-family:'Manrope',sans-serif; font-weight:800; letter-spacing:.28em; font-size:.72rem; text-transform:uppercase; color:var(--gold); margin-bottom:16px;">Por qué Hyperions</div>
+        <h2 style="margin:0; font-family:'Montserrat',sans-serif; font-weight:900; font-size:clamp(2rem,5.5vw,3.4rem); line-height:1.1; letter-spacing:-.02em;">Forjado para verdaderos <span style="background:linear-gradient(100deg,#FFE7A6,#F4C56A,#D99A2B); -webkit-background-clip:text; background-clip:text; color:transparent;">supervivientes</span></h2>
+        <p style="margin:18px 0 0; font-size:clamp(1rem,2.4vw,1.15rem); color:var(--muted); max-width:520px;">No es un servidor más. Es un mundo persistente, competitivo y vivo, construido con estándares dignos del Olimpo.</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap:clamp(16px,2.2vw,26px);">
+        <!-- card 1 -->
+        <div style="position:relative; padding:clamp(26px,3vw,36px); border-radius:20px; background:linear-gradient(180deg, rgba(22,19,33,.6), rgba(12,10,18,.55)); border:1px solid var(--border); overflow:hidden; transition:transform .28s ease, border-color .28s ease, box-shadow .28s ease;" style-hover="transform:translateY(-8px); border-color:rgba(168,85,247,.45); box-shadow:0 30px 60px -30px rgba(124,58,237,.6);">
+          <div style="position:absolute; top:-40px; right:-30px; width:130px; height:130px; border-radius:50%; background:radial-gradient(circle, rgba(168,85,247,.22), transparent 70%); pointer-events:none;"></div>
+          <div style="display:inline-flex; align-items:center; justify-content:center; width:62px; height:62px; border-radius:16px; background:linear-gradient(150deg, rgba(244,197,106,.18), rgba(168,85,247,.14)); border:1px solid rgba(244,197,106,.3); color:var(--gold-bright); margin-bottom:22px; box-shadow:0 0 24px -6px rgba(244,197,106,.45);">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+          <h3 style="margin:0 0 10px; font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.4rem;">Comunidad Épica</h3>
+          <p style="margin:0; color:var(--muted); font-size:1rem; line-height:1.6;">Miles de jugadores, clanes y alianzas activas. Aquí nunca sobrevives solo: encuentra tu legión y conquista juntos.</p>
+        </div>
+        <!-- card 2 -->
+        <div style="position:relative; padding:clamp(26px,3vw,36px); border-radius:20px; background:linear-gradient(180deg, rgba(22,19,33,.6), rgba(12,10,18,.55)); border:1px solid var(--border); overflow:hidden; transition:transform .28s ease, border-color .28s ease, box-shadow .28s ease;" style-hover="transform:translateY(-8px); border-color:rgba(244,197,106,.5); box-shadow:0 30px 60px -30px rgba(244,197,106,.5);">
+          <div style="position:absolute; top:-40px; right:-30px; width:130px; height:130px; border-radius:50%; background:radial-gradient(circle, rgba(244,197,106,.2), transparent 70%); pointer-events:none;"></div>
+          <div style="display:inline-flex; align-items:center; justify-content:center; width:62px; height:62px; border-radius:16px; background:linear-gradient(150deg, rgba(244,197,106,.18), rgba(168,85,247,.14)); border:1px solid rgba(244,197,106,.3); color:var(--gold-bright); margin-bottom:22px; box-shadow:0 0 24px -6px rgba(244,197,106,.45);">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v6c0 4 3.5 7.5 9 9 5.5-1.5 9-5 9-9V7z" opacity=".55"></path><path d="m9 12 2 2 4-4"></path></svg>
+          </div>
+          <h3 style="margin:0 0 10px; font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.4rem;">Economía Dinámica</h3>
+          <p style="margin:0; color:var(--muted); font-size:1rem; line-height:1.6;">Un mercado real impulsado por jugadores. Comercia, invierte y construye tu fortuna en oro con reglas justas y sin pay-to-win.</p>
+        </div>
+        <!-- card 3 -->
+        <div style="position:relative; padding:clamp(26px,3vw,36px); border-radius:20px; background:linear-gradient(180deg, rgba(22,19,33,.6), rgba(12,10,18,.55)); border:1px solid var(--border); overflow:hidden; transition:transform .28s ease, border-color .28s ease, box-shadow .28s ease;" style-hover="transform:translateY(-8px); border-color:rgba(168,85,247,.45); box-shadow:0 30px 60px -30px rgba(124,58,237,.6);">
+          <div style="position:absolute; top:-40px; right:-30px; width:130px; height:130px; border-radius:50%; background:radial-gradient(circle, rgba(168,85,247,.22), transparent 70%); pointer-events:none;"></div>
+          <div style="display:inline-flex; align-items:center; justify-content:center; width:62px; height:62px; border-radius:16px; background:linear-gradient(150deg, rgba(244,197,106,.18), rgba(168,85,247,.14)); border:1px solid rgba(244,197,106,.3); color:var(--gold-bright); margin-bottom:22px; box-shadow:0 0 24px -6px rgba(244,197,106,.45);">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+          </div>
+          <h3 style="margin:0 0 10px; font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.4rem;">Eventos Constantes</h3>
+          <p style="margin:0; color:var(--muted); font-size:1rem; line-height:1.6;">Guerras, jefes legendarios y competencias cada semana. Siempre hay una nueva gloria por reclamar y recompensas que ganar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LIVE STATS ============ -->
+  <section id="stats" data-screen-label="Live Stats" style="position:relative; padding:clamp(60px,10vh,120px) 0 clamp(76px,13vh,140px);">
+    <div style="width:100%; max-width:1280px; margin:0 auto; padding-left:clamp(20px,5vw,64px); padding-right:clamp(20px,5vw,64px); display:flex; flex-direction:column; align-items:center; text-align:center;">
+      <div style="font-family:'Manrope',sans-serif; font-weight:800; letter-spacing:.28em; font-size:.72rem; text-transform:uppercase; color:var(--gold); margin-bottom:14px;">En vivo · Ahora mismo</div>
+      <h2 style="position:relative; z-index:2; margin:0 0 clamp(42px,6vh,58px); padding-bottom:.08em; font-family:'Montserrat',sans-serif; font-weight:900; font-size:clamp(1.9rem,5vw,3.2rem); line-height:1.14; letter-spacing:-.02em; max-width:640px;">Un Olimpo que <span style="background:linear-gradient(100deg,#C7A0F5,#A855F7); -webkit-background-clip:text; background-clip:text; color:transparent;">nunca duerme</span></h2>
+
+      <!-- widget -->
+      <div style="width:100%; max-width:600px; padding:clamp(26px,4vw,40px); border-radius:24px; background:linear-gradient(180deg, rgba(24,20,36,.8), rgba(11,9,17,.8)); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid rgba(244,197,106,.22); box-shadow:0 40px 90px -40px rgba(0,0,0,.95), 0 34px 64px -34px rgba(168,85,247,.45);">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:26px;">
+          <div style="display:inline-flex; align-items:center; gap:10px; padding:8px 15px; border-radius:100px; background:rgba(52,211,153,.1); border:1px solid rgba(52,211,153,.3);">
+            <span style="width:9px; height:9px; border-radius:50%; background:var(--green); box-shadow:0 0 10px var(--green); animation:hy-ring 2.2s ease-out infinite;"></span>
+            <span style="font-weight:700; font-size:.8rem; letter-spacing:.06em; color:var(--green);">SERVIDOR EN LÍNEA</span>
+          </div>
+          <span style="font-family:ui-monospace,monospace; font-size:.78rem; font-weight:600; color:var(--faint); letter-spacing:.04em;">Java 1.21.x · Bedrock</span>
+        </div>
+
+        <div style="display:flex; align-items:flex-end; justify-content:center; gap:6px; margin-bottom:6px;">
+          <span ref="{{ statCountRef }}" style="font-family:'Montserrat',sans-serif; font-weight:900; font-size:clamp(3.6rem,15vw,6rem); line-height:.9; letter-spacing:-.03em; background:linear-gradient(180deg,#FFE7A6,#F4C56A,#D99A2B); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 0 40px rgba(244,197,106,.25);">0</span>
+          <span style="font-family:'Montserrat',sans-serif; font-weight:800; font-size:clamp(1.6rem,6vw,2.6rem); color:var(--faint); line-height:1; padding-bottom:.4em;">/&nbsp;<span ref="{{ statMaxRef }}">500</span></span>
+        </div>
+        <div style="font-size:.9rem; color:var(--muted); font-weight:600; letter-spacing:.04em; margin-bottom:22px;">supervivientes conectados</div>
+
+        <!-- progress -->
+        <div style="width:100%; height:12px; border-radius:100px; background:rgba(255,255,255,.06); overflow:hidden; border:1px solid var(--border);">
+          <div ref="{{ barRef }}" style="height:100%; width:0%; border-radius:100px; background:linear-gradient(90deg,#F4C56A,#FFD97A 40%,#C7A0F5 100%); box-shadow:0 0 18px rgba(244,197,106,.6); transition:width .2s linear;"></div>
+        </div>
+
+        <!-- substats -->
+        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; margin-top:28px; padding-top:26px; border-top:1px solid var(--border);">
+          <div>
+            <div style="font-family:'Montserrat',sans-serif; font-weight:900; font-size:clamp(1.3rem,4vw,1.7rem); color:var(--text);">99.9%</div>
+            <div style="font-size:.72rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--faint); margin-top:4px;">Uptime</div>
+          </div>
+          <div style="border-left:1px solid var(--border); border-right:1px solid var(--border);">
+            <div style="font-family:'Montserrat',sans-serif; font-weight:900; font-size:clamp(1.3rem,4vw,1.7rem); color:var(--text);">20.0</div>
+            <div style="font-size:.72rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--faint); margin-top:4px;">TPS</div>
+          </div>
+          <div>
+            <div style="font-family:'Montserrat',sans-serif; font-weight:900; font-size:clamp(1.3rem,4vw,1.7rem); color:var(--text);">12k+</div>
+            <div style="font-size:.72rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--faint); margin-top:4px;">Miembros</div>
+          </div>
+        </div>
+      </div>
+
+      <p style="margin:clamp(24px,4vh,34px) 0 0; font-size:.95rem; color:var(--faint); max-width:440px;">¿Listo para unirte? Copia la IP, entra a Minecraft y reclama tu lugar en la cima.</p>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer data-screen-label="Footer" style="position:relative; border-top:1px solid var(--border); background:linear-gradient(180deg, #07060C, #030308);">
+    <div style="width:100%; max-width:1280px; margin:0 auto; padding:clamp(48px,7vh,72px) clamp(20px,5vw,64px) clamp(28px,4vh,40px); display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap:clamp(32px,5vw,64px);">
+      <div style="max-width:340px;">
+        <div style="display:flex; align-items:center; gap:11px; margin-bottom:16px;">
+          <img src="logos/hyperions-logo-a.svg" width="34" height="34" alt="Hyperions MC" style="flex:none;">
+          <span style="font-family:'Montserrat',sans-serif; font-weight:900; letter-spacing:.12em; font-size:1.15rem;">HYPERIONS MC</span>
+        </div>
+        <p style="margin:0 0 20px; color:var(--muted); font-size:.95rem; line-height:1.6;">El Olimpo de los supervivientes. Forja tu leyenda, nos vemos en la cima.</p>
+        <div style="display:flex; gap:10px;">
+          <a href="#" aria-label="Discord" style="display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:10px; border:1px solid var(--border); background:var(--surface); color:var(--muted); transition:all .2s ease;" style-hover="color:var(--violet-bright); border-color:rgba(168,85,247,.5);"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M19.27 5.33A16.6 16.6 0 0 0 15.1 4l-.2.4a13.2 13.2 0 0 1 3.7 1.9 12.8 12.8 0 0 0-11-.02A13 13 0 0 1 11.3 4.4L11.1 4a16.6 16.6 0 0 0-4.17 1.33C4.3 9.24 3.58 13.06 3.94 16.82A16.7 16.7 0 0 0 9 19.4l.4-.56a10.9 10.9 0 0 1-1.7-.82c.14-.1.28-.21.41-.32a11.9 11.9 0 0 0 10.18 0c.14.11.27.22.41.32-.54.32-1.11.6-1.7.82l.4.56a16.6 16.6 0 0 0 5.06-2.58c.42-4.35-.72-8.14-3.2-11.49ZM9.68 14.5c-.99 0-1.8-.9-1.8-2.02 0-1.11.79-2.02 1.8-2.02s1.82.91 1.8 2.02c0 1.11-.8 2.02-1.8 2.02Zm4.64 0c-.99 0-1.8-.9-1.8-2.02 0-1.11.79-2.02 1.8-2.02s1.82.91 1.8 2.02c0 1.11-.8 2.02-1.8 2.02Z"></path></svg></a>
+          <a href="#" aria-label="YouTube" style="display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:10px; border:1px solid var(--border); background:var(--surface); color:var(--muted); transition:all .2s ease;" style-hover="color:var(--gold-bright); border-color:rgba(244,197,106,.5);"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.5-.44-5.17a2.78 2.78 0 0 0-1.96-1.96C18.93 4.43 12 4.43 12 4.43s-6.93 0-8.6.44a2.78 2.78 0 0 0-1.96 1.96C1 8.5 1 12 1 12s0 3.5.44 5.17a2.78 2.78 0 0 0 1.96 1.96c1.67.44 8.6.44 8.6.44s6.93 0 8.6-.44a2.78 2.78 0 0 0 1.96-1.96C23 15.5 23 12 23 12ZM9.75 15.25v-6.5L15.5 12l-5.75 3.25Z"></path></svg></a>
+          <a href="#" aria-label="X" style="display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:10px; border:1px solid var(--border); background:var(--surface); color:var(--muted); transition:all .2s ease;" style-hover="color:#fff; border-color:rgba(255,255,255,.35);"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.22-6.82-5.97 6.82H1.66l7.73-8.84L1.24 2.25H8.1l4.71 6.23 5.43-6.23Zm-1.16 17.52h1.83L7.01 4.13H5.05l12.03 15.64Z"></path></svg></a>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-family:'Manrope',sans-serif; font-weight:800; letter-spacing:.16em; font-size:.72rem; text-transform:uppercase; color:var(--gold); margin-bottom:18px;">Servidor</div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <a href="Como Entrar.dc.html" style="color:var(--muted); font-size:.95rem;" style-hover="color:var(--gold-bright);">Cómo entrar</a>
+          <a href="Tienda.dc.html" style="color:var(--muted); font-size:.95rem;" style-hover="color:var(--gold-bright);">Tienda Oficial</a>
+          <a href="Rangos.dc.html" style="color:var(--muted); font-size:.95rem;" style-hover="color:var(--gold-bright);">Rangos</a>
+          <a href="#stats" style="color:var(--muted); font-size:.95rem;" style-hover="color:var(--gold-bright);">Estado en vivo</a>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-family:'Manrope',sans-serif; font-weight:800; letter-spacing:.16em; font-size:.72rem; text-transform:uppercase; color:var(--gold); margin-bottom:18px;">Ayuda</div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <a href="#" style="color:var(--muted); font-size:.95rem;" style-hover="color:var(--violet-bright);">Discord</a>
+          <a href="Reglas.dc.html" style="color:var(--muted); font-size:.95rem;" style-hover="color:var(--violet-bright);">Reglas</a>
+          <a href="Soporte.dc.html" style="color:var(--muted); font-size:.95rem;" style-hover="color:var(--violet-bright);">Soporte</a>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-family:'Manrope',sans-serif; font-weight:800; letter-spacing:.16em; font-size:.72rem; text-transform:uppercase; color:var(--gold); margin-bottom:18px;">Conéctate</div>
+        <div style="padding:12px 14px; border-radius:12px; border:1px dashed rgba(244,197,106,.3); background:rgba(244,197,106,.04);">
+          <div style="font-size:.66rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--faint); margin-bottom:6px;">IP</div>
+          <div style="font-family:ui-monospace,monospace; font-weight:700; color:var(--gold-bright); font-size:.95rem; word-break:break-all;">play.hyperionsmc.com</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="border-top:1px solid var(--border);">
+      <div style="width:100%; max-width:1280px; margin:0 auto; padding:20px clamp(20px,5vw,64px); display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+        <span style="font-size:.82rem; color:var(--faint);">© 2026 Hyperions MC · Hecho por y para la comunidad.</span>
+        <span style="font-size:.76rem; color:var(--faint); opacity:.8;">No afiliado con Mojang Studios ni Microsoft.</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;onlinePlayers&quot;: {&quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 142, &quot;tsType&quot;: &quot;number&quot;, &quot;min&quot;: 0, &quot;max&quot;: 500, &quot;section&quot;: &quot;Live Stats&quot;, &quot;unit&quot;: &quot; jugadores&quot;}, &quot;maxPlayers&quot;: {&quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 500, &quot;tsType&quot;: &quot;number&quot;, &quot;min&quot;: 1, &quot;max&quot;: 2000, &quot;section&quot;: &quot;Live Stats&quot;}, &quot;countUp&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Live Stats&quot;}}">
+class Component extends DCLogic {
+  ipRef = React.createRef();
+  heroCountRef = React.createRef();
+  statCountRef = React.createRef();
+  statMaxRef = React.createRef();
+  barRef = React.createRef();
+  stickyRef = React.createRef();
+  heroCopyBtnRef = React.createRef();
+  heroCopyLabelRef = React.createRef();
+  stickyCopyBtnRef = React.createRef();
+  stickyCopyLabelRef = React.createRef();
+
+  readProps() {
+    const max = Math.max(1, Number(this.props.maxPlayers ?? 500));
+    const online = Math.max(0, Math.min(max, Number(this.props.onlinePlayers ?? 142)));
+    this.max = max;
+    this.online = online;
+    this.countUp = this.props.countUp ?? true;
+  }
+
+  setVals(v) {
+    const s = String(v);
+    if (this.statCountRef.current) this.statCountRef.current.textContent = s;
+    const pct = this.max > 0 ? Math.min(100, (v / this.max) * 100) : 0;
+    if (this.barRef.current) this.barRef.current.style.width = pct.toFixed(1) + '%';
+  }
+
+  startCount() {
+    if (this.statMaxRef.current) this.statMaxRef.current.textContent = String(this.max);
+    cancelAnimationFrame(this._raf);
+    if (!this.countUp) { this.setVals(this.online); return; }
+    const dur = 1600, t0 = performance.now();
+    const step = (now) => {
+      const t = Math.min(1, (now - t0) / dur);
+      const e = 1 - Math.pow(1 - t, 3);
+      this.setVals(Math.round(e * this.online));
+      if (t < 1) this._raf = requestAnimationFrame(step);
+      else this.setVals(this.online);
+    };
+    this._raf = requestAnimationFrame(step);
+  }
+
+  handleScroll = () => {
+    if (!this.stickyRef.current) return;
+    const show = window.scrollY > 560;
+    const el = this.stickyRef.current;
+    el.style.transform = show ? 'translateY(0)' : 'translateY(-115%)';
+    el.style.opacity = show ? '1' : '0';
+    el.style.pointerEvents = show ? 'auto' : 'none';
+  };
+
+  copyIp = () => {
+    const el = this.ipRef.current;
+    const ip = (el ? el.textContent : 'play.hyperionsmc.com').trim();
+    const done = () => this.showCopied();
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(ip).then(done, done);
+      } else { done(); }
+    } catch (e) { done(); }
+  };
+
+  showCopied() {
+    const pairs = [
+      [this.heroCopyLabelRef, this.heroCopyBtnRef, 'Copiar IP'],
+      [this.stickyCopyLabelRef, this.stickyCopyBtnRef, 'Copiar'],
+    ];
+    pairs.forEach(([lab, btn]) => {
+      if (lab.current) lab.current.textContent = '¡Copiada!';
+      if (btn.current) {
+        if (btn.current._orig === undefined) btn.current._orig = btn.current.style.cssText;
+        btn.current.style.background = 'linear-gradient(135deg,#7CF0B5,#34D399)';
+        btn.current.style.color = '#08130d';
+        btn.current.style.borderColor = 'transparent';
+      }
+    });
+    clearTimeout(this._ct);
+    this._ct = setTimeout(() => {
+      pairs.forEach(([lab, btn, label]) => {
+        if (lab.current) lab.current.textContent = label;
+        if (btn.current && btn.current._orig !== undefined) btn.current.style.cssText = btn.current._orig;
+      });
+    }, 1800);
+  }
+
+  componentDidMount() {
+    this.readProps();
+    this.startCount();
+    window.addEventListener('scroll', this.handleScroll, { passive: true });
+    this.handleScroll();
+  }
+
+  componentDidUpdate() {
+    this.readProps();
+    this.startCount();
+  }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this._raf);
+    clearTimeout(this._ct);
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  renderVals() {
+    return {
+      ipRef: this.ipRef,
+      heroCountRef: this.heroCountRef,
+      statCountRef: this.statCountRef,
+      statMaxRef: this.statMaxRef,
+      barRef: this.barRef,
+      stickyRef: this.stickyRef,
+      heroCopyBtnRef: this.heroCopyBtnRef,
+      heroCopyLabelRef: this.heroCopyLabelRef,
+      stickyCopyBtnRef: this.stickyCopyBtnRef,
+      stickyCopyLabelRef: this.stickyCopyLabelRef,
+      copyIp: this.copyIp,
+    };
+  }
+}
+</script>
+</body>
+</html>

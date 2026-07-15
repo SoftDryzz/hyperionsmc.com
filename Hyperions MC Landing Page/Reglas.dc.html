@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Reglas — Hyperions MC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #050409; color: #F5F3FA; -webkit-font-smoothing: antialiased; }
+  a { color: #C7A0F5; text-decoration: none; transition: color .2s ease; }
+  a:hover { color: #FFD97A; }
+  ::selection { background: rgba(244,197,106,.28); color: #fff; }
+  @keyframes hy-rise { 0% { opacity: 0; transform: translateY(26px); } 100% { opacity: 1; transform: translateY(0); } }
+</style>
+</helmet>
+
+<div style="--gold:#F4C56A; --gold-bright:#FFD97A; --violet:#A855F7; --violet-bright:#C7A0F5; --violet-deep:#7C3AED; --green:#34D399; --text:#F5F3FA; --muted:#A9A4B8; --faint:#726C82; --surface:rgba(255,255,255,.035); --border:rgba(255,255,255,.09); position:relative; min-height:100vh; width:100%; overflow-x:hidden; background:#050409; color:var(--text); font-family:'Manrope',system-ui,sans-serif; line-height:1.55;">
+
+  <header style="position:relative; z-index:10; border-bottom:1px solid var(--border); background:rgba(8,7,14,.72); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);">
+    <div style="width:100%; max-width:1280px; margin:0 auto; padding:16px clamp(20px,5vw,64px); display:flex; align-items:center; justify-content:space-between; gap:14px;">
+      <a href="Hyperions MC Landing.dc.html" style="display:flex; align-items:center; gap:10px; color:var(--text);">
+        <img src="logos/hyperions-logo-a.svg" width="34" height="34" alt="Hyperions MC" style="flex:none;">
+        <span style="display:flex; flex-direction:column; line-height:1;">
+          <span style="font-family:'Montserrat',sans-serif; font-weight:900; letter-spacing:.14em; font-size:1rem;">HYPERIONS</span>
+          <span style="font-weight:700; letter-spacing:.42em; font-size:.55rem; color:var(--gold); margin-top:3px;">MC · SURVIVAL</span>
+        </span>
+      </a>
+      <nav style="display:flex; align-items:center; gap:clamp(14px,3vw,26px);">
+        <a href="Hyperions MC Landing.dc.html" style="font-weight:600; font-size:.92rem; color:var(--muted);" style-hover="color:var(--gold-bright);">Inicio</a>
+        <a href="Rangos.dc.html" style="font-weight:600; font-size:.92rem; color:var(--muted);" style-hover="color:var(--gold-bright);">Rangos</a>
+        <a href="Tienda.dc.html" style="display:inline-flex; align-items:center; gap:7px; padding:9px 16px; border-radius:10px; background:linear-gradient(135deg, var(--violet), var(--violet-deep)); color:#fff; font-weight:700; font-size:.85rem; box-shadow:0 8px 22px -10px rgba(124,58,237,.8); transition:transform .2s ease;" style-hover="transform:translateY(-2px); color:#fff;">Tienda</a>
+      </nav>
+    </div>
+  </header>
+
+  <section data-screen-label="Reglas hero" style="position:relative; padding:clamp(52px,9vh,88px) 0 clamp(32px,5vh,48px); overflow:hidden;">
+    <div style="position:absolute; inset:-10%; pointer-events:none; background:radial-gradient(44% 60% at 12% 12%, rgba(244,197,106,.12), transparent 70%), radial-gradient(40% 55% at 90% 88%, rgba(168,85,247,.14), transparent 72%);"></div>
+    <div style="position:relative; width:100%; max-width:1280px; margin:0 auto; padding-left:clamp(20px,5vw,64px); padding-right:clamp(20px,5vw,64px);">
+      <div style="font-weight:800; letter-spacing:.28em; font-size:.72rem; text-transform:uppercase; color:var(--gold); margin-bottom:14px; animation:hy-rise .6s cubic-bezier(.2,.7,.2,1) both;">Normas del servidor</div>
+      <h1 style="margin:0; font-family:'Montserrat',sans-serif; font-weight:900; font-size:clamp(2.2rem,6.5vw,4rem); line-height:1.02; letter-spacing:-.02em; max-width:820px; animation:hy-rise .7s cubic-bezier(.2,.7,.2,1) .06s both;">Las Leyes del <span style="background:linear-gradient(100deg,#FFE7A6,#F4C56A,#D99A2B); -webkit-background-clip:text; background-clip:text; color:transparent;">Olimpo</span></h1>
+      <p style="margin:18px 0 0; max-width:640px; font-size:clamp(1rem,2.4vw,1.15rem); color:var(--muted); animation:hy-rise .7s cubic-bezier(.2,.7,.2,1) .12s both;">Pocas, claras y para todos igual. Al entrar al servidor las aceptas — y el desconocimiento no exime de su cumplimiento. Escríbelas en piedra: <span style="font-family:ui-monospace,monospace; color:var(--gold-bright); font-weight:600;">/rules</span></p>
+    </div>
+  </section>
+
+  <section data-screen-label="Listado de reglas" style="padding:0 0 clamp(50px,8vh,80px);">
+    <div style="width:100%; max-width:1280px; margin:0 auto; padding-left:clamp(20px,5vw,64px); padding-right:clamp(20px,5vw,64px);">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 330px), 1fr)); gap:clamp(16px,2vw,22px);">
+
+        <div style="padding:clamp(24px,2.8vw,32px); border-radius:20px; background:linear-gradient(180deg, rgba(22,19,33,.6), rgba(12,10,18,.55)); border:1px solid var(--border);">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <span style="display:inline-flex; align-items:center; justify-content:center; width:46px; height:46px; border-radius:13px; background:linear-gradient(150deg, rgba(244,197,106,.16), rgba(168,85,247,.12)); border:1px solid rgba(244,197,106,.3); color:var(--gold-bright);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span>
+            <h2 style="margin:0; font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.2rem;">1 · Convivencia y chat</h2>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px; color:var(--muted); font-size:.94rem;">
+            <div style="display:flex; gap:9px;"><span style="color:var(--gold); font-weight:800; flex:none;">1.1</span><span>Respeto siempre: nada de insultos, acoso, odio ni toxicidad hacia otros jugadores o el staff.</span></div>
+            <div style="display:flex; gap:9px;"><span style="color:var(--gold); font-weight:800; flex:none;">1.2</span><span>Sin spam, flood ni cadenas de mayúsculas en el chat global.</span></div>
+            <div style="display:flex; gap:9px;"><span style="color:var(--gold); font-weight:800; flex:none;">1.3</span><span>Prohibida la publicidad de otros servidores o comunidades.</span></div>
+            <div style="display:flex; gap:9px;"><span style="color:var(--gold); font-weight:800; flex:none;">1.4</span><span>Nada de datos personales — ni tuyos ni de nadie.</span></div>
+          </div>
+        </div>
+
+        <div style="padding:clamp(24px,2.8vw,32px); border-radius:20px; background:linear-gradient(180deg, rgba(22,19,33,.6), rgba(12,10,18,.55)); border:1px solid var(--border);">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <span style="display:inline-flex; align-items:center; justify-content:center; width:46px; height:46px; border-radius:13px; background:linear-gradient(150deg, rgba(244,197,106,.16), rgba(168,85,247,.12)); border:1px solid rgba(244,197,106,.3); color:var(--gold-bright);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v6c0 4 3.5 7.5 9 9 5.5-1.5 9-5 9-9V7z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
+            <h2 style="margin:0; font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.2rem;">2 · Juego limpio</h2>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px; color:var(--muted); font-size:.94rem;">
+            <div style="display:flex; gap:9px;"><span style="color:var(--gold); font-weight:800; flex:none;">2.1</span><span>Prohibidos hacks, cheats, X-ray, macros y cualquier mod que dé ventaja injusta.</span></div>
+            <div style="display:flex; gap:9px;"><span style="color:var(--gold); font-weight:800; flex:none;">2.2</span><span>Nada de exploits ni duplicación de items. Si encuentras un bug, repórtalo en <a href="Soporte.dc.html">Soporte</a> — abusar de él es sanción.</span></div>
+            <div style="display:flex; gap:9px;"><span style="color:var(--gold); font-weight:800; flex:none;">2.3</span><span>No hagas combat-log: desconectarte en pleno combate tiene castigo automático.</span></div>
+          </div>
+        </div>
+
+        <div style="padding:clamp(24px,2.8vw,32px); border-radius:20px; background:linear-gradient(180deg, rgba(22,19,33,.6), rgba(12,10,18,.55)); border:1px solid var(--border);">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <span style="display:inline-flex; align-items:center; justify-content:center; width:46px; height:46px; border-radius:13px; background:linear-gradient(150deg, rgba(244,197,106,.16), rgba(168,85,247,.12)); border:1px solid rgba(244,197,106,.3); color:var(--gold-bright);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg></span>
+            <h2 style="margin:0; font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.2rem;">3 · Construcción y claims</h2>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px; color:var(--muted); font-size:.94rem;">
+            <div style="display:flex; gap:9px;"><span style="color:var(--gold); font-weight:800; flex:none;">3.1</span><span>Griefing prohibido: no rompas, robes ni modifiques construcciones ajenas, estén o no protegidas.</span></div>
+            <div style="display:flex; gap:9px;"><span style="color:var(--gold); font-weight:800; flex:none;">3.2</span><span>Protege tu base con claims — es tu responsabilidad. <a href="Como Entrar.dc.html">Aprende cómo</a>.</span></div>
+            <div style="display:flex; gap:9px;"><span style="color:var(--gold); font-weight:800; flex:none;">3.3</span><span>Sin construcciones ofensivas ni máquinas de lag (granjas que tumben el TPS).</span></div>
+          </div>
+        </div>
+
+        <div style="padding:clamp(24px,2.8vw,32px); border-radius:20px; background:linear-gradient(180deg, rgba(22,19,33,.6), rgba(12,10,18,.55)); border:1px solid var(--border);">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <span style="display:inline-flex; align-items:center; justify-content:center; width:46px; height:46px; border-radius:13px; background:linear-gradient(150deg, rgba(244,197,106,.16), rgba(168,85,247,.12)); border:1px solid rgba(244,197,106,.3); color:var(--gold-bright);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"></circle><path d="M18.09 10.37A6 6 0 1 1 10.34 18"></path><path d="M7 6h1v4"></path><path d="m16.71 13.88.7.71-2.82 2.82"></path></svg></span>
+            <h2 style="margin:0; font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.2rem;">4 · Economía y comercio</h2>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px; color:var(--muted); font-size:.94rem;">
+            <div style="display:flex; gap:9px;"><span style="color:var(--gold); font-weight:800; flex:none;">4.1</span><span>Las estafas en tratos entre jugadores están prohibidas y se revierten.</span></div>
+            <div style="display:flex; gap:9px;"><span style="color:var(--gold); font-weight:800; flex:none;">4.2</span><span>Prohibido vender items, dinero del juego o cuentas por dinero real.</span></div>
+            <div style="display:flex; gap:9px;"><span style="color:var(--gold); font-weight:800; flex:none;">4.3</span><span>No abuses de errores de precios o del mercado — repórtalos.</span></div>
+          </div>
+        </div>
+
+        <div style="padding:clamp(24px,2.8vw,32px); border-radius:20px; background:linear-gradient(180deg, rgba(22,19,33,.6), rgba(12,10,18,.55)); border:1px solid var(--border);">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <span style="display:inline-flex; align-items:center; justify-content:center; width:46px; height:46px; border-radius:13px; background:linear-gradient(150deg, rgba(244,197,106,.16), rgba(168,85,247,.12)); border:1px solid rgba(244,197,106,.3); color:var(--gold-bright);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg></span>
+            <h2 style="margin:0; font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.2rem;">5 · PvP y eventos</h2>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px; color:var(--muted); font-size:.94rem;">
+            <div style="display:flex; gap:9px;"><span style="color:var(--gold); font-weight:800; flex:none;">5.1</span><span>El PvP fuera de eventos es consensuado: si el otro no quiere pelear, respétalo.</span></div>
+            <div style="display:flex; gap:9px;"><span style="color:var(--gold); font-weight:800; flex:none;">5.2</span><span>En eventos mandan las reglas del evento, anunciadas antes de empezar.</span></div>
+            <div style="display:flex; gap:9px;"><span style="color:var(--gold); font-weight:800; flex:none;">5.3</span><span>Matar aprovechando lag, trampas de spawn o zonas seguras es sancionable.</span></div>
+          </div>
+        </div>
+
+        <div style="padding:clamp(24px,2.8vw,32px); border-radius:20px; background:linear-gradient(180deg, rgba(22,19,33,.6), rgba(12,10,18,.55)); border:1px solid var(--border);">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <span style="display:inline-flex; align-items:center; justify-content:center; width:46px; height:46px; border-radius:13px; background:linear-gradient(150deg, rgba(244,197,106,.16), rgba(168,85,247,.12)); border:1px solid rgba(244,197,106,.3); color:var(--gold-bright);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span>
+            <h2 style="margin:0; font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.2rem;">6 · Cuentas</h2>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px; color:var(--muted); font-size:.94rem;">
+            <div style="display:flex; gap:9px;"><span style="color:var(--gold); font-weight:800; flex:none;">6.1</span><span>Una cuenta principal por persona. Usar alts para evadir sanciones es ban permanente.</span></div>
+            <div style="display:flex; gap:9px;"><span style="color:var(--gold); font-weight:800; flex:none;">6.2</span><span>Tu cuenta es tu responsabilidad: lo que haga, cuenta como tuyo.</span></div>
+            <div style="display:flex; gap:9px;"><span style="color:var(--gold); font-weight:800; flex:none;">6.3</span><span>Nicks e skins ofensivos no están permitidos.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- sanciones -->
+      <div style="margin-top:clamp(28px,5vh,44px); padding:clamp(24px,3vw,34px); border-radius:20px; border:1px solid rgba(244,197,106,.25); background:linear-gradient(135deg, rgba(244,197,106,.06), rgba(168,85,247,.05));">
+        <div style="font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.15rem; margin-bottom:14px;">Escalera de sanciones</div>
+        <div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
+          <span style="padding:7px 14px; border-radius:100px; border:1px solid rgba(169,164,184,.4); background:rgba(169,164,184,.08); color:#A9A4B8; font-weight:700; font-size:.78rem;">Advertencia</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#726C82" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+          <span style="padding:7px 14px; border-radius:100px; border:1px solid rgba(244,197,106,.45); background:rgba(244,197,106,.08); color:#FFD97A; font-weight:700; font-size:.78rem;">Mute</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#726C82" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+          <span style="padding:7px 14px; border-radius:100px; border:1px solid rgba(251,146,60,.45); background:rgba(251,146,60,.08); color:#FB923C; font-weight:700; font-size:.78rem;">Kick</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#726C82" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+          <span style="padding:7px 14px; border-radius:100px; border:1px solid rgba(248,113,113,.45); background:rgba(248,113,113,.08); color:#F87171; font-weight:700; font-size:.78rem;">Ban temporal</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#726C82" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+          <span style="padding:7px 14px; border-radius:100px; border:1px solid rgba(239,68,68,.55); background:rgba(239,68,68,.12); color:#EF4444; font-weight:800; font-size:.78rem;">Ban permanente</span>
+        </div>
+        <p style="margin:16px 0 0; color:var(--muted); font-size:.92rem; max-width:720px;">El staff aplica la sanción según la gravedad y el historial — los casos graves (hacks, duping, grief masivo) saltan directo al ban. ¿Crees que una sanción es injusta? <a href="Soporte.dc.html" style="font-weight:700;">Apela en Soporte</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer data-screen-label="Footer" style="border-top:1px solid var(--border); background:linear-gradient(180deg, #07060C, #030308);">
+    <div style="width:100%; max-width:1280px; margin:0 auto; padding:26px clamp(20px,5vw,64px); display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+      <a href="Hyperions MC Landing.dc.html" style="display:flex; align-items:center; gap:9px; color:var(--text);">
+        <img src="logos/hyperions-logo-a.svg" width="26" height="26" alt="" style="flex:none;">
+        <span style="font-family:'Montserrat',sans-serif; font-weight:900; letter-spacing:.12em; font-size:.95rem;">HYPERIONS MC</span>
+      </a>
+      <div style="display:flex; gap:clamp(14px,3vw,24px); flex-wrap:wrap;">
+        <a href="Hyperions MC Landing.dc.html" style="color:var(--muted); font-size:.88rem;" style-hover="color:var(--gold-bright);">Inicio</a>
+        <a href="Rangos.dc.html" style="color:var(--muted); font-size:.88rem;" style-hover="color:var(--gold-bright);">Rangos</a>
+        <a href="Tienda.dc.html" style="color:var(--muted); font-size:.88rem;" style-hover="color:var(--gold-bright);">Tienda</a>
+        <a href="Soporte.dc.html" style="color:var(--muted); font-size:.88rem;" style-hover="color:var(--violet-bright);">Soporte</a>
+      </div>
+      <span style="font-size:.74rem; color:var(--faint);">No afiliado con Mojang Studios ni Microsoft.</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+</body>
+</html>

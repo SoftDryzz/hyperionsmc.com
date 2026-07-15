@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <linearGradient id="ha-g1" x1="14" y1="12" x2="106" y2="110" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFD97A"></stop><stop offset="1" stop-color="#A855F7"></stop>
+    </linearGradient>
+    <linearGradient id="ha-g2" x1="40" y1="18" x2="80" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFE7A6"></stop><stop offset=".55" stop-color="#F4C56A"></stop><stop offset="1" stop-color="#D99A2B"></stop>
+    </linearGradient>
+    <filter id="ha-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.6" result="b"></feGaussianBlur><feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+    </filter>
+  </defs>
+  <polygon points="60,6 107,33 107,87 60,114 13,87 13,33" fill="#0D0A16" stroke="url(#ha-g1)" stroke-width="3.5"></polygon>
+  <polygon points="60,16 98,38 98,82 60,104 22,82 22,38" fill="none" stroke="#FFFFFF" stroke-opacity=".08" stroke-width="1.5"></polygon>
+  <path d="M67 24 L36 68 L55 68 L51 96 L84 50 L63 50 Z" fill="url(#ha-g2)" filter="url(#ha-glow)"></path>
+  <circle cx="88" cy="30" r="2.2" fill="#FFD97A" opacity=".9"></circle>
+  <circle cx="30" cy="92" r="1.8" fill="#C7A0F5" opacity=".8"></circle>
+</svg>

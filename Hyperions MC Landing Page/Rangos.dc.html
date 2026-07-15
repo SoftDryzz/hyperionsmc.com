@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Rangos — Hyperions MC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #050409; color: #F5F3FA; -webkit-font-smoothing: antialiased; }
+  a { color: #C7A0F5; text-decoration: none; transition: color .2s ease; }
+  a:hover { color: #FFD97A; }
+  ::selection { background: rgba(244,197,106,.28); color: #fff; }
+  @keyframes hy-rise { 0% { opacity: 0; transform: translateY(26px); } 100% { opacity: 1; transform: translateY(0); } }
+</style>
+</helmet>
+
+<div style="--bg2:#050409; --gold:#F4C56A; --gold-bright:#FFD97A; --violet:#A855F7; --violet-bright:#C7A0F5; --violet-deep:#7C3AED; --green:#34D399; --cyan:#7DD3FC; --gray:#A9A4B8; --text:#F5F3FA; --muted:#A9A4B8; --faint:#726C82; --surface:rgba(255,255,255,.035); --border:rgba(255,255,255,.09); --cell:#0B0912; position:relative; min-height:100vh; width:100%; overflow-x:hidden; background:var(--bg2); color:var(--text); font-family:'Manrope',system-ui,sans-serif; line-height:1.55;">
+
+  <!-- HEADER -->
+  <header style="position:relative; z-index:10; border-bottom:1px solid var(--border); background:rgba(8,7,14,.72); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);">
+    <div style="width:100%; max-width:1280px; margin:0 auto; padding:16px clamp(20px,5vw,64px); display:flex; align-items:center; justify-content:space-between; gap:14px;">
+      <a href="Hyperions MC Landing.dc.html" style="display:flex; align-items:center; gap:10px; color:var(--text);">
+        <img src="logos/hyperions-logo-a.svg" width="34" height="34" alt="Hyperions MC" style="flex:none;">
+        <span style="display:flex; flex-direction:column; line-height:1;">
+          <span style="font-family:'Montserrat',sans-serif; font-weight:900; letter-spacing:.14em; font-size:1rem;">HYPERIONS</span>
+          <span style="font-weight:700; letter-spacing:.42em; font-size:.55rem; color:var(--gold); margin-top:3px;">MC · SURVIVAL</span>
+        </span>
+      </a>
+      <nav style="display:flex; align-items:center; gap:clamp(14px,3vw,26px);">
+        <a href="Hyperions MC Landing.dc.html" style="font-weight:600; font-size:.92rem; color:var(--muted);" style-hover="color:var(--gold-bright);">Inicio</a>
+        <span style="font-weight:700; font-size:.92rem; color:var(--gold-bright); border-bottom:2px solid var(--gold); padding-bottom:2px;">Rangos</span>
+        <a href="Tienda.dc.html" style="display:inline-flex; align-items:center; gap:7px; padding:9px 16px; border-radius:10px; background:linear-gradient(135deg, var(--violet), var(--violet-deep)); color:#fff; font-weight:700; font-size:.85rem; box-shadow:0 8px 22px -10px rgba(124,58,237,.8); transition:transform .2s ease;" style-hover="transform:translateY(-2px); color:#fff;">Tienda</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section data-screen-label="Rangos hero" style="position:relative; padding:clamp(52px,9vh,88px) 0 clamp(32px,5vh,48px); overflow:hidden;">
+    <div style="position:absolute; inset:-10%; pointer-events:none; background:radial-gradient(44% 60% at 86% 8%, rgba(168,85,247,.16), transparent 70%), radial-gradient(40% 55% at 10% 90%, rgba(244,197,106,.1), transparent 72%);"></div>
+    <div style="position:relative; width:100%; max-width:1280px; margin:0 auto; padding-left:clamp(20px,5vw,64px); padding-right:clamp(20px,5vw,64px);">
+      <div style="font-weight:800; letter-spacing:.28em; font-size:.72rem; text-transform:uppercase; color:var(--gold); margin-bottom:14px; animation:hy-rise .6s cubic-bezier(.2,.7,.2,1) both;">Info de rangos</div>
+      <h1 style="margin:0; font-family:'Montserrat',sans-serif; font-weight:900; font-size:clamp(2.2rem,6.5vw,4rem); line-height:1.02; letter-spacing:-.02em; max-width:820px; animation:hy-rise .7s cubic-bezier(.2,.7,.2,1) .06s both;">De <span style="color:var(--gray);">Mortal</span> a <span style="background:linear-gradient(100deg,#FFE7A6,#F4C56A,#D99A2B); -webkit-background-clip:text; background-clip:text; color:transparent;">Olympian</span></h1>
+      <p style="margin:18px 0 0; max-width:640px; font-size:clamp(1rem,2.4vw,1.15rem); color:var(--muted); animation:hy-rise .7s cubic-bezier(.2,.7,.2,1) .12s both;">Comparativa completa de la vía de jugador. Cada rango es <strong style="color:var(--text);">acumulativo</strong>: hereda todo lo del anterior y añade lo suyo. Mortal es el rango gratuito con el que entras al servidor.</p>
+    </div>
+  </section>
+
+  <!-- COMPARISON MATRIX -->
+  <section data-screen-label="Comparativa" style="padding:0 0 clamp(50px,8vh,80px);">
+    <div style="width:100%; max-width:1280px; margin:0 auto; padding-left:clamp(20px,5vw,64px); padding-right:clamp(20px,5vw,64px);">
+
+      <div style="border:1px solid var(--border); border-radius:18px; background:rgba(255,255,255,.02); overflow:auto; max-width:100%;">
+        <table style="border-collapse:separate; border-spacing:0; width:100%; min-width:820px; font-size:.9rem;">
+          <thead>
+            <tr>
+              <th style="position:sticky; left:0; z-index:3; background:var(--cell); text-align:left; padding:16px 18px; border-bottom:1px solid var(--border); min-width:230px; font-size:.72rem; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--faint);">Perk / Comando</th>
+              <th style="padding:16px 12px; border-bottom:1px solid var(--border); background:rgba(255,255,255,.015);"><span style="display:inline-block; padding:5px 12px; border-radius:8px; background:rgba(169,164,184,.08); border:1px solid rgba(169,164,184,.35); color:#A9A4B8; font-family:ui-monospace,monospace; font-weight:700; font-size:.74rem;">[Mortal]</span><div style="font-size:.66rem; color:var(--faint); font-weight:700; margin-top:6px; letter-spacing:.1em;">GRATIS</div></th>
+              <th style="padding:16px 12px; border-bottom:1px solid var(--border);"><span style="display:inline-block; padding:5px 12px; border-radius:8px; background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.4); color:#34D399; font-family:ui-monospace,monospace; font-weight:700; font-size:.74rem;">[HERO]</span><div style="font-size:.66rem; color:var(--faint); font-weight:700; margin-top:6px; letter-spacing:.1em;">4,99&nbsp;€/MES</div></th>
+              <th style="padding:16px 12px; border-bottom:1px solid var(--border);"><span style="display:inline-block; padding:5px 12px; border-radius:8px; background:rgba(125,211,252,.08); border:1px solid rgba(125,211,252,.42); color:#7DD3FC; font-family:ui-monospace,monospace; font-weight:700; font-size:.74rem;">[DEMIGOD]</span><div style="font-size:.66rem; color:var(--faint); font-weight:700; margin-top:6px; letter-spacing:.1em;">9,99&nbsp;€/MES</div></th>
+              <th style="padding:16px 12px; border-bottom:1px solid var(--border);"><span style="display:inline-block; padding:5px 12px; border-radius:8px; background:rgba(168,85,247,.1); border:1px solid rgba(168,85,247,.45); color:#C7A0F5; font-family:ui-monospace,monospace; font-weight:700; font-size:.74rem;">[TITAN]</span><div style="font-size:.66rem; color:var(--faint); font-weight:700; margin-top:6px; letter-spacing:.1em;">19,99&nbsp;€/MES</div></th>
+              <th style="padding:16px 12px; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><span style="display:inline-block; padding:5px 12px; border-radius:8px; background:rgba(244,197,106,.12); border:1px solid rgba(244,197,106,.5); color:#FFD97A; font-family:ui-monospace,monospace; font-weight:700; font-size:.74rem;">[OLYMPIAN]</span><div style="font-size:.66rem; color:var(--faint); font-weight:700; margin-top:6px; letter-spacing:.1em;">34,99&nbsp;€/MES</div></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="6" style="position:sticky; left:0; padding:12px 18px; background:rgba(244,197,106,.05); border-bottom:1px solid var(--border); font-size:.68rem; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:var(--gold);">Base</td></tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">Homes</div><div style="font-size:.76rem; color:var(--faint);">/sethome · /home · /delhome</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); font-weight:800; color:#A9A4B8;">1</td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); font-weight:800; color:#34D399;">5</td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); font-weight:800; color:#7DD3FC;">10</td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); font-weight:800; color:#C7A0F5;">20</td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); font-weight:900; color:#FFD97A; background:rgba(244,197,106,.04);">40</td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">Esenciales (15 comandos)</div><div style="font-size:.76rem; color:var(--faint);">/spawn /tpa /msg /pay /warp /balance…</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A9A4B8" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+          
+            <tr><td colspan="6" style="position:sticky; left:0; padding:12px 18px; background:rgba(244,197,106,.05); border-bottom:1px solid var(--border); font-size:.68rem; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:var(--gold);">Hero añade</td></tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">/back</div><div style="font-size:.76rem; color:var(--faint);">vuelve a tu última muerte o sitio anterior</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">/hat</div><div style="font-size:.76rem; color:var(--faint);">ponte cualquier bloque de sombrero</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">/afk</div><div style="font-size:.76rem; color:var(--faint);">márcate como ausente</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr><td colspan="6" style="position:sticky; left:0; padding:12px 18px; background:rgba(244,197,106,.05); border-bottom:1px solid var(--border); font-size:.68rem; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:var(--gold);">Demigod añade</td></tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">TP instantáneo <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2.2" style="vertical-align:-1px;"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></div><div style="font-size:.76rem; color:var(--faint);">teletransporte sin espera</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">/enderchest</div><div style="font-size:.76rem; color:var(--faint);">ender chest portátil</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">/nick</div><div style="font-size:.76rem; color:var(--faint);">cambia tu nick, con colores</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">/feed</div><div style="font-size:.76rem; color:var(--faint);">rellena el hambre</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">/near</div><div style="font-size:.76rem; color:var(--faint);">ver jugadores cercanos</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">/tpahere</div><div style="font-size:.76rem; color:var(--faint);">pide que vengan a ti</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr><td colspan="6" style="position:sticky; left:0; padding:12px 18px; background:rgba(244,197,106,.05); border-bottom:1px solid var(--border); font-size:.68rem; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:var(--gold);">Titan añade</td></tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">/heal <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2.2" style="vertical-align:-1px;"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></div><div style="font-size:.76rem; color:var(--faint);">cúrate al instante</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">/repair <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2.2" style="vertical-align:-1px;"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></div><div style="font-size:.76rem; color:var(--faint);">repara item y armadura</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">/workbench</div><div style="font-size:.76rem; color:var(--faint);">mesa de crafteo portátil</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">/tptoggle</div><div style="font-size:.76rem; color:var(--faint);">bloquea o permite TPs hacia ti</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">Inmune a AFK-kick</div><div style="font-size:.76rem; color:var(--faint);">no te expulsan por ausencia</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr><td colspan="6" style="position:sticky; left:0; padding:12px 18px; background:rgba(244,197,106,.05); border-bottom:1px solid var(--border); font-size:.68rem; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:var(--gold);">Olympian añade</td></tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">/anvil</div><div style="font-size:.76rem; color:var(--faint);">yunque portátil</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">/skull</div><div style="font-size:.76rem; color:var(--faint);">obtén cabezas de jugadores</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">/condense</div><div style="font-size:.76rem; color:var(--faint);">compacta items 9→1</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">/ping</div><div style="font-size:.76rem; color:var(--faint);">mide tu conexión</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr><td colspan="6" style="position:sticky; left:0; padding:12px 18px; background:rgba(244,197,106,.05); border-bottom:1px solid var(--border); font-size:.68rem; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:var(--gold);">Incluido en tu rango · se activa próximamente</td></tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">Multiplicador XP/dinero <span style="padding:2px 7px; border-radius:100px; background:rgba(168,85,247,.14); color:#C7A0F5; font-weight:700; font-size:.6rem; letter-spacing:.08em; vertical-align:1px;">PRÓXIMAMENTE</span></div><div style="font-size:.76rem; color:var(--faint);">de 1.1x a 2x según rango</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">Kits exclusivos <span style="padding:2px 7px; border-radius:100px; background:rgba(168,85,247,.14); color:#C7A0F5; font-weight:700; font-size:.6rem; letter-spacing:.08em; vertical-align:1px;">PRÓXIMAMENTE</span></div><div style="font-size:.76rem; color:var(--faint);">de 2 a 10 kits según rango</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">Llaves de crate <span style="padding:2px 7px; border-radius:100px; background:rgba(168,85,247,.14); color:#C7A0F5; font-weight:700; font-size:.6rem; letter-spacing:.08em; vertical-align:1px;">PRÓXIMAMENTE</span></div><div style="font-size:.76rem; color:var(--faint);">de 1 a 4 al mes según rango</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">Vaults privados <span style="padding:2px 7px; border-radius:100px; background:rgba(168,85,247,.14); color:#C7A0F5; font-weight:700; font-size:.6rem; letter-spacing:.08em; vertical-align:1px;">PRÓXIMAMENTE</span></div><div style="font-size:.76rem; color:var(--faint);">de 1 a 5 según rango</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">Chest shops <span style="padding:2px 7px; border-radius:100px; background:rgba(168,85,247,.14); color:#C7A0F5; font-weight:700; font-size:.6rem; letter-spacing:.08em; vertical-align:1px;">PRÓXIMAMENTE</span></div><div style="font-size:.76rem; color:var(--faint);">de 20 a 100 tiendas según rango</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">Protecciones extra <span style="padding:2px 7px; border-radius:100px; background:rgba(168,85,247,.14); color:#C7A0F5; font-weight:700; font-size:.6rem; letter-spacing:.08em; vertical-align:1px;">PRÓXIMAMENTE</span></div><div style="font-size:.76rem; color:var(--faint);">de 2 a 5 claims según rango</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">Cosméticos <span style="padding:2px 7px; border-radius:100px; background:rgba(168,85,247,.14); color:#C7A0F5; font-weight:700; font-size:.6rem; letter-spacing:.08em; vertical-align:1px;">PRÓXIMAMENTE</span></div><div style="font-size:.76rem; color:var(--faint);">partículas, mascotas y alas</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">/friends <span style="padding:2px 7px; border-radius:100px; background:rgba(168,85,247,.14); color:#C7A0F5; font-weight:700; font-size:.6rem; letter-spacing:.08em; vertical-align:1px;">PRÓXIMAMENTE</span></div><div style="font-size:.76rem; color:var(--faint);">de 15 a 30 amigos según rango</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">Recompensa diaria <span style="padding:2px 7px; border-radius:100px; background:rgba(168,85,247,.14); color:#C7A0F5; font-weight:700; font-size:.6rem; letter-spacing:.08em; vertical-align:1px;">PRÓXIMAMENTE</span></div><div style="font-size:.76rem; color:var(--faint);">premio por conectarte cada día</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">Cola prioritaria <span style="padding:2px 7px; border-radius:100px; background:rgba(168,85,247,.14); color:#C7A0F5; font-weight:700; font-size:.6rem; letter-spacing:.08em; vertical-align:1px;">PRÓXIMAMENTE</span></div><div style="font-size:.76rem; color:var(--faint);">entra antes cuando el servidor está lleno</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+            <tr>
+              <td style="position:sticky; left:0; z-index:2; background:var(--cell); padding:13px 18px; border-bottom:1px solid var(--border);"><div style="font-weight:700; color:var(--text);">Prefijo personalizado <span style="padding:2px 7px; border-radius:100px; background:rgba(168,85,247,.14); color:#C7A0F5; font-weight:700; font-size:.6rem; letter-spacing:.08em; vertical-align:1px;">PRÓXIMAMENTE</span></div><div style="font-size:.76rem; color:var(--faint);">tu propio prefijo único en el chat</div></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border);"><span style="color:#4a4556; font-weight:700;">—</span></td>
+              <td style="padding:13px 12px; text-align:center; border-bottom:1px solid var(--border); background:rgba(244,197,106,.04);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="display:flex; flex-wrap:wrap; gap:14px 26px; margin-top:18px; font-size:.82rem; color:var(--faint);">
+        <span style="display:inline-flex; align-items:center; gap:7px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2.2"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg> Se bloquea en combate (ProCombat): fuera de combate funciona normal.</span>
+        <span style="display:inline-flex; align-items:center; gap:7px;"><span style="padding:2px 8px; border-radius:100px; background:rgba(168,85,247,.14); color:var(--violet-bright); font-weight:700; font-size:.66rem; letter-spacing:.1em;">PRÓXIMAMENTE</span> Perk incluido en el rango; se activa cuando se lance el sistema.</span>
+      </div>
+
+      <!-- CTA band -->
+      <div style="margin-top:clamp(36px,6vh,56px); padding:clamp(28px,4vw,44px); border-radius:22px; background:linear-gradient(135deg, rgba(168,85,247,.14), rgba(244,197,106,.1)); border:1px solid rgba(244,197,106,.28); display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;">
+        <div style="max-width:520px;">
+          <div style="font-family:'Montserrat',sans-serif; font-weight:900; font-size:clamp(1.4rem,3.5vw,2rem); line-height:1.1;">¿Listo para ascender?</div>
+          <p style="margin:10px 0 0; color:var(--muted); font-size:.98rem;">Empieza gratis como Mortal y sube peldaño a peldaño — o reclama tu trono de una vez.</p>
+        </div>
+        <a href="Tienda.dc.html" style="display:inline-flex; align-items:center; gap:10px; padding:16px 28px; border-radius:13px; background:linear-gradient(135deg,#FFE7A6,#F4C56A 50%,#D99A2B); color:#1a1206; font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.05rem; transition:transform .2s ease, filter .2s ease;" style-hover="transform:translateY(-3px); filter:brightness(1.05); color:#1a1206;">Ir a la Tienda
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer data-screen-label="Footer" style="border-top:1px solid var(--border); background:linear-gradient(180deg, #07060C, #030308);">
+    <div style="width:100%; max-width:1280px; margin:0 auto; padding:26px clamp(20px,5vw,64px); display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+      <a href="Hyperions MC Landing.dc.html" style="display:flex; align-items:center; gap:9px; color:var(--text);">
+        <img src="logos/hyperions-logo-a.svg" width="26" height="26" alt="" style="flex:none;">
+        <span style="font-family:'Montserrat',sans-serif; font-weight:900; letter-spacing:.12em; font-size:.95rem;">HYPERIONS MC</span>
+      </a>
+      <div style="display:flex; gap:clamp(14px,3vw,24px); flex-wrap:wrap;">
+        <a href="Hyperions MC Landing.dc.html" style="color:var(--muted); font-size:.88rem;" style-hover="color:var(--gold-bright);">Inicio</a>
+        <a href="Tienda.dc.html" style="color:var(--muted); font-size:.88rem;" style-hover="color:var(--gold-bright);">Tienda</a>
+        <a href="#" style="color:var(--muted); font-size:.88rem;" style-hover="color:var(--violet-bright);">Discord</a>
+        <a href="Soporte.dc.html" style="color:var(--muted); font-size:.88rem;" style-hover="color:var(--violet-bright);">Soporte</a>
+      </div>
+      <span style="font-size:.74rem; color:var(--faint);">No afiliado con Mojang Studios ni Microsoft.</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+</body>
+</html>
