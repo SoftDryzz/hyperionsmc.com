@@ -63,14 +63,18 @@ En **DNS → Records** de Cloudflare:
 
 ### Paso 2 — Crear el registro SRV para Java
 
-| Campo | Valor |
-|-------|-------|
-| Tipo | SRV |
-| Nombre | `_minecraft._tcp` |
-| Prioridad | `0` |
-| Peso | `5` |
-| Puerto | `25565` (o el puerto real del servidor) |
-| Destino | `mc.hyperionsmc.com` |
+Campos **tal y como aparecen en el panel de Cloudflare** al añadir un registro SRV:
+
+| Campo (Cloudflare) | Valor |
+|--------------------|-------|
+| Type | `SRV` |
+| **Name** | **`@`** ← el SRV cuelga del dominio raíz |
+| Service | `_minecraft` |
+| Protocol | `TCP` |
+| Priority | `0` |
+| Weight | `5` |
+| Port | `25565` (o el puerto real del servidor) |
+| **Target** | `mc.hyperionsmc.com` ← aquí es el único sitio donde aparece `mc`: Cloudflare no admite una IP en este campo, solo un nombre (el del Paso 1) |
 
 Verifica que puedes entrar al servidor en Minecraft Java tanto con `mc.hyperionsmc.com`
 como con `hyperionsmc.com` (esta última ya resuelve vía SRV).
