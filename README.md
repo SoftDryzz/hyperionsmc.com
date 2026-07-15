@@ -44,6 +44,11 @@ Los valores se validan (`Number()` + acotado) y se insertan solo con `textConten
 
 ## DNS: web y servidor de Minecraft en el mismo dominio
 
+> **La IP que escriben los jugadores de Java es `hyperionsmc.com`, a secas.**
+> El registro `mc` de abajo es interno: un SRV no puede apuntar a una IP, necesita un
+> nombre intermedio que resuelva al VPS. Nadie lo escribe ni lo ve en la web
+> (solo los jugadores de Bedrock, que no soportan SRV, lo usan como dirección).
+
 ⚠️ **Orden importante.** Ahora mismo `hyperionsmc.com` (apex) apunta a la IP del VPS de Minecraft.
 Si conectas el apex a Pages sin preparar antes el SRV, los jugadores de Java perderán la conexión.
 Sigue este orden:
