@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="hy-border" x1="10" y1="8" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFD97A"/>
+      <stop offset=".5" stop-color="#E3B45C"/>
+      <stop offset="1" stop-color="#A855F7"/>
+    </linearGradient>
+    <linearGradient id="hy-obsidian" x1="32" y1="4" x2="32" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1A1526"/>
+      <stop offset="1" stop-color="#0A0810"/>
+    </linearGradient>
+    <linearGradient id="hy-bolt" x1="32" y1="13" x2="32" y2="51" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFE7A6"/>
+      <stop offset=".55" stop-color="#F4C56A"/>
+      <stop offset="1" stop-color="#E0A93F"/>
+    </linearGradient>
+  </defs>
+  <polygon points="32,3.5 56.5,17.7 56.5,46.3 32,60.5 7.5,46.3 7.5,17.7"
+           fill="url(#hy-obsidian)" stroke="url(#hy-border)" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M36 13.6 L20 36 L30.1 36 L27.7 50.4 L44 27.2 L33.6 27.2 Z"
+        fill="url(#hy-bolt)" stroke="url(#hy-bolt)" stroke-width="3" stroke-linejoin="round"/>
+  <circle cx="47.5" cy="15.5" r="2.1" fill="#FFD97A"/>
+  <circle cx="15" cy="47" r="1.8" fill="#A855F7"/>
+</svg>

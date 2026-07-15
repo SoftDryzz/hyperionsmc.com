@@ -1,0 +1,11 @@
+Fuentes autoalojadas en este sitio
+==================================
+
+- Montserrat (montserrat-var.woff2) — © The Montserrat Project Authors
+  https://github.com/JulietaUla/Montserrat
+
+- Manrope (manrope-var.woff2) — © The Manrope Project Authors
+  https://github.com/sharanda/manrope
+
+Ambas familias se distribuyen bajo la SIL Open Font License, Version 1.1.
+Texto completo de la licencia: https://openfontlicense.org

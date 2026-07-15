@@ -1,0 +1,3 @@
+# Artefactos de verificación local (Playwright)
+.playwright-mcp/
+*.png
