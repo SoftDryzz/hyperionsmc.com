@@ -59,45 +59,28 @@ Todo cuelga del dominio raíz; los jugadores de **Java y Bedrock** y el navegado
 - Bedrock: `hyperionsmc.com`, puerto `19132` (o el configurado en Geyser).
 - Opcional: registro A `www` → misma IP (DNS only) si se quiere que `www.hyperionsmc.com` funcione.
 
-## Despliegue: en el VPS con Caddy
+## Despliegue: VPS Raiola con Caddy
 
-La web se sirve desde el mismo VPS del servidor de Minecraft (`82.208.23.8`, alias SSH `contabo`,
-usuario `hyperion`, puerto 2222). El VPS ya usa **Caddy** como servidor web (sirve también
-`api.softdryzz.com`); Caddy gestiona el certificado HTTPS y su renovación automáticamente,
-así que no hacen falta nginx ni certbot.
+Desde julio de 2026 el dominio apunta al **VPS de Raiola Madrid** (`201.46.112.30`, alias SSH
+`raiola`, usuario `hyperion`, puerto 2222) — el «escudo» público de Hyperions MC. Caddy sirve la
+web desde `/var/www/hyperionsmc` con HTTPS automático (bloque en `deploy/Caddyfile-hyperionsmc`).
+El Contabo (`82.208.23.8`, alias `contabo`) queda como máquina interna; tiene el mismo montaje.
 
-Requisitos ya cumplidos: UFW con `Nginx Full` (80/443) permitido y DNS `@` → VPS (DNS only).
+Ambos VPS tienen instalado el script **`/usr/local/bin/hyperion-deploy`** (copia
+`~/public` → `/var/www/hyperionsmc`, quita `_headers` y arregla permisos) con permiso sudo
+sin contraseña **solo para ese script** (`/etc/sudoers.d/hyperion-deploy`).
 
-### 1. Subir la web (desde este PC, en la carpeta del proyecto)
-
-```powershell
-scp -r public contabo:~
-```
-
-### 2. Colocarla y configurar Caddy (dentro de `ssh contabo`)
-
-```bash
-sudo mkdir -p /var/www/hyperionsmc
-sudo cp -r ~/public/. /var/www/hyperionsmc/
-sudo rm -f /var/www/hyperionsmc/_headers   # archivo solo útil en Cloudflare Pages
-# Añadir el bloque de deploy/Caddyfile-hyperionsmc al final de /etc/caddy/Caddyfile
-sudo caddy validate --config /etc/caddy/Caddyfile
-sudo systemctl reload caddy
-```
-
-Caddy pide el certificado a Let's Encrypt en el primer arranque del sitio (~30 s)
-y lo renueva solo. Comprobar: <https://hyperionsmc.com>.
-
-### Actualizar la web más adelante
+### Desplegar (3 comandos, sin contraseñas si la clave está en el ssh-agent)
 
 ```powershell
-scp -r public contabo:~
-ssh -t contabo "sudo cp -r ~/public/. /var/www/hyperionsmc/ && sudo rm -f /var/www/hyperionsmc/_headers && sudo chmod -R a+rX /var/www/hyperionsmc"
+ssh raiola "rm -rf ~/public"
+scp -r public raiola:~
+ssh raiola "sudo /usr/local/bin/hyperion-deploy"
 ```
 
-Notas: el `-t` de ssh es imprescindible para que sudo pueda pedir la contraseña en una sola línea;
-el `chmod -R a+rX` también, porque el umask endurecido del VPS crea los archivos copiados por
-root como privados y Caddy devolvería 403/404.
+Notas: el `rm -rf ~/public` previo evita que scp anide `public/public`; la clave se añade al
+agente una vez con `ssh-add C:\Users\PcVIP\.ssh\raiola_vps`. Ejecutar los comandos de uno en
+uno (pegar varios `ssh`/`scp` a la vez hace que el primero se trague los siguientes).
 
 ## Seguridad
 
