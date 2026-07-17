@@ -143,3 +143,7 @@
     box-shadow: 10px 0 14px -10px rgba(0, 0, 0, .9);
   }
 }
+
+/* Oferta aplicada a los precios mensuales de la comparativa */
+.rg-price__old { text-decoration: line-through; color: var(--faint); font-weight: 600; font-size: .9em; margin-right: 4px; }
+.rg-price__new { color: var(--gold-bright); font-weight: 800; }

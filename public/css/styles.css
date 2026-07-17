@@ -445,6 +445,23 @@ button { font: inherit; }
 }
 .site-footer__legal { font-size: .76rem; opacity: .8; }
 
+/* ---------- Anuncio de oferta (píldora) ---------- */
+.sale-pill-row { margin: -6px 0 clamp(18px, 3.5vh, 28px); animation: hy-rise .7s cubic-bezier(.2,.7,.2,1) .05s both; }
+.sale-pill {
+  display: inline-flex; align-items: center; gap: 8px; max-width: 100%;
+  padding: 8px 16px; border-radius: 100px;
+  border: 1px solid rgba(244,197,106,.5);
+  background: linear-gradient(135deg, rgba(244,197,106,.16), rgba(168,85,247,.12));
+  color: var(--gold-bright); font-weight: 800; font-size: .8rem; letter-spacing: .05em;
+  text-transform: uppercase; animation: hy-glow 3.4s ease-in-out infinite;
+  transition: color .2s ease, border-color .2s ease;
+}
+.sale-pill:hover { color: #fff; border-color: var(--gold); }
+.sale-pill-row[hidden] { display: none; }
+@media (max-width: 460px) {
+  .sale-pill { font-size: .68rem; padding: 7px 12px; letter-spacing: .03em; }
+}
+
 /* ---------- Utilidades ---------- */
 .visually-hidden { position: fixed; opacity: 0; pointer-events: none; }
 

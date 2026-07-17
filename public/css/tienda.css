@@ -335,3 +335,7 @@
 .td-sale__timer { font-family: ui-monospace, monospace; font-weight: 800; color: var(--text); letter-spacing: .04em; }
 .td-precio-original { text-decoration: line-through; color: var(--faint); font-weight: 700; font-size: 1.05rem; margin-right: 6px; }
 .td-precio-original[hidden] { display: none; }
+
+/* La nota de precio en su propia línea (el texto ES es largo y desbordaba) */
+.td-precio-row { flex-wrap: wrap; row-gap: 2px; }
+.td-precio-nota { flex-basis: 100%; }

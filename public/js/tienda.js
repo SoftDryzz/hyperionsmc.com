@@ -8,13 +8,9 @@
   const MONTHLY = { hero: 4.99, demigod: 9.99, titan: 19.99, olympian: 34.99 };
   const PERM_FACTOR = 3.7;
 
-  /* Oferta de lanzamiento: −50% permanente y −40% mensual hasta esta fecha.
+  /* Oferta de lanzamiento: la configuración vive en /js/sale.js (window.HY_SALE).
      Al expirar, la web vuelve sola a los precios normales. */
-  const SALE = {
-    end: Date.parse('2026-08-17T23:59:59+02:00'),
-    perm: 0.50,
-    monthly: 0.40,
-  };
+  const SALE = window.HY_SALE || { end: 0, perm: 0, monthly: 0 };
   const saleActive = () => Date.now() < SALE.end;
 
   /* Textos según el idioma de la página (lang del <html>) */
