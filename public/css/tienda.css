@@ -339,3 +339,13 @@
 /* La nota de precio en su propia línea (el texto ES es largo y desbordaba) */
 .td-precio-row { flex-wrap: wrap; row-gap: 2px; }
 .td-precio-nota { flex-basis: 100%; }
+
+/* --- Ilustración de cada rango en la cabecera de su tarjeta --- */
+.td-rango__art {
+  display: block;
+  width: calc(100% + 2 * clamp(24px, 2.6vw, 30px));
+  height: auto;
+  margin: calc(-1 * clamp(24px, 2.6vw, 30px)) calc(-1 * clamp(24px, 2.6vw, 30px)) 18px;
+  border-radius: 20px 20px 0 0;
+  border-bottom: 1px solid var(--border);
+}
