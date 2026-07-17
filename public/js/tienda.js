@@ -1,5 +1,5 @@
 /* Hyperions MC — hyperionsmc.com/tienda/
-   Selector Mensual/Permanente de la tienda de rangos.
+   Selector Mensual/Permanente + oferta de lanzamiento con cuenta atrás.
    Seguridad: solo se escribe con textContent (nunca innerHTML). */
 (() => {
   'use strict';
@@ -7,6 +7,15 @@
   /* Precios mensuales base; el permanente equivale a 3,7 meses. */
   const MONTHLY = { hero: 4.99, demigod: 9.99, titan: 19.99, olympian: 34.99 };
   const PERM_FACTOR = 3.7;
+
+  /* Oferta de lanzamiento: −50% permanente y −40% mensual hasta esta fecha.
+     Al expirar, la web vuelve sola a los precios normales. */
+  const SALE = {
+    end: Date.parse('2026-08-17T23:59:59+02:00'),
+    perm: 0.50,
+    monthly: 0.40,
+  };
+  const saleActive = () => Date.now() < SALE.end;
 
   /* Textos según el idioma de la página (lang del <html>) */
   const EN = document.documentElement.lang === 'en';
@@ -21,27 +30,49 @@
   const btnMensual = $('td-btn-mensual');
   const btnPerm = $('td-btn-perm');
   const savingsNote = $('td-savings-note');
+  const saleBox = $('td-sale');
+  const saleTimer = $('td-sale-timer');
   const priceEls = {
     hero: $('td-price-hero'),
     demigod: $('td-price-demigod'),
     titan: $('td-price-titan'),
     olympian: $('td-price-olympian'),
   };
+  const origEls = {
+    hero: $('td-orig-hero'),
+    demigod: $('td-orig-demigod'),
+    titan: $('td-orig-titan'),
+    olympian: $('td-orig-olympian'),
+  };
   const priceNotes = document.querySelectorAll('.td-precio-nota');
 
   if (!btnMensual || !btnPerm) return;
+
+  let permState = true; /* permanente por defecto, como el HTML estático */
 
   function fmt(n) {
     const s = n.toFixed(2);
     return EN ? '€' + s : s.replace('.', ',') + ' €';
   }
 
+  function round2(n) {
+    return Math.round(n * 100) / 100;
+  }
+
   function render(perm) {
+    permState = perm;
+    const onSale = saleActive();
+    const off = perm ? SALE.perm : SALE.monthly;
+
     Object.keys(MONTHLY).forEach((key) => {
-      const el = priceEls[key];
-      if (!el) return;
-      const price = perm ? Math.round(MONTHLY[key] * PERM_FACTOR * 100) / 100 : MONTHLY[key];
-      el.textContent = fmt(price);
+      const base = perm ? round2(MONTHLY[key] * PERM_FACTOR) : MONTHLY[key];
+      const final = onSale ? round2(base * (1 - off)) : base;
+      if (priceEls[key]) priceEls[key].textContent = fmt(final);
+      const orig = origEls[key];
+      if (orig) {
+        if (onSale) { orig.textContent = fmt(base); orig.hidden = false; }
+        else { orig.hidden = true; }
+      }
     });
 
     const note = perm ? TXT.oneTime : TXT.perMonth;
@@ -56,6 +87,36 @@
     btnPerm.setAttribute('aria-pressed', String(perm));
     btnMensual.setAttribute('aria-pressed', String(!perm));
   }
+
+  /* --- Cuenta atrás de la oferta --- */
+  let timerId = 0;
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function tick() {
+    if (!saleBox) return;
+    const ms = SALE.end - Date.now();
+    if (ms <= 0) {
+      saleBox.hidden = true;
+      clearInterval(timerId);
+      render(permState); /* vuelve a precios normales */
+      return;
+    }
+    saleBox.hidden = false;
+    const total = Math.floor(ms / 1000);
+    const d = Math.floor(total / 86400);
+    const h = Math.floor((total % 86400) / 3600);
+    const m = Math.floor((total % 3600) / 60);
+    const s = total % 60;
+    if (saleTimer) saleTimer.textContent = d + 'd ' + pad(h) + ':' + pad(m) + ':' + pad(s);
+  }
+
+  if (saleActive()) {
+    tick();
+    timerId = setInterval(tick, 1000);
+  }
+
+  render(true);
 
   btnMensual.addEventListener('click', () => render(false));
   btnPerm.addEventListener('click', () => render(true));
