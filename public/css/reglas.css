@@ -45,7 +45,7 @@
   pointer-events: none;
   background:
     radial-gradient(44% 60% at 12% 12%, rgba(244,197,106,.12), transparent 70%),
-    radial-gradient(40% 55% at 90% 88%, rgba(168,85,247,.14), transparent 72%);
+    radial-gradient(40% 55% at 90% 88%, rgba(53,208,183,.14), transparent 72%);
 }
 .rl-hero__inner { position: relative; }
 .rl-hero__eyebrow {
@@ -98,7 +98,7 @@
   width: 46px;
   height: 46px;
   border-radius: 13px;
-  background: linear-gradient(150deg, rgba(244,197,106,.16), rgba(168,85,247,.12));
+  background: linear-gradient(150deg, rgba(244,197,106,.16), rgba(53,208,183,.12));
   border: 1px solid rgba(244,197,106,.3);
   color: var(--gold-bright);
   flex: none;
@@ -125,7 +125,7 @@
   padding: clamp(24px, 3vw, 34px);
   border-radius: 20px;
   border: 1px solid rgba(244,197,106,.25);
-  background: linear-gradient(135deg, rgba(244,197,106,.06), rgba(168,85,247,.05));
+  background: linear-gradient(135deg, rgba(244,197,106,.06), rgba(53,208,183,.05));
 }
 .rl-sanctions__title {
   margin: 0 0 14px;
@@ -145,7 +145,7 @@
   font-weight: 700;
   font-size: .78rem;
 }
-.rl-pill--warn { border: 1px solid rgba(169,164,184,.4); background: rgba(169,164,184,.08); color: #A9A4B8; }
+.rl-pill--warn { border: 1px solid rgba(169,164,184,.4); background: rgba(169,164,184,.08); color: #A2B6B3; }
 .rl-pill--mute { border: 1px solid rgba(244,197,106,.45); background: rgba(244,197,106,.08); color: #FFD97A; }
 .rl-pill--kick { border: 1px solid rgba(251,146,60,.45); background: rgba(251,146,60,.08); color: #FB923C; }
 .rl-pill--tempban { border: 1px solid rgba(248,113,113,.45); background: rgba(248,113,113,.08); color: #F87171; }
