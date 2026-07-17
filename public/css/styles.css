@@ -168,12 +168,11 @@ button { font: inherit; }
 }
 .hero__bg {
   position: absolute; inset: 0; z-index: 0; overflow: hidden;
-  /* Fondo atmosférico. Cuando tengas un render del servidor:
-     background: url('/img/hero.webp') center/cover no-repeat; y mantén las capas de sombreado. */
-  background:
-    radial-gradient(120% 90% at 72% 8%, #0F2325 0%, rgba(24,18,41,0) 60%),
-    radial-gradient(90% 70% at 18% 88%, #0A191B 0%, rgba(18,14,32,0) 65%),
-    linear-gradient(180deg, #071416 0%, #040E10 55%, var(--bg2) 100%);
+  /* Render del servidor; las capas hero__shade-* lo oscurecen para la legibilidad */
+  background-color: var(--bg2);
+  background-image: url('/img/hero-home.webp');
+  background-size: cover;
+  background-position: center top;
 }
 .hero__shade-v, .hero__shade-h, .hero__aurora, .hero__grid { position: absolute; inset: 0; pointer-events: none; }
 .hero__shade-v { background: linear-gradient(180deg, rgba(5,4,9,.5) 0%, rgba(5,4,9,.28) 32%, rgba(5,4,9,.8) 80%, #030B0D 100%); }
