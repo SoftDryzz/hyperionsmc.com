@@ -3,3 +3,9 @@
 /*.png
 /*.jpg
 /*.webp
+
+# Documentación interna de rangos y permisos.
+# NO subir: el repo es público y detalla la jerarquía de staff, los nodos de
+# LuckPerms y el endurecimiento posterior al incidente. Vive en local.
+/Rangos-Hyperions.md
+/ranks/
