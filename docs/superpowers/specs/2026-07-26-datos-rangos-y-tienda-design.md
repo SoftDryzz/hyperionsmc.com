@@ -147,6 +147,11 @@ fórmula que ya está en producción en `js/tienda.js`.
 | Titan | 19,99 € | 73,96 € |
 | Olympian | 34,99 € | 129,46 € |
 
+Son precios **sin IVA**, que es como están cargados en Tebex. Tebex aplica el
+impuesto en el pago según el país del comprador, así que la web los muestra con
+un aviso visible al lado. Detalle y comprobación en «El desfase real: 21% de
+IVA», más abajo.
+
 La oferta de lanzamiento (−50% permanente, −40% mensual, hasta el 17/08) se
 aplica **solo a los rangos**.
 
@@ -225,8 +230,19 @@ La identidad mitológica griega se mantiene íntegra. Solo cambia lo falsificabl
 **Java y Bedrock** pasan a ser visibles como diferenciador en portada y tienda,
 no solo un badge discreto. El servidor acepta Java 1.21.x y Bedrock.
 
-**Nota post-compra** en la tienda: tras comprar hay que entrar al servidor una
-vez para que se aplique. Evita el ticket de «he pagado y no me ha llegado».
+**Aviso de entrega** en la tienda. No es una nota al pie: es la condición de
+entrega y va visible junto a los productos afectados.
+
+- **Rangos** — tras comprar hay que entrar al servidor una vez para que se
+  aplique.
+- **Objetos in-game** (llaves, Dracmas y la mena de Protección T5) — **hay que
+  estar conectado al servidor en el momento de la entrega**. Si el jugador no
+  está conectado no los recibe, y es responsabilidad suya estarlo.
+
+La segunda condición traslada el riesgo al comprador, así que tiene que
+entenderse **antes** de pagar. Enterrarla en letra pequeña es justo lo que
+genera la disputa que pretende evitar, y un aviso poco visible se sostiene mal
+frente a una reclamación. Va junto al precio y repetida en el bloque de notas.
 
 ## Diseño técnico
 
@@ -239,7 +255,12 @@ Seis bloques en este orden:
 3. Llaves de cajas — cinco tarjetas, una por tier, con tres opciones de pack.
 4. Dracmas — cuatro packs.
 5. Protección T5 — tarjeta existente, sin cambios.
-6. Notas, incluida la nota post-compra.
+6. Notas, incluidos el aviso de entrega y el del IVA.
+
+Los bloques 3, 4 y 5 se maquetan enteros pero **sin enlace de compra** mientras
+sus paquetes no existan en Tebex. En vez del botón activo llevan un estado
+deshabilitado que dice que estarán disponibles en breve. Un botón que lleva a un
+escaparate donde el producto no está es peor que no tener botón.
 
 Cada tarjeta de llave muestra las dos vías de compra, siguiendo el patrón que ya
 usa la tarjeta de Protección («también comprable in-game por 31 💎»). Enseñar el
@@ -337,17 +358,59 @@ ni renunciar al SEO.
 
 ### La quinta copia está desconectada, no solo desincronizada
 
-Los diez botones de compra apuntan a la raíz de la tienda, sin un solo enlace
-directo a paquete:
+Los diez botones de compra apuntan a la raíz de la tienda:
 
 ```
 10 × https://hyperionsmc.tebex.store
 ```
 
-Quien pulsa «Comprar TITAN» aterriza en un escaparate genérico y tiene que
-buscar Titan por su cuenta. Si el precio de Tebex no coincide con el de la web,
-la contradicción aparece en el checkout, que es el peor momento posible. Tebex
-entra en el check como una copia más.
+**No hay enlaces directos a paquete, y no es un descuido: no existen.**
+Comprobado sobre la tienda real el 26/07 —ningún `href` a paquete en los 324 KB
+de HTML, ningún ID de paquete en el DOM, sin payload embebido, sin llamadas a
+API, y al pulsar «HERO (Permanent)» la URL no cambia. Los ocho productos son
+tarjetas con botones que abren un modal en cliente. La tienda es una sola página
+sin rutas por paquete.
+
+La única vía es sacar los IDs del panel de Tebex y comprobar si
+`…/package/<id>` responde. Hasta entonces `catalogo.json` guarda un campo
+`tebexUrl` por producto con la raíz por defecto: rellenar los IDs ahí actualiza
+los botones sin tocar HTML.
+
+### El desfase real: 21% de IVA
+
+La comparación de los ocho paquetes contra la web da un factor idéntico en todos:
+
+| Rango | Web mensual | Tebex | Web permanente | Tebex |
+|---|---|---|---|---|
+| Hero | 4,99 € | 6,04 € | 18,46 € | 22,34 € |
+| Demigod | 9,99 € | 12,09 € | 36,96 € | 44,72 € |
+| Titan | 19,99 € | 24,19 € | 73,96 € | 89,49 € |
+| Olympian | 34,99 € | 42,34 € | 129,46 € | 156,65 € |
+
+`4,99 × 1,21 = 6,04` · `129,46 × 1,21 = 156,65`. Los ocho, al céntimo.
+
+En Tebex están cargados los precios **sin impuestos** y es Tebex quien aplica el
+IVA al final, según el país del comprador. Es decir: no existe un precio final
+único que la web pueda mostrar, porque depende de quién compre.
+
+Consecuencia práctica: un comprador español ve 34,99 € y paga 42,34 €. La web
+debe **decirlo junto al precio, no en letra pequeña** — que el IVA se calcula en
+el pago según el país. Un aviso visible es lo mínimo; conviene confirmar con
+asesoría si en B2C hace falta mostrar directamente el importe con IVA para
+España, porque la norma de indicación de precios apunta al precio final.
+
+Esta divergencia es el mejor argumento a favor del check: llevaba tiempo activa
+en los ocho precios y no constaba en ningún sitio.
+
+### Productos que aún no existen en Tebex
+
+La tienda tiene **8 paquetes: los 4 rangos × 2 formatos**. No están creados los
+Dracmas, la Protección T5 ni las 15 combinaciones de llaves.
+
+La web se publica **completa** —el owner creará los paquetes después—, pero con
+una regla: **los botones de llaves, Dracmas y Protección no enlazan a ningún
+sitio** hasta que sus paquetes existan. Se maquetan y se muestran, sin
+redirección. Solo los ocho de rango llevan enlace.
 
 ### Diseño del check
 
