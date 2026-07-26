@@ -100,6 +100,34 @@ def extract_claims(html_text):
     return p.claims
 
 
+class _LinkParser(HTMLParser):
+    """Recoge {clave: href} de cada <a data-catalog-link="clave" href="...">.
+
+    Solo mira el atributo explicito, nunca "el <a> mas cercano": comparar por
+    precio no sirve para desambiguar (varios paquetes pueden costar lo mismo),
+    y una heuristica de proximidad en el DOM es fragil. El HTML marca el
+    enlace de compra explicitamente con data-catalog-link.
+    """
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.links = {}
+
+    def handle_starttag(self, tag, attrs):
+        if tag != 'a':
+            return
+        atributos = dict(attrs)
+        clave = atributos.get('data-catalog-link')
+        if clave:
+            self.links[clave] = atributos.get('href', '')
+
+
+def extract_links(html_text):
+    p = _LinkParser()
+    p.feed(html_text)
+    return p.links
+
+
 def check_match(claims, flat, label):
     errores = []
     for clave, valor in sorted(claims.items()):
@@ -117,6 +145,31 @@ def check_coverage(flat, claims_es, claims_en):
             errores.append(f'cobertura: "{clave}" no aparece en ninguna pagina ES')
         if clave not in claims_en:
             errores.append(f'cobertura: "{clave}" no aparece en ninguna pagina EN')
+    return errores
+
+
+def check_links(catalog, links, label):
+    """Verifica que cada <a data-catalog-link="clave"> compra el paquete correcto.
+
+    El precio no basta para desambiguar botones: 28,00 € es a la vez
+    llave.rare.x10, llave.mythic.x1 y dracma.p50.precio. Esto compara el ID
+    de Tebex del href contra el que le corresponde a la clave en el catalogo.
+    """
+    errores = []
+    tebex = catalog.get('_tebex', {})
+    paquetes = tebex.get('paquetes', {})
+    raiz = tebex.get('raiz', '').rstrip('/')
+    for clave, href in sorted(links.items()):
+        if clave not in paquetes:
+            errores.append(
+                f'{label}: data-catalog-link="{clave}" no tiene paquete '
+                f'asociado en _tebex.paquetes')
+            continue
+        esperado = f'{raiz}/package/{paquetes[clave]}'
+        if href != esperado:
+            errores.append(
+                f'{label}: el enlace de "{clave}" apunta a {href!r}, '
+                f'deberia apuntar a {esperado!r}')
     return errores
 
 
@@ -181,9 +234,11 @@ def main():
             if not ruta.exists():
                 errores.append(f'falta el archivo {rel}')
                 continue
-            claims = extract_claims(ruta.read_text(encoding='utf-8'))
+            texto = ruta.read_text(encoding='utf-8')
+            claims = extract_claims(texto)
             errores += check_match(claims, flat, rel)
             acumulador.update(claims)
+            errores += check_links(catalogo, extract_links(texto), rel)
 
     errores += check_coverage(flat, vistas_es, vistas_en)
     errores += check_tebex(catalogo, flat)
