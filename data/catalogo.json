@@ -1,0 +1,35 @@
+{
+  "_fuente": "docs/superpowers/specs/2026-07-26-datos-rangos-y-tienda-design.md",
+  "_aviso": "Fuente de verdad del catalogo. Cambiar aqui primero; el HTML se compara contra este archivo.",
+  "rango": {
+    "mortal":   { "homes": 1,  "multiplicador": "×1.0",  "protecciones": 3,  "llaves": "—",        "subastas": 3,  "kits": "—" },
+    "hero":     { "homes": 5,  "multiplicador": "×1.1",  "protecciones": 6,  "llaves": "1 Common", "subastas": 5,  "kits": 2 },
+    "demigod":  { "homes": 10, "multiplicador": "×1.25", "protecciones": 10, "llaves": "2 Common", "subastas": 8,  "kits": 3 },
+    "titan":    { "homes": 20, "multiplicador": "×1.5",  "protecciones": 15, "llaves": "1 Rare",   "subastas": 12, "kits": 6 },
+    "olympian": { "homes": 40, "multiplicador": "×2.0",  "protecciones": 20, "llaves": "1 Epic",   "subastas": 20, "kits": 8 }
+  },
+  "precio": {
+    "hero":     { "mensual": "4,99 €",  "permanente": "18,46 €" },
+    "demigod":  { "mensual": "9,99 €",  "permanente": "36,96 €" },
+    "titan":    { "mensual": "19,99 €", "permanente": "73,96 €" },
+    "olympian": { "mensual": "34,99 €", "permanente": "129,46 €" }
+  },
+  "llave": {
+    "common":    { "x1": "1,40 €",  "x5": "6,30 €",   "x10": "11,20 €" },
+    "rare":      { "x1": "3,50 €",  "x5": "15,75 €",  "x10": "28,00 €",  "ingame": 5 },
+    "epic":      { "x1": "7,00 €",  "x5": "31,50 €",  "x10": "56,00 €",  "ingame": 10 },
+    "legendary": { "x1": "14,00 €", "x5": "63,00 €",  "x10": "112,00 €", "ingame": 15 },
+    "mythic":    { "x1": "28,00 €", "x5": "126,00 €", "x10": "224,00 €", "ingame": 30 }
+  },
+  "dracma": {
+    "p10":  { "cantidad": 10,  "precio": "7,00 €" },
+    "p25":  { "cantidad": 25,  "precio": "15,75 €" },
+    "p50":  { "cantidad": 50,  "precio": "28,00 €" },
+    "p100": { "cantidad": 100, "precio": "49,00 €" }
+  },
+  "proteccion": { "precio": "22,00 €", "ingame": 31 },
+  "_tebex": {
+    "_nota": "Sin enlaces directos a paquete: la tienda es una sola pagina sin rutas. Rellenar con .../package/<id> cuando se saquen los IDs del panel.",
+    "raiz": "https://hyperionsmc.tebex.store"
+  }
+}
