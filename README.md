@@ -70,7 +70,18 @@ Ambos VPS tienen instalado el script **`/usr/local/bin/hyperion-deploy`** (copia
 `~/public` → `/var/www/hyperionsmc`, quita `_headers` y arregla permisos) con permiso sudo
 sin contraseña **solo para ese script** (`/etc/sudoers.d/hyperion-deploy`).
 
-### Desplegar (3 comandos, sin contraseñas si la clave está en el ssh-agent)
+### Desplegar
+
+```powershell
+./deploy.ps1
+```
+
+Ejecuta los tests del verificador, comprueba que el HTML coincide con
+`data/catalogo.json`, verifica que no hay estilos inline —la CSP los descarta en
+producción— y solo entonces sube `public/` al VPS.
+
+Si algo falla, no se sube nada. Para desplegar a mano saltándose las
+comprobaciones están los tres comandos de siempre, pero conviene no hacerlo.
 
 ```powershell
 ssh raiola "rm -rf ~/public"
@@ -81,6 +92,22 @@ ssh raiola "sudo /usr/local/bin/hyperion-deploy"
 Notas: el `rm -rf ~/public` previo evita que scp anide `public/public`; la clave se añade al
 agente una vez con `ssh-add C:\Users\PcVIP\.ssh\raiola_vps`. Ejecutar los comandos de uno en
 uno (pegar varios `ssh`/`scp` a la vez hace que el primero se trague los siguientes).
+
+## Catálogo
+
+`data/catalogo.json` es la fuente de verdad de las cifras de rango y de todos
+los precios. El HTML declara lo que afirma con atributos `data-catalog`:
+
+```html
+<td data-catalog="rango.hero.homes">5</td>
+```
+
+`tools/check_catalogo.py` comprueba dos cosas: que todo `data-catalog` coincide
+con el JSON, y que toda clave del JSON aparece en la web española y en la
+inglesa. Corre en GitHub Actions en cada push y antes de cada deploy.
+
+**Para cambiar un precio o una cifra: primero el JSON, después el HTML.**
+Si el check falla, el error está en el HTML.
 
 ## Seguridad
 

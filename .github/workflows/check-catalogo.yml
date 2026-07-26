@@ -1,0 +1,20 @@
+name: Check catálogo
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  catalogo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Tests del verificador
+        working-directory: tools
+        run: python -m unittest test_check_catalogo -v
+      - name: HTML contra catalogo.json
+        run: python tools/check_catalogo.py
