@@ -12,3 +12,4 @@
 
 # Espacio de trabajo de subagent-driven-development (scratch, no se despliega)
 .superpowers/
+__pycache__/
