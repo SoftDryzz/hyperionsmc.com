@@ -171,6 +171,18 @@
 }
 .td-rango--olympian:hover { transform: translateY(-6px); }
 
+.td-rango--dracma {
+  background: linear-gradient(180deg, rgba(14,165,233,.1), rgba(8,15,16,.55));
+  border-color: rgba(14,165,233,.35);
+}
+.td-rango--dracma:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -32px rgba(14,165,233,.6); }
+
+.td-rango--proteccion {
+  background: linear-gradient(180deg, rgba(20,184,166,.1), rgba(8,15,16,.55));
+  border-color: rgba(20,184,166,.35);
+}
+.td-rango--proteccion:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -32px rgba(20,184,166,.6); }
+
 .td-rango__top {
   display: flex;
   align-items: center;
@@ -188,6 +200,8 @@
 .td-rango__chip--demigod { background: rgba(125,211,252,.1); border: 1px solid rgba(125,211,252,.45); color: #7DD3FC; }
 .td-rango__chip--titan { background: rgba(168,85,247,.12); border: 1px solid rgba(168,85,247,.45); color: #C7A0F5; }
 .td-rango__chip--olympian { background: rgba(244,197,106,.12); border: 1px solid rgba(244,197,106,.5); color: #FFD97A; }
+.td-rango__chip--dracma { background: rgba(14,165,233,.12); border: 1px solid rgba(14,165,233,.45); color: #7DD3FC; }
+.td-rango__chip--proteccion { background: rgba(20,184,166,.12); border: 1px solid rgba(20,184,166,.45); color: #5EEAD4; }
 
 .td-rango__badge {
   padding: 4px 10px;
@@ -208,6 +222,8 @@
 .td-rango__nombre--hero { color: #34D399; }
 .td-rango__nombre--demigod { color: #7DD3FC; }
 .td-rango__nombre--titan { color: #C7A0F5; }
+.td-rango__nombre--dracma { color: #38BDF8; }
+.td-rango__nombre--proteccion { color: #2DD4BF; }
 
 .td-precio-row {
   display: flex;
@@ -281,6 +297,11 @@
 .td-buy--titan:hover { transform: translateY(-2px); filter: brightness(1.08); color: #fff; }
 .td-buy--olympian { background: linear-gradient(135deg, #FFE7A6, #F4C56A 50%, #D99A2B); color: #1a1206; }
 .td-buy--olympian:hover { transform: translateY(-2px); filter: brightness(1.06); color: #1a1206; }
+
+.td-buy--dracma { background: linear-gradient(135deg, #7DD3FC, #38BDF8 55%, #0284C7); color: #041d2c; }
+.td-buy--dracma:hover { transform: translateY(-2px); filter: brightness(1.06); color: #041d2c; }
+.td-buy--proteccion { background: linear-gradient(135deg, #5EEAD4, #2DD4BF 55%, #0D9488); color: #03211e; }
+.td-buy--proteccion:hover { transform: translateY(-2px); filter: brightness(1.06); color: #03211e; }
 
 /* Fila de notas */
 .td-notas {

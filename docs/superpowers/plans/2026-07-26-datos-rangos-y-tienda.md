@@ -446,6 +446,24 @@ Y la fila de gratuitos, con marca en las cinco columnas. El SVG de marca es el m
 </tr>
 ```
 
+- [ ] **Step 2b: Marcar los precios de la cabecera**
+
+El `<thead>` muestra el precio mensual de cada rango y es la cuarta copia de ese
+dato. Envolver el importe en un `<span>` propio, dejando `/MES` fuera:
+
+```html
+<th class="rg-th" scope="col"><span class="rg-rank rg-rank--hero">[HERO]</span><div class="rg-price"><span data-catalog="precio.hero.mensual">4,99&nbsp;€</span>/MES</div></th>
+```
+
+Igual para Demigod (`9,99 €`), Titan (`19,99 €`) y Olympian (`34,99 €`). Mortal
+se queda con `GRATIS` y sin clave.
+
+`js/rangos.js` vacía `.rg-price` y lo reconstruye cuando la oferta está activa,
+así que el `data-catalog` desaparece del DOM. No importa: el check lee el
+archivo, no el DOM. Y su parseo sigue funcionando —
+`'4,99 €/MES'.replace(/[^\d.,]/g,'')` da `'4,99'`— porque el `/MES` queda fuera
+del span pero dentro del `.rg-price` que lee.
+
 - [ ] **Step 3: Reescribir las secciones de comandos**
 
 Cuatro secciones, con `/back` en Hero y `/fly` destacado en Titan. La fila de `/fly` lleva la clase `rg-tr--star` en el `<tr>`:
@@ -582,15 +600,36 @@ Igual para `demigod` (36,96 €), `titan` (73,96 €) y `olympian` (129,46 €).
 
 `js/tienda.js` sobrescribe estos valores con `textContent` al cargar. El check lee el HTML del archivo, no el DOM renderizado, así que no hay conflicto.
 
-Añadir además una fila oculta a lectores pero presente para el check y para quien navega sin JS, dentro de cada tarjeta, con el precio mensual:
+Añadir en cada tarjeta una línea con el precio mensual, presente en el HTML para el check y para quien navega sin JS:
 
 ```html
 <div class="td-precio-mensual">o <span data-catalog="precio.hero.mensual">4,99&nbsp;€</span> al mes</div>
 ```
 
+En inglés: `or <span data-catalog="precio.hero.mensual">€4.99</span> per month`.
+
 ```css
 .td-precio-mensual { font-size: .82rem; color: var(--faint); margin-top: 2px; }
+.td-precio-mensual[hidden] { display: none; }
 ```
+
+Esta línea **solo tiene sentido en modo permanente**: al pasar a mensual el precio grande ya muestra ese importe y la línea lo repetiría. Ocultarla desde `js/tienda.js`, dentro de `render(perm)`, junto a las demás actualizaciones de estado:
+
+```js
+    const note = perm ? TXT.oneTime : TXT.perMonth;
+    priceNotes.forEach((el) => { el.textContent = note; });
+
+    /* La linea "o X al mes" sobra cuando el precio grande ya es el mensual. */
+    mensualLines.forEach((el) => { el.hidden = !perm; });
+```
+
+Y declarar la colección junto a las otras búsquedas del DOM, cerca de `const priceNotes = …`:
+
+```js
+  const mensualLines = document.querySelectorAll('.td-precio-mensual');
+```
+
+Sin `innerHTML` y sin estilos inline: solo se cambia la propiedad `hidden`, igual que ya hace el archivo con `.td-precio-original`.
 
 - [ ] **Step 3: Corregir los perks de las cuatro tarjetas**
 
