@@ -41,6 +41,22 @@
     olympian: $('td-orig-olympian'),
   };
   const priceNotes = document.querySelectorAll('.td-precio-nota');
+  const mensualLines = document.querySelectorAll('.td-precio-mensual');
+
+  /* Cada rango son dos paquetes distintos en Tebex: el boton cambia con el selector. */
+  const PKG = {
+    hero:     { perm: 7564089, mensual: 7564114 },
+    demigod:  { perm: 7564092, mensual: 7564116 },
+    titan:    { perm: 7564096, mensual: 7564121 },
+    olympian: { perm: 7564104, mensual: 7564122 },
+  };
+  const TEBEX = 'https://hyperionsmc.tebex.store/package/';
+  const buyEls = {
+    hero: $('td-buy-hero'),
+    demigod: $('td-buy-demigod'),
+    titan: $('td-buy-titan'),
+    olympian: $('td-buy-olympian'),
+  };
 
   if (!btnMensual || !btnPerm) return;
 
@@ -64,6 +80,7 @@
       const base = perm ? round2(MONTHLY[key] * PERM_FACTOR) : MONTHLY[key];
       const final = onSale ? round2(base * (1 - off)) : base;
       if (priceEls[key]) priceEls[key].textContent = fmt(final);
+      if (buyEls[key]) buyEls[key].href = TEBEX + (perm ? PKG[key].perm : PKG[key].mensual);
       const orig = origEls[key];
       if (orig) {
         if (onSale) { orig.textContent = fmt(base); orig.hidden = false; }
@@ -73,6 +90,9 @@
 
     const note = perm ? TXT.oneTime : TXT.perMonth;
     priceNotes.forEach((el) => { el.textContent = note; });
+
+    /* La linea "o X al mes" sobra cuando el precio grande ya es el mensual. */
+    mensualLines.forEach((el) => { el.hidden = !perm; });
 
     if (savingsNote) {
       savingsNote.textContent = perm ? TXT.savingsPerm : TXT.savingsMonthly;

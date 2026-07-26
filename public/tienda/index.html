@@ -132,6 +132,7 @@
           </div>
           <span id="td-savings-note" class="td-savings">Equivale a solo 3,7 meses — y es tuyo para siempre.</span>
         </div>
+        <p class="td-aviso">Precios sin IVA. El impuesto se calcula en el pago según tu país.</p>
 
         <div id="td-sale" class="td-sale" hidden>
           <span aria-hidden="true">⚡</span>
@@ -150,9 +151,10 @@
             <div class="td-rango__nombre td-rango__nombre--hero">HERO</div>
             <div class="td-precio-row">
               <span id="td-orig-hero" class="td-precio-original" hidden></span>
-              <span id="td-price-hero" class="td-precio">18,46&nbsp;€</span>
+              <span id="td-price-hero" class="td-precio" data-catalog="precio.hero.permanente">18,46&nbsp;€</span>
               <span class="td-precio-nota">pago único · para siempre</span>
             </div>
+            <div class="td-precio-mensual">o <span data-catalog="precio.hero.mensual">4,99&nbsp;€</span> al mes</div>
             <div class="td-rango__desde">Todo Mortal, y además</div>
             <div class="td-perks">
               <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
@@ -173,9 +175,28 @@
                   stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M20 6 9 17l-5-5"></path>
                 </svg><span class="td-perk__text"><span class="td-cmd">/afk</span> · márcate como ausente</span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                  stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg><span class="td-perk__text"><strong class="td-strong">×1.1</strong> al dinero y la XP</span>
+              </div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                  stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg><span class="td-perk__text"><strong class="td-strong">6 protecciones</strong> activas</span>
+              </div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                  stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg><span class="td-perk__text"><strong class="td-strong">1 llave Common</strong> gratis cada 30
+                  días</span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                  stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg><span class="td-perk__text"><strong class="td-strong">2 kits</strong> exclusivos</span></div>
             </div>
-            <a href="https://hyperionsmc.tebex.store" target="_blank" rel="noopener noreferrer"
-              class="td-buy td-buy--hero">Comprar HERO</a>
+            <a id="td-buy-hero" href="https://hyperionsmc.tebex.store/package/7564089" target="_blank"
+              rel="noopener noreferrer" class="td-buy td-buy--hero">Comprar HERO</a>
           </div>
 
           <!-- DEMIGOD -->
@@ -189,8 +210,10 @@
             <div class="td-rango__nombre td-rango__nombre--demigod">DEMIGOD</div>
             <div class="td-precio-row">
               <span id="td-orig-demigod" class="td-precio-original" hidden></span>
-              <span id="td-price-demigod" class="td-precio">36,96&nbsp;€</span>
+              <span id="td-price-demigod" class="td-precio" data-catalog="precio.demigod.permanente">36,96&nbsp;€</span>
               <span class="td-precio-nota">pago único · para siempre</span>
+            </div>
+            <div class="td-precio-mensual">o <span data-catalog="precio.demigod.mensual">9,99&nbsp;€</span> al mes
             </div>
             <div class="td-rango__desde">Todo Hero, y además</div>
             <div class="td-perks">
@@ -210,19 +233,34 @@
               <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
                   stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M20 6 9 17l-5-5"></path>
-                </svg><span class="td-perk__text"><span class="td-cmd">/enderchest</span> · cofre portátil</span></div>
-              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
-                  stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M20 6 9 17l-5-5"></path>
                 </svg><span class="td-perk__text"><span class="td-cmd">/nick</span> · nick con colores</span></div>
               <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
                   stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M20 6 9 17l-5-5"></path>
                 </svg><span class="td-perk__text"><span class="td-cmd">/feed</span> <span class="td-cmd">/near</span>
                   <span class="td-cmd">/tpahere</span></span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                  stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg><span class="td-perk__text"><strong class="td-strong">×1.25</strong> al dinero y la XP</span>
+              </div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                  stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg><span class="td-perk__text"><strong class="td-strong">10 protecciones</strong> activas</span>
+              </div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                  stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg><span class="td-perk__text"><strong class="td-strong">2 llaves Common</strong> gratis cada 30
+                  días</span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                  stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg><span class="td-perk__text"><strong class="td-strong">3 kits</strong> exclusivos</span></div>
             </div>
-            <a href="https://hyperionsmc.tebex.store" target="_blank" rel="noopener noreferrer"
-              class="td-buy td-buy--demigod">Comprar DEMIGOD</a>
+            <a id="td-buy-demigod" href="https://hyperionsmc.tebex.store/package/7564092" target="_blank"
+              rel="noopener noreferrer" class="td-buy td-buy--demigod">Comprar DEMIGOD</a>
           </div>
 
           <!-- TITAN -->
@@ -235,11 +273,31 @@
             <div class="td-rango__nombre td-rango__nombre--titan">TITAN</div>
             <div class="td-precio-row">
               <span id="td-orig-titan" class="td-precio-original" hidden></span>
-              <span id="td-price-titan" class="td-precio">73,96&nbsp;€</span>
+              <span id="td-price-titan" class="td-precio" data-catalog="precio.titan.permanente">73,96&nbsp;€</span>
               <span class="td-precio-nota">pago único · para siempre</span>
+            </div>
+            <div class="td-precio-mensual">o <span data-catalog="precio.titan.mensual">19,99&nbsp;€</span> al mes
             </div>
             <div class="td-rango__desde">Todo Demigod, y además</div>
             <div class="td-perks">
+              <div class="td-perk td-perk--star">
+                <svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD97A"
+                  stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+                <span class="td-perk__text"><strong class="td-strong">★ <span class="td-cmd">/fly</span> · vuela por
+                    el mundo</strong>
+                  <svg class="td-lock" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F4C56A"
+                    stroke-width="2.2" aria-hidden="true">
+                    <rect x="4" y="11" width="16" height="10" rx="2"></rect>
+                    <path d="M8 11V7a4 4 0 0 1 8 0v4"></path>
+                  </svg>
+                </span>
+              </div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                  stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg><span class="td-perk__text"><span class="td-cmd">/ec</span> ampliado a 54 slots</span></div>
               <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
                   stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M20 6 9 17l-5-5"></path>
@@ -271,9 +329,28 @@
                   <path d="M20 6 9 17l-5-5"></path>
                 </svg><span class="td-perk__text"><span class="td-cmd">/tptoggle</span> + <strong
                     class="td-strong">inmune a AFK-kick</strong></span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                  stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg><span class="td-perk__text"><strong class="td-strong">×1.5</strong> al dinero y la XP</span>
+              </div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                  stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg><span class="td-perk__text"><strong class="td-strong">15 protecciones</strong> activas</span>
+              </div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                  stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg><span class="td-perk__text"><strong class="td-strong">1 llave Rare</strong> gratis cada 30
+                  días</span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                  stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg><span class="td-perk__text"><strong class="td-strong">6 kits</strong> exclusivos</span></div>
             </div>
-            <a href="https://hyperionsmc.tebex.store" target="_blank" rel="noopener noreferrer"
-              class="td-buy td-buy--titan">Comprar TITAN</a>
+            <a id="td-buy-titan" href="https://hyperionsmc.tebex.store/package/7564096" target="_blank"
+              rel="noopener noreferrer" class="td-buy td-buy--titan">Comprar TITAN</a>
           </div>
 
           <!-- OLYMPIAN -->
@@ -287,8 +364,10 @@
             <div class="td-rango__nombre grad-gold">OLYMPIAN</div>
             <div class="td-precio-row">
               <span id="td-orig-olympian" class="td-precio-original" hidden></span>
-              <span id="td-price-olympian" class="td-precio">129,46&nbsp;€</span>
+              <span id="td-price-olympian" class="td-precio" data-catalog="precio.olympian.permanente">129,46&nbsp;€</span>
               <span class="td-precio-nota">pago único · para siempre</span>
+            </div>
+            <div class="td-precio-mensual">o <span data-catalog="precio.olympian.mensual">34,99&nbsp;€</span> al mes
             </div>
             <div class="td-rango__desde">Todo Titan, y además</div>
             <div class="td-perks">
@@ -314,19 +393,40 @@
                   stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M20 6 9 17l-5-5"></path>
                 </svg><span class="td-perk__text"><span class="td-cmd">/ping</span> · mide tu conexión</span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                  stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg><span class="td-perk__text">2ª página del <span class="td-cmd">/ec</span></span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                  stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg><span class="td-perk__text"><strong class="td-strong">×2.0</strong> al dinero y la XP</span>
+              </div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                  stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg><span class="td-perk__text"><strong class="td-strong">20 protecciones</strong> activas</span>
+              </div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                  stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg><span class="td-perk__text"><strong class="td-strong">1 llave Epic</strong> gratis cada 30
+                  días</span></div>
+              <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                  stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg><span class="td-perk__text"><strong class="td-strong">8 kits</strong> exclusivos</span></div>
             </div>
-            <a href="https://hyperionsmc.tebex.store" target="_blank" rel="noopener noreferrer"
-              class="td-buy td-buy--olympian">Comprar OLYMPIAN</a>
+            <a id="td-buy-olympian" href="https://hyperionsmc.tebex.store/package/7564104" target="_blank"
+              rel="noopener noreferrer" class="td-buy td-buy--olympian">Comprar OLYMPIAN</a>
           </div>
 
         </div>
 
         <!-- ============ EXTRAS: DRACMAS Y PROTECCIÓN ============ -->
-        <div style="margin-top: 60px; margin-bottom: 24px;">
-          <h2 class="td-hero__title" style="font-size: 2rem; margin-bottom: 8px;">Moneda &amp; <span
-              class="grad-gold">Protección</span></h2>
-          <p class="td-hero__lead" style="margin-top: 0; font-size: 1rem;">Mejora tu experiencia in-game con la moneda
-            premium o asegura tu base máxima.</p>
+        <div class="td-seccion">
+          <h2 class="td-seccion__titulo">Moneda &amp; <span class="grad-gold">Protección</span></h2>
+          <p class="td-seccion__lead">Mejora tu experiencia in-game con la moneda premium o asegura tu base máxima.</p>
         </div>
 
         <div class="td-grid">
@@ -416,6 +516,27 @@
             </svg>
             <span class="td-nota__text"><strong class="td-strong">Juego justo:</strong> los perks marcados con el
               candado se bloquean en combate (ProCombat). Comodidad sí, ventaja en PvP no.</span>
+          </div>
+          <div class="td-nota">
+            <svg class="td-nota__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F4C56A"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 16v-4"></path>
+              <path d="M12 8h.01"></path>
+            </svg>
+            <span class="td-nota__text"><strong class="td-strong">Para recibir tu rango:</strong> entra al servidor
+              una vez después de comprar y se aplica solo.</span>
+          </div>
+          <div class="td-nota td-nota--aviso">
+            <svg class="td-nota__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F4C56A"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"></path>
+              <path d="M12 9v4"></path>
+              <path d="M12 17h.01"></path>
+            </svg>
+            <span class="td-nota__text"><strong class="td-strong">Objetos in-game (llaves, Dracmas y la mena de
+                Protección):</strong> tienes que estar conectado al servidor en el momento de la entrega. Si no lo
+              estás no los recibes, y es responsabilidad tuya estarlo.</span>
           </div>
           <a href="/rangos/" class="td-nota td-nota--link">
             <span class="td-nota__link-text">Ver la comparativa completa de rangos</span>

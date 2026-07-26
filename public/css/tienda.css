@@ -361,6 +361,45 @@
 .td-precio-row { flex-wrap: wrap; row-gap: 2px; }
 .td-precio-nota { flex-basis: 100%; }
 
+/* --- Cabecera de sección (sustituye a los estilos inline: CSP estricta) --- */
+.td-seccion { margin: 60px 0 24px; }
+.td-seccion__titulo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 2rem;
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+.td-seccion__lead {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* --- Precio mensual bajo el precio permanente --- */
+.td-precio-mensual { font-size: .82rem; color: var(--faint); margin-top: 2px; }
+.td-precio-mensual[hidden] { display: none; }
+
+/* --- Perk destacado (p.ej. /fly en Titan) --- */
+.td-perk--star {
+  background: linear-gradient(90deg, rgba(244, 197, 106, .12), transparent 70%);
+  border-radius: 8px;
+  padding: 4px 6px;
+  margin: 0 -6px;
+}
+
+/* --- Avisos legales/operativos (IVA, entrega) --- */
+.td-aviso {
+  font-size: .82rem;
+  color: var(--muted);
+  margin: 6px 0 0;
+}
+.td-nota--aviso {
+  border-color: rgba(244, 197, 106, .45);
+  background: rgba(244, 197, 106, .07);
+}
+
 /* --- Ilustración de cada rango en la cabecera de su tarjeta --- */
 .td-rango__art {
   display: block;
