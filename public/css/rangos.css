@@ -148,3 +148,16 @@
 /* Oferta aplicada a los precios mensuales de la comparativa */
 .rg-price__old { text-decoration: line-through; color: var(--faint); font-weight: 600; font-size: .9em; margin-right: 4px; }
 .rg-price__new { color: var(--gold-bright); font-weight: 800; }
+
+/* --- Fila destacada: /fly, el perk estrella de Titan --- */
+.rg-tr--star {
+  background: linear-gradient(90deg, rgba(244, 197, 106, .10), rgba(199, 160, 245, .06) 60%, transparent);
+  box-shadow: inset 3px 0 0 var(--gold, #F4C56A);
+}
+.rg-tr--star .rg-perk { color: var(--gold-bright, #FFD97A); font-weight: 800; }
+.rg-star { color: var(--gold-bright, #FFD97A); margin-right: 2px; }
+.rg-cmd-inline {
+  font-family: ui-monospace, monospace;
+  color: var(--gold-bright, #FFD97A);
+  font-weight: 700;
+}
