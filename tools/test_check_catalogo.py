@@ -134,14 +134,14 @@ class TestCheckTebex(unittest.TestCase):
 
     def test_precio_divergente_falla(self):
         errs = check_tebex(self.CAT, {'precio.hero.mensual': '4.99'},
-                           fetch=lambda k: {111: 5.99})
+                           fetch=lambda k: {111: {'base_price': 5.99, 'discount': 0}})
         self.assertEqual(len(errs), 1)
         self.assertIn('precio.hero.mensual', errs[0])
 
     def test_precio_correcto_no_da_error(self):
         self.assertEqual(
             check_tebex(self.CAT, {'precio.hero.mensual': '4.99'},
-                        fetch=lambda k: {111: 4.99}), [])
+                        fetch=lambda k: {111: {'base_price': 4.99, 'discount': 0}}), [])
 
     def test_paquete_ausente_en_tebex_falla(self):
         errs = check_tebex(self.CAT, {'precio.hero.mensual': '4.99'},
@@ -154,6 +154,22 @@ class TestCheckTebex(unittest.TestCase):
             raise OSError('sin red')
         self.assertEqual(
             check_tebex(self.CAT, {'precio.hero.mensual': '4.99'}, fetch=caida), [])
+
+    def test_base_price_mas_discount_que_cuadra_no_da_error(self):
+        # Caso real de la oferta de lanzamiento: base_price ya viene rebajado
+        # (14.768) y el importe descontado esta en discount (3.692). La suma
+        # (18.46, con el redondeo de coma flotante de por medio) es la que
+        # debe cuadrar con el precio de referencia del catalogo.
+        self.assertEqual(
+            check_tebex(self.CAT, {'precio.hero.mensual': '18.46'},
+                        fetch=lambda k: {111: {'base_price': 14.768, 'discount': 3.692}}),
+            [])
+
+    def test_base_price_mas_discount_que_no_cuadra_falla(self):
+        errs = check_tebex(self.CAT, {'precio.hero.mensual': '18.46'},
+                           fetch=lambda k: {111: {'base_price': 14.768, 'discount': 1.0}})
+        self.assertEqual(len(errs), 1)
+        self.assertIn('precio.hero.mensual', errs[0])
 
 
 if __name__ == '__main__':

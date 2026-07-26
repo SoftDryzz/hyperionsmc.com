@@ -182,14 +182,25 @@ TEBEX_API = 'https://headless.tebex.io/api/accounts/{key}/categories?includePack
 
 
 def fetch_tebex(api_key):
-    """Devuelve {id_paquete: base_price} desde la Headless API publica."""
+    """Devuelve {id_paquete: {'base_price':..., 'discount':...}} desde la
+    Headless API publica.
+
+    Con la oferta de lanzamiento activa, Tebex ya no reporta en base_price
+    el precio de referencia: reporta el precio VIGENTE (ya rebajado) y
+    guarda el importe descontado aparte, en 'discount'. Los paquetes sin
+    oferta activa simplemente traen discount 0, asi que devolver siempre
+    ambos campos vale para los dos casos.
+    """
     url = TEBEX_API.format(key=api_key)
     with urllib.request.urlopen(url, timeout=15) as r:
         datos = json.loads(r.read().decode('utf-8'))
     precios = {}
     for categoria in datos.get('data', []):
         for paquete in categoria.get('packages', []):
-            precios[paquete['id']] = paquete['base_price']
+            precios[paquete['id']] = {
+                'base_price': paquete['base_price'],
+                'discount': paquete.get('discount', 0),
+            }
     return precios
 
 
@@ -198,6 +209,15 @@ def check_tebex(catalog, flat, fetch=fetch_tebex):
 
     Se compara base_price, no total_price: Tebex anade el IVA segun el pais
     del comprador, asi que el total no es un valor unico contra el que medir.
+
+    catalogo.json guarda el precio de referencia SIN descontar. Con la oferta
+    de lanzamiento activa, base_price ya no es ese precio de referencia: es
+    el precio vigente (rebajado), y la diferencia hasta el precio de
+    referencia viene aparte en 'discount'. Por eso el valor a comparar es
+    base_price + discount, no base_price solo. Redondeamos a 2 decimales
+    antes de comparar porque sumar floats como 14.768 + 3.692 da
+    18.459999999999997 en punto flotante, y esa cadena no coincidiria nunca
+    con el "18.46" que normalize() produce a partir del catalogo/HTML.
 
     Si la API no responde se avisa y se devuelve [] — una caida de red no debe
     bloquear un deploy. Un precio que si responde y no cuadra falla en duro.
@@ -220,7 +240,9 @@ def check_tebex(catalog, flat, fetch=fetch_tebex):
             errores.append(f'tebex: el paquete {pkg_id} ("{clave}") no esta en la tienda')
         else:
             esperado = flat[clave]
-            real = normalize(f'{float(precios[pkg_id]):.2f} €')
+            precio = precios[pkg_id]
+            vigente = round(float(precio['base_price']) + float(precio['discount']), 2)
+            real = normalize(f'{vigente:.2f} €')
             if real != esperado:
                 errores.append(
                     f'tebex: el paquete {pkg_id} ("{clave}") cuesta {real}, '
