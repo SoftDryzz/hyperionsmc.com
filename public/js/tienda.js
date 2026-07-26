@@ -40,7 +40,9 @@
     titan: $('td-orig-titan'),
     olympian: $('td-orig-olympian'),
   };
-  const priceNotes = document.querySelectorAll('.td-precio-nota');
+  /* Solo las 4 tarjetas de rango: la Protección T5 también lleva
+     .td-precio-nota pero es pago único fijo y no debe verse tocada. */
+  const priceNotes = document.querySelectorAll('.td-precio-nota--rango');
   const mensualLines = document.querySelectorAll('.td-precio-mensual');
 
   /* Cada rango son dos paquetes distintos en Tebex: el boton cambia con el selector. */
