@@ -18,7 +18,7 @@
 - **Texto de jugador en español en `/` y en inglés en `/en/`.** Los nombres de comandos (`/fly`, `/ec`) y de rango (Hero, Demigod, Titan, Olympian) se quedan en inglés en ambos idiomas, igual que los tiers de llave (Common, Rare, Epic, Legendary, Mythic).
 - **`data-catalog` solo sobre cifras**, nunca sobre prosa. Números, multiplicadores, importes y cadenas idénticas en ambos idiomas (`1 Common`, `—`). Nada que se traduzca.
 - **Precios sin IVA.** Tebex lo aplica en el pago según el país del comprador. Todo bloque de precios lleva el aviso al lado.
-- **Llaves, Dracmas y Protección no enlazan a Tebex.** Sus paquetes no existen todavía: botón deshabilitado, nunca un `href`.
+- **Cada botón de compra enlaza a su paquete.** Los 28 productos existen en Tebex y tienen página propia en `https://hyperionsmc.tebex.store/package/<id>`. Los IDs viven en `_tebex.paquetes` dentro de `data/catalogo.json`. Ningún botón apunta ya a la raíz de la tienda.
 - **Commits convencionales y sin línea `Co-Authored-By`.**
 
 ---
@@ -166,16 +166,55 @@ Expected: FAIL con `ModuleNotFoundError: No module named 'check_catalogo'`
   },
   "proteccion": { "precio": "22,00 €", "ingame": 31 },
   "_tebex": {
-    "_nota": "Sin enlaces directos a paquete: la tienda es una sola pagina sin rutas. Rellenar con .../package/<id> cuando se saquen los IDs del panel.",
-    "raiz": "https://hyperionsmc.tebex.store"
+    "_nota": "IDs verificados contra la Headless API el 2026-07-26. Cada uno responde 200 en /package/<id>.",
+    "raiz": "https://hyperionsmc.tebex.store",
+    "apiKey": "13v7u-ae3d1af3be72a78c2990fcb8f6dd03c92d82de14",
+    "paquetes": {
+      "precio.hero.permanente":     7564089,
+      "precio.demigod.permanente":  7564092,
+      "precio.titan.permanente":    7564096,
+      "precio.olympian.permanente": 7564104,
+      "precio.hero.mensual":        7564114,
+      "precio.demigod.mensual":     7564116,
+      "precio.titan.mensual":       7564121,
+      "precio.olympian.mensual":    7564122,
+      "llave.common.x1":    7580832,
+      "llave.common.x5":    7580873,
+      "llave.common.x10":   7580875,
+      "llave.rare.x1":      7580878,
+      "llave.rare.x5":      7580883,
+      "llave.rare.x10":     7580888,
+      "llave.epic.x1":      7580890,
+      "llave.epic.x5":      7580891,
+      "llave.epic.x10":     7580895,
+      "llave.legendary.x1": 7580899,
+      "llave.legendary.x5": 7580903,
+      "llave.legendary.x10":7580905,
+      "llave.mythic.x1":    7580906,
+      "llave.mythic.x5":    7580907,
+      "llave.mythic.x10":   7580909,
+      "dracma.p10.precio":  7580911,
+      "dracma.p25.precio":  7580913,
+      "dracma.p50.precio":  7580915,
+      "dracma.p100.precio": 7580918,
+      "proteccion.precio":  7580722
+    }
   }
 }
 ```
 
 `_tebex` empieza por guion bajo **a proposito**: `flatten` salta esas claves, asi
-que la URL no entra en la comprobacion de cobertura. Es configuracion, no un
-valor que se muestre en la pagina — si entrara, el check exigiria encontrarla
-como texto visible en ES y en EN, y fallaria siempre.
+que ni la URL ni los IDs entran en la comprobacion de cobertura. Es
+configuracion, no valores que se muestren en la pagina — si entraran, el check
+exigiria encontrarlos como texto visible en ES y en EN, y fallaria siempre.
+
+Las claves de `paquetes` son las mismas claves del catalogo, asi que el enlace
+de cada boton se deriva sin tablas paralelas: `precio.titan.mensual` vale
+`19,99 €` y se compra en `.../package/7564121`.
+
+**La `apiKey` es publica.** Es la clave Headless de solo lectura del escaparate,
+la misma que sirve el propio Tebex a cualquier visitante. No da acceso al panel
+ni a datos de clientes, y puede vivir en un repositorio publico.
 
 - [ ] **Step 4: Escribir `tools/check_catalogo.py`**
 
@@ -437,7 +476,7 @@ Y la fila de gratuitos, con marca en las cinco columnas. El SVG de marca es el m
 
 ```html
 <tr>
-  <td class="rg-td-feature"><div class="rg-perk">Esenciales (15 comandos) + /back</div><div class="rg-perk-desc">/spawn /tpa /msg /pay /warp /balance…</div></td>
+  <td class="rg-td-feature"><div class="rg-perk">Esenciales (15 comandos)</div><div class="rg-perk-desc">/spawn /tpa /msg /pay /warp /balance…</div></td>
   <!-- 5 celdas con la marca de su color -->
 </tr>
 <tr>
@@ -445,6 +484,12 @@ Y la fila de gratuitos, con marca en las cinco columnas. El SVG de marca es el m
   <!-- 5 celdas con la marca de su color -->
 </tr>
 ```
+
+**`/back` NO va en esta fila.** Es perk de **Hero** (`essentials.back`), no
+gratuito. Va con `/hat` y `/afk` en la sección «Hero añade» del paso siguiente,
+con guion en la columna de Mortal. Marcarlo como gratuito anunciaria a un
+jugador Mortal un comando que el servidor no le da — justo el defecto que esta
+tarea elimina, y que el check no detecta porque `/back` no es una cifra.
 
 - [ ] **Step 2b: Marcar los precios de la cabecera**
 
@@ -470,7 +515,8 @@ Cuatro secciones, con `/back` en Hero y `/fly` destacado en Titan. La fila de `/
 
 ```html
 <tr><td colspan="6" class="rg-td-section">Hero añade</td></tr>
-<!-- /hat · /back · /afk · TP aleatorio sin espera ni cooldown -->
+<!-- Cuatro filas: /hat · /back · /afk · TP aleatorio sin espera ni cooldown.
+     Cada una con guion en Mortal y marca de color en Hero, Demigod, Titan y Olympian. -->
 
 <tr><td colspan="6" class="rg-td-section">Demigod añade</td></tr>
 <!-- /feed · /near · /nick (con colores) · /tpahere · TP instantáneo 🔒 -->
@@ -658,6 +704,56 @@ Primer perk de Titan:
 }
 ```
 
+- [ ] **Step 3b: Enlazar cada botón de rango a su paquete, según el selector**
+
+Cada rango son **dos paquetes distintos** en Tebex, así que el botón tiene que cambiar de destino cuando el usuario alterna mensual/permanente. El HTML arranca en permanente, igual que el precio:
+
+```html
+<a id="td-buy-hero" href="https://hyperionsmc.tebex.store/package/7564089" target="_blank" rel="noopener noreferrer" class="td-buy td-buy--hero">Comprar HERO</a>
+```
+
+Los ocho IDs, tal y como están en `_tebex.paquetes`:
+
+| Rango | Permanente | Mensual |
+|---|---|---|
+| Hero | 7564089 | 7564114 |
+| Demigod | 7564092 | 7564116 |
+| Titan | 7564096 | 7564121 |
+| Olympian | 7564104 | 7564122 |
+
+En `js/tienda.js`, declarar la tabla y los enlaces junto a las demás constantes:
+
+```js
+  /* Cada rango son dos paquetes distintos en Tebex: el boton cambia con el selector. */
+  const PKG = {
+    hero:     { perm: 7564089, mensual: 7564114 },
+    demigod:  { perm: 7564092, mensual: 7564116 },
+    titan:    { perm: 7564096, mensual: 7564121 },
+    olympian: { perm: 7564104, mensual: 7564122 },
+  };
+  const TEBEX = 'https://hyperionsmc.tebex.store/package/';
+  const buyEls = {
+    hero: $('td-buy-hero'),
+    demigod: $('td-buy-demigod'),
+    titan: $('td-buy-titan'),
+    olympian: $('td-buy-olympian'),
+  };
+```
+
+Y dentro de `render(perm)`, en el mismo bucle que ya recorre los rangos:
+
+```js
+    Object.keys(MONTHLY).forEach((key) => {
+      const base = perm ? round2(MONTHLY[key] * PERM_FACTOR) : MONTHLY[key];
+      const final = onSale ? round2(base * (1 - off)) : base;
+      if (priceEls[key]) priceEls[key].textContent = fmt(final);
+      if (buyEls[key]) buyEls[key].href = TEBEX + (perm ? PKG[key].perm : PKG[key].mensual);
+      /* …el resto del bucle sigue igual… */
+    });
+```
+
+Se asigna `href` como propiedad, no con `innerHTML`, y el valor sale de una tabla literal del propio archivo: no hay entrada de usuario en juego.
+
 - [ ] **Step 4: Añadir los avisos de IVA y de entrega**
 
 Junto al selector mensual/permanente:
@@ -718,7 +814,7 @@ git commit -m "fix: perks reales en las tarjetas de rango, avisos de IVA y entre
 
 **Interfaces:**
 - Consumes: claves `llave.*`, `dracma.*` y `proteccion.*`; las clases `.td-seccion` de Task 3.
-- Produces: `.td-llave`, `.td-llave__packs`, `.td-buy--off`, que replica Task 7 en inglés.
+- Produces: `.td-llave`, `.td-llave__pack` enlazable y `.td-dracma-pack`, que replica Task 7 en inglés.
 
 - [ ] **Step 1: Añadir la sección de llaves**
 
@@ -743,7 +839,7 @@ Va después de la rejilla de rangos y antes de «Moneda & Protección». Se mues
       <div class="td-llave__pack"><span class="td-llave__cant">10 llaves</span><span class="td-llave__precio" data-catalog="llave.common.x10">11,20&nbsp;€</span><span class="td-llave__off">−20%</span></div>
     </div>
     <div class="td-llave__ingame">No se vende in-game. La consigues con tu rango.</div>
-    <span class="td-buy td-buy--off" aria-disabled="true">Disponible en breve</span>
+    <a href="https://hyperionsmc.tebex.store/package/7580832" target="_blank" rel="noopener noreferrer" class="td-buy td-buy--llave">Comprar</a>
   </div>
 
   <!-- Rare, Epic, Legendary y Mythic: mismo bloque, valores de la tabla de abajo -->
@@ -763,6 +859,28 @@ Los otros cuatro tiers repiten ese bloque exacto cambiando la clase modificadora
 
 Las claves siguen el patrón `llave.<tier>.x1`, `.x5`, `.x10` e `.ingame` — por ejemplo `llave.mythic.x10`. Los importes llevan `&nbsp;` antes del `€`, igual que el resto del archivo.
 
+**Un botón por pack, no uno por tarjeta.** Cada tier vende tres paquetes distintos en Tebex, así que cada línea de `.td-llave__pack` lleva su propio enlace. Los IDs salen de `_tebex.paquetes` en `data/catalogo.json`:
+
+| Tier | `x1` | `x5` | `x10` |
+|---|---|---|---|
+| Common | 7580832 | 7580873 | 7580875 |
+| Rare | 7580878 | 7580883 | 7580888 |
+| Epic | 7580890 | 7580891 | 7580895 |
+| Legendary | 7580899 | 7580903 | 7580905 |
+| Mythic | 7580906 | 7580907 | 7580909 |
+
+Cada pack queda así, con el precio y el enlace juntos:
+
+```html
+<a class="td-llave__pack" href="https://hyperionsmc.tebex.store/package/7580873" target="_blank" rel="noopener noreferrer">
+  <span class="td-llave__cant">5 llaves</span>
+  <span class="td-llave__precio" data-catalog="llave.common.x5">6,30&nbsp;€</span>
+  <span class="td-llave__off">−10%</span>
+</a>
+```
+
+Con las tres líneas ya enlazadas, la tarjeta **no lleva botón de compra aparte**: sobra y obligaría a elegir un pack por defecto. Elimina el `<a class="td-buy">` del bloque de arriba.
+
 Para los cuatro tiers que sí se venden in-game, la línea `td-llave__ingame` lleva su clave (aquí Rare; cambiar tier y cifra para los demás):
 
 ```html
@@ -771,7 +889,7 @@ Para los cuatro tiers que sí se venden in-game, la línea `td-llave__ingame` ll
 
 La Common **no lleva** `data-catalog` en esa línea, porque no se vende in-game y no existe la clave `llave.common.ingame`. Su texto es el literal de la plantilla de arriba.
 
-El botón es un `<span>`, **no un `<a>`**: sin `href` no puede navegar a un producto inexistente.
+Los 28 paquetes existen en Tebex y cada uno tiene página propia, así que **todo botón es un `<a>` con `href` real**. Ninguno queda deshabilitado.
 
 - [ ] **Step 2: Sustituir la tarjeta de Dracmas por los cuatro packs**
 
@@ -785,7 +903,7 @@ El botón es un `<span>`, **no un `<a>`**: sin `href` no puede navegar a un prod
   <div class="td-dracma-pack">
     <div class="td-dracma-pack__cant"><span data-catalog="dracma.p10.cantidad">10</span> 💎</div>
     <div class="td-dracma-pack__precio" data-catalog="dracma.p10.precio">7,00&nbsp;€</div>
-    <span class="td-buy td-buy--off" aria-disabled="true">Disponible en breve</span>
+    <a href="https://hyperionsmc.tebex.store/package/7580911" target="_blank" rel="noopener noreferrer" class="td-buy td-buy--dracma">Comprar</a>
   </div>
   <!-- p25, p50 y p100: mismo bloque, valores de la tabla de abajo -->
 </div>
@@ -820,7 +938,7 @@ Y el pack de 50 lleva delante del precio el importe anterior, que baja de 35,00 
 <span class="td-perk__text">También comprable in-game por <strong class="td-strong"><span data-catalog="proteccion.ingame">31</span> 💎</strong></span>
 ```
 
-Y cambiar su `<a href="https://hyperionsmc.tebex.store" …>` por `<span class="td-buy td-buy--off" aria-disabled="true">Disponible en breve</span>`.
+Y apuntar su botón al paquete real: `<a href="https://hyperionsmc.tebex.store/package/7580722" target="_blank" rel="noopener noreferrer" class="td-buy td-buy--proteccion">Comprar Protección</a>`.
 
 - [ ] **Step 4: Añadir los estilos**
 
@@ -924,16 +1042,16 @@ Y cambiar su `<a href="https://hyperionsmc.tebex.store" …>` por `<span class="
   padding: 2px 10px;
 }
 
-/* --- Boton sin destino: el paquete aun no existe en Tebex --- */
-.td-buy--off {
-  margin-top: auto;
-  cursor: not-allowed;
-  opacity: .55;
-  background: var(--surface-2, rgba(255,255,255,.06));
-  color: var(--muted);
-  border: 1px dashed var(--border);
+/* --- Pack de llave: toda la linea es el enlace de compra --- */
+.td-llave__pack {
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 4px 6px;
+  margin: 0 -6px;
+  transition: background .16s ease;
 }
-.td-buy--off:hover { transform: none; filter: none; color: var(--muted); }
+.td-llave__pack:hover { background: rgba(255, 255, 255, .06); }
+.td-llave__pack:hover .td-llave__precio { color: var(--tier, var(--text)); }
 ```
 
 - [ ] **Step 5: Ejecutar el check**
@@ -943,8 +1061,8 @@ Expected: FALLO **solo** por cobertura de EN. Ninguna clave debe faltar ya en ES
 
 - [ ] **Step 6: Comprobar que ningún botón inexistente enlaza**
 
-Run: `grep -c 'tebex.store' public/tienda/index.html`
-Expected: `4` — solo los cuatro rangos. Si sale más, alguna llave, Dracma o Protección enlaza a un producto que no existe.
+Run: `grep -c 'package/' public/tienda/index.html`
+Expected: `28` — los 4 rangos, las 15 líneas de pack de llave, los 4 packs de Dracmas, la Protección y los 4 enlaces mensuales de las tarjetas de rango. Ningún `href` puede apuntar a la raíz de la tienda: `grep -c 'tebex.store"' public/tienda/index.html` debe dar `0`.
 
 - [ ] **Step 7: Verificar en el navegador**
 
@@ -1061,7 +1179,7 @@ Copiar el `<tbody>` de `public/rangos/index.html` **con los mismos `data-catalog
 | Anuncios en subasta | Auction listings |
 | Kits exclusivos | Exclusive kits |
 | EnderChest premium | Premium EnderChest |
-| Esenciales (15 comandos) + /back | Essentials (15 commands) + /back |
+| Esenciales (15 comandos) | Essentials (15 commands) |
 | Recompensa diaria | Daily reward |
 | Base / Hero añade / … | Base / Hero adds / … |
 | Próximamente | Coming soon |
@@ -1145,7 +1263,7 @@ Parte con 48 líneas menos que la española: le faltan las tarjetas de Dracmas y
 | 1 llave / 5 llaves / 10 llaves | 1 key / 5 keys / 10 keys |
 | o 5 💎 in-game | or 5 💎 in-game |
 | No se vende in-game. La consigues con tu rango. | Not sold in-game. You earn it with your rank. |
-| Disponible en breve | Coming soon |
+| Comprar | Buy |
 | Precios sin IVA. El impuesto se calcula en el pago según tu país. | Prices exclude VAT. Tax is calculated at checkout based on your country. |
 | Para recibir tu rango: entra al servidor una vez… | To receive your rank: log into the server once after buying and it applies automatically. |
 | Objetos in-game (llaves, Dracmas y la mena de Protección): tienes que estar conectado… | In-game items (keys, Dracmas and the Protection ore): you must be online when they're delivered. If you're not, you won't receive them, and it's your responsibility to be online. |
@@ -1170,8 +1288,8 @@ Si falla por coincidencia, la cifra mal está en el HTML. **Nunca se corrige el 
 
 - [ ] **Step 5: Comprobar los enlaces de Tebex en inglés**
 
-Run: `grep -c 'tebex.store' public/en/store/index.html`
-Expected: `4`
+Run: `grep -c 'package/' public/en/store/index.html`
+Expected: el mismo número que la española.
 
 - [ ] **Step 6: Verificar en el navegador**
 
@@ -1350,7 +1468,7 @@ que se editan a mano y las que causaron el error de `/enderchest`.
 - [ ] `python tools/check_catalogo.py` dice `OK`
 - [ ] `grep -rn 'style="' public/` no devuelve nada
 - [ ] `grep -rn 'innerHTML' public/js/` no devuelve nada
-- [ ] `grep -rc 'tebex.store' public/tienda/index.html public/en/store/index.html` devuelve 4 en cada uno
+- [ ] Ningún `href` apunta a la raíz de Tebex: `grep -rn 'tebex.store"' public/` no devuelve nada
 - [ ] `grep -rniE 'vaults|chest shop|cosmétic|cosmetic|prefijo personalizado|custom prefix|/friends' public/` no devuelve nada
 - [ ] `grep -rniE 'miles de jugadores|thousands of players' public/` no devuelve nada
 - [ ] Las 12 páginas cargan en `http://localhost:8123` sin errores en consola
