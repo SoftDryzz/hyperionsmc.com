@@ -11,12 +11,11 @@ volvieron a comprobar. Los errores concretos:
 
 - `/enderchest` figura como perk de Demigod cuando es de Titan.
 - `/fly` no aparece en ninguna parte pese a ser el perk estrella de Titan.
-- `/back` figura como perk de Hero cuando lo tiene todo el mundo gratis.
 - La sección «PRÓXIMAMENTE» marca como futuros perks que ya están activos.
 - Se anuncian «vaults privados» y «chest shops», que están descartados.
 - Se venden cuatro perks que el servidor no entrega: cosméticos y prefijo
-  personalizado no existen para ningún rango, y `/friends` y la recompensa
-  diaria figuran como perk de Hero siendo gratuitos para todos.
+  personalizado no existen para ningún rango, `/friends` sigue en desarrollo, y
+  la recompensa diaria figura como perk de Hero siendo gratuita para todos.
 
 A esto se suman dos problemas de credibilidad. La portada dice «miles de
 jugadores» mientras el contador en vivo de la misma página muestra 0/500, y se
@@ -29,6 +28,22 @@ llaves de cajas sueltas y los Dracmas en packs escalados.
 
 Los datos de esta sección están verificados contra la base de datos de permisos
 en producción. Ninguna cifra de la web puede contradecirlos.
+
+Existe un segundo documento, `Rangos-Hyperions.md`, gestionado junto a LuckPerms.
+No son intercambiables y conviene saber cuál manda en cada cosa:
+
+| Para esto | Manda |
+|---|---|
+| Nodos de permiso, plugins, en qué rango se desbloquea un comando | `Rangos-Hyperions.md` |
+| Cifras por rango (homes, protecciones, llaves, kits, multiplicador) | Este spec |
+
+El motivo es que las cifras de `Rangos-Hyperions.md` han derivado: dice
+protecciones «2 → 5» cuando la auditoría da 3/6/10/15/20, y llaves «1 → 4/mes»
+cuando el reparto real es 1 Common / 2 Common / 1 Rare / 1 Epic. Su tabla de
+comandos y sus nodos de permiso, en cambio, siguen siendo la referencia buena.
+
+Esa divergencia entre dos documentos que se contradicen es la razón de ser del
+check automático descrito al final.
 
 ### Tabla por rango
 
@@ -51,28 +66,39 @@ pago y anunciarlas como tales es el error que este trabajo corrige:
 
 - Comandos esenciales (15) — `/spawn`, `/tpa`, `/msg`, `/pay`, `/warp`,
   `/balance` y demás.
-- `/back` — vuelve a tu última muerte o sitio anterior.
-- `/friends` — hasta 20 amigos. Límite plano, igual para todo el mundo.
-- Recompensa diaria — premio por conectarte cada día.
+- Recompensa diaria — premio por conectarte cada día. ProRewards, `todos`.
 
 ### Comandos que desbloquea cada rango
 
-- **Hero** — `/hat`, `/afk`, teletransporte aleatorio sin espera ni cooldown.
+- **Hero** — `/hat`, `/back`, `/afk`, teletransporte aleatorio sin espera ni
+  cooldown.
 - **Demigod** — `/feed`, `/near`, `/nick` (con colores), `/tpahere`,
-  teletransporte instantáneo (sin cuenta atrás).
-- **Titan** — `/fly`, `/heal`, `/repair` (item y armadura), `/workbench`,
-  `/tptoggle`, `/ec` ampliado a 54 slots, inmunidad al AFK-kick.
+  teletransporte instantáneo 🔒 (sin cuenta atrás).
+- **Titan** — `/fly` 🔒, `/heal` 🔒, `/repair` 🔒 (item y armadura),
+  `/workbench`, `/tptoggle`, `/ec` ampliado a 54 slots, inmunidad al AFK-kick.
 - **Olympian** — `/anvil`, `/skull`, `/condense`, `/ping`, 2ª página del
   EnderChest.
+
+🔒 = bloqueado en combate por **ProCombat**. Fuera de combate funciona normal.
 
 El teletransporte de Hero y el de Demigod son perks distintos: Hero quita la
 espera y el cooldown del teletransporte aleatorio; Demigod quita la cuenta atrás
 de todos los teletransportes.
 
-Hero se queda con solo tres comandos propios. Su propuesta de valor pasa a
-apoyarse en las cifras —5 homes, ×1.1, 6 protecciones, 2 kits, 1 llave Common
-cada 30 días— y no en la lista de comandos. Es la realidad del rango; inflarla
-con perks inexistentes es justo lo que estamos deshaciendo.
+**`/fly` está bloqueado en combate**, y eso conviene decirlo en vez de
+esconderlo. El perk estrella del catálogo no funciona en PvP, que es la prueba
+más directa del mensaje «se vende comodidad, no poder en combate». El candado es
+argumento de venta, no letra pequeña.
+
+### Precisión sobre el EnderChest
+
+Es **EnderChestCE**, no el `/enderchest` de EssentialsX. La página 1 sale de 27
+slots salvo que el rango tenga `enderchest.pages.1`, que la sube a 54. El número
+de páginas lo marca el `enderchest.pages.N` más alto.
+
+- Demigod y por debajo: sin EnderChest. `default` lo tiene **negado**.
+- Titan: `enderchest.command` + `enderchest.pages.1` → 1 página de 54.
+- Olympian: hereda lo anterior y suma `pages.2` → 2 páginas.
 
 ### Perks eliminados
 
@@ -85,13 +111,22 @@ demuestra que el servidor no los entrega:
 | Vaults privados | PRÓXIMAMENTE | Descartado, no va a existir |
 | Chest shops | PRÓXIMAMENTE | Descartado, no va a existir |
 | Cosméticos | Hero en adelante | El único permiso es `procosmetics.admin`. Ningún rango los concede: ProCosmetics es compra individual |
-| Lista de amigos ampliada | Hero en adelante | ProFriends `config.yml` fija `limits: default: 20`. No hay límites por rango ni en config ni en permisos |
+| Lista de amigos ampliada | Hero en adelante | `Rangos-Hyperions.md` lo marca 🔨 **en progreso** (`network/ProFriends`), y el límite de 20 es el `default` de un plugin sin terminar |
 | Prefijo personalizado | Olympian | Cero usuarios con prefijo propio. Cada rango tiene el suyo, pero personalizado no existe, y choca con la regla de que el namespace de prefijo es exclusivo del rango de pago |
-| Recompensa diaria | Hero en adelante | Es para todos los jugadores. Mismo error que `/back`, y se corrige igual: baja a la fila gratuita |
+| Recompensa diaria | Hero en adelante | Es para todos los jugadores (`todos` en la auditoría). No se borra: baja a la fila gratuita |
 
-`/friends` y la recompensa diaria no desaparecen de la web: bajan a la sección
-gratuita con su dato verificado. Cosméticos y prefijo personalizado sí se
-eliminan por completo.
+Solo la recompensa diaria sobrevive, bajando a la sección gratuita. Cosméticos,
+`/friends` y prefijo personalizado se eliminan de la web por completo.
+
+`/friends` vuelve cuando ProFriends esté terminado y tenga cifras reales. No se
+anuncia como PRÓXIMAMENTE: la única marca de ese tipo que queda es la cola
+prioritaria.
+
+### Corrección respecto al brief inicial
+
+El brief de partida pedía sacar `/back` de Hero por ser gratuito para todos. La
+tabla de comandos de `Rangos-Hyperions.md` lo desmiente: `essentials.back` se
+desbloquea en **HERO**. **`/back` se queda en Hero.**
 
 ### Único perk pendiente
 
@@ -237,9 +272,11 @@ envía cabeceras CSP. Ninguna plantilla nueva puede introducir `style` inline.
 - En la comparativa, clase `.rg-tr--star` con fondo teñido, borde dorado y badge.
 - En la tarjeta Titan de la tienda, primera posición con estrella, y `/ec`
   ampliado justo debajo como segundo argumento.
+- Con el **candado de ProCombat** visible, igual que `/heal` y `/repair`.
 
 Es el perk que decide la comparación entre Demigod y Titan, así que tiene que
-verse antes que nada.
+verse antes que nada. El candado no se esconde: que el perk más caro del
+catálogo no funcione en PvP es la prueba de que se vende comodidad y no poder.
 
 ### Seguridad
 
@@ -291,9 +328,9 @@ tarjeta ES, tabla EN, tarjeta EN y **Tebex**, que es de donde sale el dinero de
 verdad. Esa duplicación es la causa raíz del error de `/enderchest`.
 
 Ya hubo antes un documento de referencia única, `Rangos-Hyperions.md`, y el
-catálogo derivó igual: llaves de 1 a 4, protecciones de 2 a 5, `/back` como perk
-de Hero. Un documento registra la deriva, no la impide. Este spec tampoco lo
-haría.
+catálogo derivó igual: dice llaves «1 → 4/mes» y protecciones «2 → 5» cuando la
+auditoría da otra cosa. Un documento registra la deriva, no la impide. Este spec
+tampoco lo haría.
 
 Lo que sí la impide es un check automático, y no exige renderizar con JavaScript
 ni renunciar al SEO.
