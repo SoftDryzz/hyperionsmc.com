@@ -266,6 +266,41 @@ Cada tarjeta de llave muestra las dos vías de compra, siguiendo el patrón que 
 usa la tarjeta de Protección («también comprable in-game por 31 💎»). Enseñar el
 ahorro convierte el recargo en argumento de venta.
 
+### Imágenes
+
+Las ilustraciones de llaves ya están convertidas y en `public/img/`, siguiendo
+el criterio del commit `90de9b3` (WebP optimizado):
+
+| Archivo | Uso | Peso |
+|---|---|---|
+| `keys-category.webp` | cabecera de la sección de llaves (cofre) | 112 KB |
+| `key-common.webp` | tarjeta Common | 26 KB |
+| `key-rare.webp` | tarjeta Rare | 36 KB |
+| `key-epic.webp` | tarjeta Epic | 47 KB |
+| `key-legendary.webp` | tarjeta Legendary | 44 KB |
+| `key-mythic.webp` | tarjeta Mythic | 44 KB |
+| `dracmas.webp` · `protection.webp` | tarjetas existentes | 67 + 62 KB |
+
+Los ocho originales pesaban 5,68 MB y ahora suman 438 KB. Los archivos fuente
+se guardan en la raíz del repositorio, que el `.gitignore` ya excluye para
+imágenes, y no en `public/`: esa carpeta se sube entera al VPS.
+
+**Formato cuadrado 1:1, no 800×436.** Las llaves son composiciones verticales
+—Common, Rare y Mythic en vertical; Epic y Legendary en diagonal— y el recorte
+apaisado de las tarjetas de rango las partiría. El cuadrado respeta las cinco
+sin decisiones de recorte por imagen, y de paso separa visualmente el bloque de
+llaves del de rangos.
+
+**Conflicto de color con el sistema de rangos.** La ilustración Legendary es
+verde y la Epic morada, que en esta web ya significan Hero y Titan
+respectivamente. Un jugador lee esos colores como rango porque es lo que el
+resto del sitio le ha enseñado.
+
+No se retoca el arte. La mitigación va en CSS: el borde, el chip y el botón de
+cada tarjeta de llave llevan un color propio por tier, y el nombre del tier va
+bien visible. Así el color de la ilustración queda como decoración y no como
+señal de rango.
+
 ### Precios estáticos frente a precios en JS
 
 Solo los rangos necesitan JavaScript, porque tienen selector mensual/permanente
@@ -326,8 +361,13 @@ Las cuatro páginas de rangos y tienda reciben además los atributos
 
 **Estilos**
 - `public/css/rangos.css` — fila destacada de `/fly`
-- `public/css/tienda.css` — rejilla de llaves, packs de Dracmas, clases que
-  sustituyen a los estilos inline
+- `public/css/tienda.css` — rejilla de llaves, packs de Dracmas, color por tier
+  de llave, arte cuadrado, botón deshabilitado, clases que sustituyen a los
+  estilos inline
+
+**Imágenes** (ya convertidas)
+- `public/img/keys-category.webp` y `key-{common,rare,epic,legendary,mythic}.webp`
+- `public/img/dracmas.webp` y `protection.webp` — sustituyen a los PNG
 
 **Infraestructura nueva**
 - `data/catalogo.json` — fuente de verdad legible por máquina
