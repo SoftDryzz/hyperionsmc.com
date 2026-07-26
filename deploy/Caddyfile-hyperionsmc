@@ -16,4 +16,18 @@ hyperionsmc.com {
                 Cross-Origin-Opener-Policy "same-origin"
                 Cross-Origin-Resource-Policy "same-origin"
         }
+
+        # Cache-Control: sin esto el navegador aplica frescura heuristica (RFC 7234 §4.2.2)
+        # y puede seguir sirviendo HTML/JS viejos de cache durante horas. Ya paso: un sale.js
+        # con el descuento antiguo (50%) se sirvio de cache mientras la pagina anunciaba 20%.
+        #
+        # HTML y JS cambian con cada despliegue y no llevan hash en el nombre de archivo:
+        # deben revalidarse siempre (no-cache = "pregunta al servidor", no "no guardes nada").
+        @revalida path *.html *.js
+        header @revalida Cache-Control "no-cache"
+
+        # Imagenes y fuentes tienen nombre estable y no cambian de contenido una vez subidas:
+        # cache larga es segura. Si un asset cambia de verdad, se sube con otro nombre.
+        @cacheLarga path *.webp *.png *.jpg *.jpeg *.svg *.ico *.woff *.woff2
+        header @cacheLarga Cache-Control "public, max-age=31536000, immutable"
 }
