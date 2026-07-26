@@ -1435,32 +1435,239 @@ git commit -m "ci: check de catalogo en Actions y gate antes del deploy"
 
 ---
 
-## Fuera de alcance: la comprobación de Tebex
+### Task 9: Bajar la oferta de lanzamiento a 20% / 15%
 
-El spec describe una quinta comprobación, contra la Headless API de Tebex. **No
-se implementa en este plan**, y conviene dejar escrito por qué en vez de que
-parezca un olvido.
+**Files:**
+- Modify: `public/js/sale.js` — los dos descuentos
+- Modify: `public/tienda/index.html` y `public/en/store/index.html` — banner
+- Modify: `public/index.html`, `public/rangos/index.html`, `public/en/index.html`, `public/en/ranks/index.html` — píldora de oferta
 
-**Bloqueo 1: el desfase es intencionado.** Tebex tiene cargados los precios sin
-IVA y lo aplica en el pago según el país del comprador. Una comparación directa
-contra `precio.*` daría `4,99 ≠ 6,04` siempre. Habría que codificar el factor,
-pero el factor depende del país: no hay un número único contra el que comparar.
+**Interfaces:**
+- Consumes: las seis páginas ya en su estado final tras las tareas 2 a 7.
+- Produces: nada. Es una pasada de barrido.
 
-**Bloqueo 2: no hay token.** La Headless API necesita el identificador de la
-tienda, y no es deducible desde el escaparate público. Verificado el 26/07: sin
-IDs de paquete en el DOM, sin payload embebido y sin llamadas a API en el
-tráfico de la página. Hay que sacarlo del panel de Tebex.
+Va **después de la tarea 7** a propósito: las tareas 2 a 7 reescriben buena parte de esas mismas páginas, y hacer el cambio antes obligaría a repetirlo.
 
-**Bloqueo 3: la mitad del catálogo no existe allí.** Solo están los 8 paquetes
-de rango. Comprobar llaves, Dracmas y Protección no tiene contra qué.
+- [ ] **Step 1: Cambiar los descuentos**
 
-**Cuándo retomarlo:** cuando estén creados los paquetes que faltan y se tenga el
-token. La comprobación útil entonces no es el importe con IVA sino el importe
-**base** de Tebex contra `precio.*`, que sí debe coincidir al céntimo. Ese es el
-contrato real, y es comprobable.
+En `public/js/sale.js`:
 
-Mientras tanto, las cuatro copias del repositorio quedan cubiertas, que son las
-que se editan a mano y las que causaron el error de `/enderchest`.
+```js
+window.HY_SALE = {
+  end: Date.parse('2026-08-17T23:59:59+02:00'),
+  perm: 0.20,     /* descuento en pagos permanentes */
+  monthly: 0.15,  /* descuento en pagos mensuales */
+};
+```
+
+Nada más de ese archivo cambia: la fecha y el ocultado automático al expirar se quedan igual.
+
+- [ ] **Step 2: Actualizar el banner de la tienda**
+
+`public/tienda/index.html`:
+
+```html
+<span>¡AHORA QUE ESTAMOS DE REBAJAS! · −20% Permanente · −15% Mensual</span>
+```
+
+`public/en/store/index.html`:
+
+```html
+<span>LAUNCH SALE · −20% Permanent · −15% Monthly</span>
+```
+
+- [ ] **Step 3: Actualizar las cuatro píldoras**
+
+`public/index.html` y `public/rangos/index.html`:
+
+```html
+<div class="sale-pill-row" data-sale><a href="/tienda/" class="sale-pill" data-sale>⚡ Oferta de lanzamiento · hasta −20% en rangos · hasta el 17/08</a></div>
+```
+
+`public/en/index.html` y `public/en/ranks/index.html`:
+
+```html
+<div class="sale-pill-row" data-sale><a href="/en/store/" class="sale-pill" data-sale>⚡ Launch sale · up to −20% on ranks · until Aug 17</a></div>
+```
+
+- [ ] **Step 4: Comprobar que no queda rastro del 50 ni del 40**
+
+Run: `grep -rn '50%\|40%\|−50\|−40' public/`
+Expected: sin resultados relacionados con la oferta.
+
+- [ ] **Step 5: Verificar el cálculo en el navegador**
+
+Run: `python -m http.server 8123 -d public` y abrir `http://localhost:8123/tienda/`
+
+Con la oferta activa, Olympian permanente debe mostrar **103,57 €** tachando 129,46 € (129,46 × 0,80), y al pasar a mensual **29,74 €** tachando 34,99 € (34,99 × 0,85). El check no cubre esto: los precios rebajados los calcula el JavaScript y no están en el HTML.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add public/js/sale.js public/index.html public/rangos/index.html public/tienda/index.html public/en/index.html public/en/ranks/index.html public/en/store/index.html
+git commit -m "feat: oferta de lanzamiento al 20% permanente y 15% mensual"
+```
+
+---
+
+### Task 10: Añadir Tebex al check como quinta copia
+
+**Files:**
+- Modify: `tools/check_catalogo.py` — nueva comprobación
+- Test: `tools/test_check_catalogo.py` — tests de la nueva función
+- Modify: `README.md` — documentar la quinta copia
+
+**Interfaces:**
+- Consumes: `_tebex.apiKey` y `_tebex.paquetes` de `data/catalogo.json`; `normalize` y `flatten` de Task 1.
+- Produces: `check_tebex(catalog, flat, fetch=fetch_tebex) -> list[str]`.
+
+Tebex es la quinta copia del catálogo y la única de la que sale dinero. Sus 28 paquetes tienen cargado el precio **sin IVA** en `base_price`, que debe coincidir al céntimo con `precio.*`, `llave.*`, `dracma.*.precio` y `proteccion.precio`. El `total_price` lleva el IVA del país del comprador y **no** se compara: no es un número único.
+
+- [ ] **Step 1: Escribir los tests que fallan**
+
+Añadir a `tools/test_check_catalogo.py`, e incluir `check_tebex` en el import de arriba:
+
+```python
+class TestCheckTebex(unittest.TestCase):
+    CAT = {'_tebex': {'apiKey': 'k', 'paquetes': {'precio.hero.mensual': 111}}}
+
+    def test_precio_divergente_falla(self):
+        errs = check_tebex(self.CAT, {'precio.hero.mensual': '4.99'},
+                           fetch=lambda k: {111: 5.99})
+        self.assertEqual(len(errs), 1)
+        self.assertIn('precio.hero.mensual', errs[0])
+
+    def test_precio_correcto_no_da_error(self):
+        self.assertEqual(
+            check_tebex(self.CAT, {'precio.hero.mensual': '4.99'},
+                        fetch=lambda k: {111: 4.99}), [])
+
+    def test_paquete_ausente_en_tebex_falla(self):
+        errs = check_tebex(self.CAT, {'precio.hero.mensual': '4.99'},
+                           fetch=lambda k: {})
+        self.assertEqual(len(errs), 1)
+        self.assertIn('111', errs[0])
+
+    def test_api_caida_avisa_pero_no_falla(self):
+        def caida(k):
+            raise OSError('sin red')
+        self.assertEqual(
+            check_tebex(self.CAT, {'precio.hero.mensual': '4.99'}, fetch=caida), [])
+```
+
+Inyectar `fetch` es lo que hace testeable la función sin salir a la red.
+
+- [ ] **Step 2: Ejecutar y comprobar que fallan**
+
+Run: `cd tools && python -m unittest test_check_catalogo -v`
+Expected: FAIL con `ImportError: cannot import name 'check_tebex'`
+
+- [ ] **Step 3: Implementar la comprobación**
+
+Añadir a `tools/check_catalogo.py`:
+
+```python
+import urllib.request
+
+TEBEX_API = 'https://headless.tebex.io/api/accounts/{key}/categories?includePackages=1'
+
+
+def fetch_tebex(api_key):
+    """Devuelve {id_paquete: base_price} desde la Headless API publica."""
+    url = TEBEX_API.format(key=api_key)
+    with urllib.request.urlopen(url, timeout=15) as r:
+        datos = json.loads(r.read().decode('utf-8'))
+    precios = {}
+    for categoria in datos.get('data', []):
+        for paquete in categoria.get('packages', []):
+            precios[paquete['id']] = paquete['base_price']
+    return precios
+
+
+def check_tebex(catalog, flat, fetch=fetch_tebex):
+    """Compara el precio base de cada paquete de Tebex con el catalogo.
+
+    Se compara base_price, no total_price: Tebex anade el IVA segun el pais
+    del comprador, asi que el total no es un valor unico contra el que medir.
+
+    Si la API no responde se avisa y se devuelve [] — una caida de red no debe
+    bloquear un deploy. Un precio que si responde y no cuadra falla en duro.
+    """
+    tebex = catalog.get('_tebex', {})
+    paquetes = tebex.get('paquetes', {})
+    if not paquetes:
+        return []
+    try:
+        precios = fetch(tebex.get('apiKey', ''))
+    except Exception as e:
+        print(f'AVISO: no se pudo consultar Tebex ({e}). Se omite esa comprobacion.')
+        return []
+
+    errores = []
+    for clave, pkg_id in sorted(paquetes.items()):
+        if clave not in flat:
+            errores.append(f'tebex: "{clave}" no existe en el catalogo')
+        elif pkg_id not in precios:
+            errores.append(f'tebex: el paquete {pkg_id} ("{clave}") no esta en la tienda')
+        else:
+            esperado = flat[clave]
+            real = normalize(f'{float(precios[pkg_id]):.2f} €')
+            if real != esperado:
+                errores.append(
+                    f'tebex: el paquete {pkg_id} ("{clave}") cuesta {real}, '
+                    f'el catalogo dice {esperado}')
+    return errores
+```
+
+Y llamarla desde `main()`. Como ya se lee el JSON al principio, guarda el objeto en una variable en vez de volver a leer el archivo:
+
+```python
+def main():
+    catalogo = json.loads(CATALOGO.read_text(encoding='utf-8'))
+    flat = flatten(catalogo)
+    ...
+    errores += check_coverage(flat, vistas_es, vistas_en)
+    errores += check_tebex(catalogo, flat)
+```
+
+- [ ] **Step 4: Ejecutar los tests**
+
+Run: `cd tools && python -m unittest test_check_catalogo -v`
+Expected: PASS, 17 tests
+
+- [ ] **Step 5: Ejecutar el check completo contra la tienda real**
+
+Run: `python tools/check_catalogo.py`
+Expected: `OK`. Los 28 paquetes deben cuadrar: se verificaron a mano contra la API el 26/07.
+
+Si sale `tebex: el paquete N ("clave") cuesta X, el catalogo dice Y`, el precio mal está **en Tebex**, no en el catálogo.
+
+- [ ] **Step 6: Documentar la quinta copia en el README**
+
+Añadir al apartado «Catálogo»:
+
+```markdown
+El catálogo vive en cinco sitios: las cuatro páginas del repositorio (comparativa
+y tienda, en español e inglés) y **Tebex**, que es de donde sale el dinero. El
+check compara los cinco.
+
+De Tebex se compara `base_price`, sin IVA: el impuesto lo aplica Tebex en el pago
+según el país del comprador, así que el total no es un número único contra el que
+medir. Si la API no responde, el check avisa y sigue — una caída de red no debe
+bloquear un deploy.
+
+La clave `_tebex.apiKey` es la clave Headless pública de solo lectura, la misma
+que el propio Tebex sirve a cualquier visitante del escaparate.
+```
+
+- [ ] **Step 7: Commit**
+
+```bash
+git add tools/check_catalogo.py tools/test_check_catalogo.py README.md
+git commit -m "feat: comprobar tambien los precios de Tebex, la quinta copia del catalogo"
+```
+
+---
 
 ## Verificación final
 
