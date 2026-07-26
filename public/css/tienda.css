@@ -409,3 +409,118 @@
   border-radius: 20px 20px 0 0;
   border-bottom: 1px solid var(--border);
 }
+
+/* --- Llaves de cajas --- */
+.td-link {
+  color: var(--teal-bright);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.td-link:hover { color: var(--gold-bright); }
+.td-llaves-banner {
+  display: block;
+  width: min(280px, 60vw);
+  height: auto;
+  margin: 0 auto 18px;
+  border-radius: 18px;
+}
+.td-llaves-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 16px;
+}
+.td-llave {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 18px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  overflow: hidden;
+  border-top: 3px solid var(--tier, var(--border));
+}
+.td-llave__art { display: block; width: 100%; height: auto; }
+.td-llave__chip {
+  align-self: center;
+  margin: 12px 0 10px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: .78rem;
+  letter-spacing: .08em;
+  color: var(--tier, var(--text));
+  border: 1px solid var(--tier, var(--border));
+}
+.td-llave__packs { display: grid; gap: 6px; padding: 0 16px; }
+.td-llave__pack {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: .86rem;
+}
+.td-llave__cant { color: var(--muted); flex: 1; }
+.td-llave__precio { font-weight: 800; color: var(--text); }
+.td-llave__off { font-size: .72rem; color: var(--teal-bright); font-weight: 700; }
+.td-llave__ingame {
+  padding: 10px 16px 0;
+  font-size: .78rem;
+  color: var(--faint);
+}
+
+/* Color propio por tier: la ilustracion no debe leerse como rango */
+.td-llave--common    { --tier: #A9A4B8; }
+.td-llave--rare      { --tier: #60A5FA; }
+.td-llave--epic      { --tier: #E879F9; }
+.td-llave--legendary { --tier: #FBBF24; }
+.td-llave--mythic    { --tier: #FB7185; }
+
+/* --- Packs de Dracmas --- */
+.td-dracmas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+}
+.td-dracma-pack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 20px 16px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  text-align: center;
+}
+.td-dracma-pack__cant {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: var(--teal-bright);
+}
+.td-dracma-pack__precio { font-weight: 800; font-size: 1.1rem; }
+.td-dracma-pack__bonus {
+  font-size: .74rem;
+  font-weight: 800;
+  color: #062015;
+  background: linear-gradient(135deg, #6EE7B7, #34D399);
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+.td-dracma-pack__best {
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--gold-bright);
+}
+
+/* --- Pack de llave: toda la linea es el enlace de compra --- */
+.td-llave__pack {
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 4px 6px;
+  margin: 0 -6px;
+  transition: background .16s ease;
+}
+.td-llave__pack:hover { background: rgba(255, 255, 255, .06); }
+.td-llave__pack:hover .td-llave__precio { color: var(--tier, var(--text)); }
