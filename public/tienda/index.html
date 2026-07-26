@@ -118,13 +118,19 @@
           </svg>
           <span class="td-ladder__pill td-ladder__pill--olympian">OLYMPIAN</span>
         </div>
+        <nav class="td-jump" aria-label="Secciones de la tienda">
+          <a class="td-jump__link" href="#rangos">Rangos</a>
+          <a class="td-jump__link" href="#llaves">Llaves de cajas</a>
+          <a class="td-jump__link" href="#dracmas">Dracmas 💎</a>
+          <a class="td-jump__link" href="#proteccion">Protección</a>
+        </nav>
       </div>
     </section>
 
     <!-- ============ RANGOS EN VENTA ============ -->
     <section class="td-shop">
       <div class="td-shop__container">
-        <div class="td-toggle-row">
+        <div id="rangos" class="td-toggle-row">
           <div class="td-toggle">
             <button id="td-btn-mensual" class="td-toggle__btn" type="button" aria-pressed="false">Mensual</button>
             <button id="td-btn-perm" class="td-toggle__btn is-active" type="button"
@@ -153,8 +159,8 @@
               <span id="td-orig-hero" class="td-precio-original" hidden></span>
               <span id="td-price-hero" class="td-precio" data-catalog="precio.hero.permanente">18,46&nbsp;€</span>
               <span class="td-precio-nota td-precio-nota--rango">pago único · para siempre</span>
+                          <span class="td-precio-iva"><span id="td-iva-hero">22,34&nbsp;€</span> con IVA en España</span>
             </div>
-            <div class="td-precio-mensual">o <span data-catalog="precio.hero.mensual">4,99&nbsp;€</span> al mes</div>
             <div class="td-rango__desde">Todo Mortal, y además</div>
             <div class="td-perks">
               <div class="td-perk"><svg class="td-perk__check" width="15" height="15" viewBox="0 0 24 24" fill="none"
@@ -212,8 +218,7 @@
               <span id="td-orig-demigod" class="td-precio-original" hidden></span>
               <span id="td-price-demigod" class="td-precio" data-catalog="precio.demigod.permanente">36,96&nbsp;€</span>
               <span class="td-precio-nota td-precio-nota--rango">pago único · para siempre</span>
-            </div>
-            <div class="td-precio-mensual">o <span data-catalog="precio.demigod.mensual">9,99&nbsp;€</span> al mes
+                          <span class="td-precio-iva"><span id="td-iva-demigod">44,72&nbsp;€</span> con IVA en España</span>
             </div>
             <div class="td-rango__desde">Todo Hero, y además</div>
             <div class="td-perks">
@@ -275,8 +280,7 @@
               <span id="td-orig-titan" class="td-precio-original" hidden></span>
               <span id="td-price-titan" class="td-precio" data-catalog="precio.titan.permanente">73,96&nbsp;€</span>
               <span class="td-precio-nota td-precio-nota--rango">pago único · para siempre</span>
-            </div>
-            <div class="td-precio-mensual">o <span data-catalog="precio.titan.mensual">19,99&nbsp;€</span> al mes
+                          <span class="td-precio-iva"><span id="td-iva-titan">89,49&nbsp;€</span> con IVA en España</span>
             </div>
             <div class="td-rango__desde">Todo Demigod, y además</div>
             <div class="td-perks">
@@ -366,8 +370,7 @@
               <span id="td-orig-olympian" class="td-precio-original" hidden></span>
               <span id="td-price-olympian" class="td-precio" data-catalog="precio.olympian.permanente">129,46&nbsp;€</span>
               <span class="td-precio-nota td-precio-nota--rango">pago único · para siempre</span>
-            </div>
-            <div class="td-precio-mensual">o <span data-catalog="precio.olympian.mensual">34,99&nbsp;€</span> al mes
+                          <span class="td-precio-iva"><span id="td-iva-olympian">156,65&nbsp;€</span> con IVA en España</span>
             </div>
             <div class="td-rango__desde">Todo Titan, y además</div>
             <div class="td-perks">
@@ -424,10 +427,11 @@
         </div>
 
         <!-- ============ LLAVES DE CAJAS ============ -->
-        <div class="td-seccion">
+        <div id="llaves" class="td-seccion">
           <h2 class="td-seccion__titulo">Llaves de <span class="grad-gold">cajas</span></h2>
           <p class="td-seccion__lead">Cada caja da recompensas de su nivel. Los rangos ya incluyen llaves gratis cada
             30 días — <a href="/rangos/" class="td-link">míralo en la comparativa</a>.</p>
+          <p class="td-aviso">Precios sin IVA. El impuesto se calcula en el pago según tu país.</p>
         </div>
 
         <img class="td-llaves-banner" src="/img/keys-category.webp" width="800" height="800" alt=""
@@ -445,17 +449,20 @@
                 rel="noopener noreferrer">
                 <span class="td-llave__cant">1 llave</span>
                 <span class="td-llave__precio" data-catalog="llave.common.x1">1,40&nbsp;€</span>
+                <span class="td-llave__iva"><span data-catalog="llave.common.x1Iva">1,69&nbsp;€</span> con IVA</span>
               </a>
               <a class="td-llave__pack" data-catalog-link="llave.common.x5" href="https://hyperionsmc.tebex.store/package/7580873" target="_blank"
                 rel="noopener noreferrer">
                 <span class="td-llave__cant">5 llaves</span>
                 <span class="td-llave__precio" data-catalog="llave.common.x5">6,30&nbsp;€</span>
+                <span class="td-llave__iva"><span data-catalog="llave.common.x5Iva">7,62&nbsp;€</span> con IVA</span>
                 <span class="td-llave__off">−10%</span>
               </a>
               <a class="td-llave__pack" data-catalog-link="llave.common.x10" href="https://hyperionsmc.tebex.store/package/7580875" target="_blank"
                 rel="noopener noreferrer">
                 <span class="td-llave__cant">10 llaves</span>
                 <span class="td-llave__precio" data-catalog="llave.common.x10">11,20&nbsp;€</span>
+                <span class="td-llave__iva"><span data-catalog="llave.common.x10Iva">13,55&nbsp;€</span> con IVA</span>
                 <span class="td-llave__off">−20%</span>
               </a>
             </div>
@@ -472,17 +479,20 @@
                 rel="noopener noreferrer">
                 <span class="td-llave__cant">1 llave</span>
                 <span class="td-llave__precio" data-catalog="llave.rare.x1">3,50&nbsp;€</span>
+                <span class="td-llave__iva"><span data-catalog="llave.rare.x1Iva">4,23&nbsp;€</span> con IVA</span>
               </a>
               <a class="td-llave__pack" data-catalog-link="llave.rare.x5" href="https://hyperionsmc.tebex.store/package/7580883" target="_blank"
                 rel="noopener noreferrer">
                 <span class="td-llave__cant">5 llaves</span>
                 <span class="td-llave__precio" data-catalog="llave.rare.x5">15,75&nbsp;€</span>
+                <span class="td-llave__iva"><span data-catalog="llave.rare.x5Iva">19,06&nbsp;€</span> con IVA</span>
                 <span class="td-llave__off">−10%</span>
               </a>
               <a class="td-llave__pack" data-catalog-link="llave.rare.x10" href="https://hyperionsmc.tebex.store/package/7580888" target="_blank"
                 rel="noopener noreferrer">
                 <span class="td-llave__cant">10 llaves</span>
                 <span class="td-llave__precio" data-catalog="llave.rare.x10">28,00&nbsp;€</span>
+                <span class="td-llave__iva"><span data-catalog="llave.rare.x10Iva">33,88&nbsp;€</span> con IVA</span>
                 <span class="td-llave__off">−20%</span>
               </a>
             </div>
@@ -499,17 +509,20 @@
                 rel="noopener noreferrer">
                 <span class="td-llave__cant">1 llave</span>
                 <span class="td-llave__precio" data-catalog="llave.epic.x1">7,00&nbsp;€</span>
+                <span class="td-llave__iva"><span data-catalog="llave.epic.x1Iva">8,47&nbsp;€</span> con IVA</span>
               </a>
               <a class="td-llave__pack" data-catalog-link="llave.epic.x5" href="https://hyperionsmc.tebex.store/package/7580891" target="_blank"
                 rel="noopener noreferrer">
                 <span class="td-llave__cant">5 llaves</span>
                 <span class="td-llave__precio" data-catalog="llave.epic.x5">31,50&nbsp;€</span>
+                <span class="td-llave__iva"><span data-catalog="llave.epic.x5Iva">38,12&nbsp;€</span> con IVA</span>
                 <span class="td-llave__off">−10%</span>
               </a>
               <a class="td-llave__pack" data-catalog-link="llave.epic.x10" href="https://hyperionsmc.tebex.store/package/7580895" target="_blank"
                 rel="noopener noreferrer">
                 <span class="td-llave__cant">10 llaves</span>
                 <span class="td-llave__precio" data-catalog="llave.epic.x10">56,00&nbsp;€</span>
+                <span class="td-llave__iva"><span data-catalog="llave.epic.x10Iva">67,76&nbsp;€</span> con IVA</span>
                 <span class="td-llave__off">−20%</span>
               </a>
             </div>
@@ -526,17 +539,20 @@
                 rel="noopener noreferrer">
                 <span class="td-llave__cant">1 llave</span>
                 <span class="td-llave__precio" data-catalog="llave.legendary.x1">14,00&nbsp;€</span>
+                <span class="td-llave__iva"><span data-catalog="llave.legendary.x1Iva">16,94&nbsp;€</span> con IVA</span>
               </a>
               <a class="td-llave__pack" data-catalog-link="llave.legendary.x5" href="https://hyperionsmc.tebex.store/package/7580903" target="_blank"
                 rel="noopener noreferrer">
                 <span class="td-llave__cant">5 llaves</span>
                 <span class="td-llave__precio" data-catalog="llave.legendary.x5">63,00&nbsp;€</span>
+                <span class="td-llave__iva"><span data-catalog="llave.legendary.x5Iva">76,23&nbsp;€</span> con IVA</span>
                 <span class="td-llave__off">−10%</span>
               </a>
               <a class="td-llave__pack" data-catalog-link="llave.legendary.x10" href="https://hyperionsmc.tebex.store/package/7580905" target="_blank"
                 rel="noopener noreferrer">
                 <span class="td-llave__cant">10 llaves</span>
                 <span class="td-llave__precio" data-catalog="llave.legendary.x10">112,00&nbsp;€</span>
+                <span class="td-llave__iva"><span data-catalog="llave.legendary.x10Iva">135,52&nbsp;€</span> con IVA</span>
                 <span class="td-llave__off">−20%</span>
               </a>
             </div>
@@ -553,17 +569,20 @@
                 rel="noopener noreferrer">
                 <span class="td-llave__cant">1 llave</span>
                 <span class="td-llave__precio" data-catalog="llave.mythic.x1">28,00&nbsp;€</span>
+                <span class="td-llave__iva"><span data-catalog="llave.mythic.x1Iva">33,88&nbsp;€</span> con IVA</span>
               </a>
               <a class="td-llave__pack" data-catalog-link="llave.mythic.x5" href="https://hyperionsmc.tebex.store/package/7580907" target="_blank"
                 rel="noopener noreferrer">
                 <span class="td-llave__cant">5 llaves</span>
                 <span class="td-llave__precio" data-catalog="llave.mythic.x5">126,00&nbsp;€</span>
+                <span class="td-llave__iva"><span data-catalog="llave.mythic.x5Iva">152,46&nbsp;€</span> con IVA</span>
                 <span class="td-llave__off">−10%</span>
               </a>
               <a class="td-llave__pack" data-catalog-link="llave.mythic.x10" href="https://hyperionsmc.tebex.store/package/7580909" target="_blank"
                 rel="noopener noreferrer">
                 <span class="td-llave__cant">10 llaves</span>
                 <span class="td-llave__precio" data-catalog="llave.mythic.x10">224,00&nbsp;€</span>
+                <span class="td-llave__iva"><span data-catalog="llave.mythic.x10Iva">271,04&nbsp;€</span> con IVA</span>
                 <span class="td-llave__off">−20%</span>
               </a>
             </div>
@@ -573,23 +592,26 @@
         </div>
 
         <!-- ============ DRACMAS ============ -->
-        <div class="td-seccion">
+        <div id="dracmas" class="td-seccion">
           <h2 class="td-seccion__titulo">Dracmas <span class="grad-gold">💎</span></h2>
           <p class="td-seccion__lead">La moneda premium del servidor. Se compran <strong class="td-strong">solo con
               dinero real</strong>: no se pueden conseguir con el dinero del juego, y es deliberado — así la
             economía in-game no se compra. Sirven para cosméticos, mejoras y extras de la tienda del juego.</p>
+          <p class="td-aviso">Precios sin IVA. El impuesto se calcula en el pago según tu país.</p>
         </div>
 
         <div class="td-dracmas-grid">
           <div class="td-dracma-pack">
             <div class="td-dracma-pack__cant"><span data-catalog="dracma.p10.cantidad">10</span> 💎</div>
             <div class="td-dracma-pack__precio" data-catalog="dracma.p10.precio">7,00&nbsp;€</div>
+            <div class="td-dracma-pack__iva"><span data-catalog="dracma.p10.conIva">8,47&nbsp;€</span> con IVA</div>
             <a data-catalog-link="dracma.p10.precio" href="https://hyperionsmc.tebex.store/package/7580911" target="_blank" rel="noopener noreferrer"
               class="td-buy td-buy--dracma">Comprar</a>
           </div>
           <div class="td-dracma-pack">
             <div class="td-dracma-pack__cant"><span data-catalog="dracma.p25.cantidad">25</span> 💎</div>
             <div class="td-dracma-pack__precio" data-catalog="dracma.p25.precio">15,75&nbsp;€</div>
+            <div class="td-dracma-pack__iva"><span data-catalog="dracma.p25.conIva">19,06&nbsp;€</span> con IVA</div>
             <div class="td-dracma-pack__bonus">+10%</div>
             <a data-catalog-link="dracma.p25.precio" href="https://hyperionsmc.tebex.store/package/7580913" target="_blank" rel="noopener noreferrer"
               class="td-buy td-buy--dracma">Comprar</a>
@@ -597,6 +619,7 @@
           <div class="td-dracma-pack">
             <div class="td-dracma-pack__cant"><span data-catalog="dracma.p50.cantidad">50</span> 💎</div>
             <div class="td-dracma-pack__precio" data-catalog="dracma.p50.precio">28,00&nbsp;€</div>
+            <div class="td-dracma-pack__iva"><span data-catalog="dracma.p50.conIva">33,88&nbsp;€</span> con IVA</div>
             <div class="td-dracma-pack__bonus">+20%</div>
             <a data-catalog-link="dracma.p50.precio" href="https://hyperionsmc.tebex.store/package/7580915" target="_blank" rel="noopener noreferrer"
               class="td-buy td-buy--dracma">Comprar</a>
@@ -604,6 +627,7 @@
           <div class="td-dracma-pack">
             <div class="td-dracma-pack__cant"><span data-catalog="dracma.p100.cantidad">100</span> 💎</div>
             <div class="td-dracma-pack__precio" data-catalog="dracma.p100.precio">49,00&nbsp;€</div>
+            <div class="td-dracma-pack__iva"><span data-catalog="dracma.p100.conIva">59,29&nbsp;€</span> con IVA</div>
             <div class="td-dracma-pack__bonus">+30%</div>
             <div class="td-dracma-pack__best">Mejor valor</div>
             <a data-catalog-link="dracma.p100.precio" href="https://hyperionsmc.tebex.store/package/7580918" target="_blank" rel="noopener noreferrer"
@@ -612,16 +636,17 @@
         </div>
 
         <!-- ============ PROTECCIÓN T5 ============ -->
-        <div class="td-seccion">
+        <div id="proteccion" class="td-seccion">
           <h2 class="td-seccion__titulo">Protección <span class="grad-gold">máxima</span></h2>
           <p class="td-seccion__lead">La protección de pago más grande del servidor: un área de 257×257 bloques
             protegida de bedrock al cielo.</p>
+          <p class="td-aviso">Precios sin IVA. El impuesto se calcula en el pago según tu país.</p>
         </div>
 
         <div class="td-grid">
           <!-- PROTECCION -->
           <div class="td-rango td-rango--proteccion">
-            <img class="td-rango__art" src="/img/protection.webp" width="640" height="640" alt="" aria-hidden="true"
+            <img class="td-rango__art td-rango__art--contenida" src="/img/protection.webp" width="1024" height="900" alt="" aria-hidden="true"
               loading="lazy">
             <div class="td-rango__top">
               <span class="td-rango__chip td-rango__chip--proteccion">[PROTECCIÓN T5]</span>
@@ -629,6 +654,7 @@
             <div class="td-rango__nombre td-rango__nombre--proteccion">RESTOS ANTIGUOS</div>
             <div class="td-precio-row">
               <span class="td-precio" data-catalog="proteccion.precio">22,00&nbsp;€</span>
+              <span class="td-precio-iva"><span data-catalog="proteccion.conIva">26,62&nbsp;€</span> con IVA en España</span>
               <span class="td-precio-nota">pago único · ítem in-game</span>
             </div>
             <div class="td-rango__desde">Protección de pago máxima</div>

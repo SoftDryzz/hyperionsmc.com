@@ -10,6 +10,10 @@
 
   /* Oferta de lanzamiento: la configuración vive en /js/sale.js (window.HY_SALE).
      Al expirar, la web vuelve sola a los precios normales. */
+  /* IVA espanol. El precio grande es la base sin impuestos y debajo se
+     muestra el total con IVA; fuera de la UE Tebex no lo aplica. */
+  const IVA = 1.21;
+
   const SALE = window.HY_SALE || { end: 0, perm: 0, monthly: 0 };
   const saleActive = () => Date.now() < SALE.end;
 
@@ -43,7 +47,12 @@
   /* Solo las 4 tarjetas de rango: la Protección T5 también lleva
      .td-precio-nota pero es pago único fijo y no debe verse tocada. */
   const priceNotes = document.querySelectorAll('.td-precio-nota--rango');
-  const mensualLines = document.querySelectorAll('.td-precio-mensual');
+  const ivaEls = {
+    hero: $('td-iva-hero'),
+    demigod: $('td-iva-demigod'),
+    titan: $('td-iva-titan'),
+    olympian: $('td-iva-olympian'),
+  };
 
   /* Cada rango son dos paquetes distintos en Tebex: el boton cambia con el selector. */
   const PKG = {
@@ -83,6 +92,9 @@
       const final = onSale ? round2(base * (1 - off)) : base;
       if (priceEls[key]) priceEls[key].textContent = fmt(final);
       if (buyEls[key]) buyEls[key].href = TEBEX + (perm ? PKG[key].perm : PKG[key].mensual);
+      /* El IVA se aplica sobre el precio ya redondeado, que es como lo
+         calcula Tebex: sobre el exacto, Titan se desviaba un centimo. */
+      if (ivaEls[key]) ivaEls[key].textContent = fmt(round2(final * IVA));
       const orig = origEls[key];
       if (orig) {
         if (onSale) { orig.textContent = fmt(base); orig.hidden = false; }
@@ -92,9 +104,6 @@
 
     const note = perm ? TXT.oneTime : TXT.perMonth;
     priceNotes.forEach((el) => { el.textContent = note; });
-
-    /* La linea "o X al mes" sobra cuando el precio grande ya es el mensual. */
-    mensualLines.forEach((el) => { el.hidden = !perm; });
 
     if (savingsNote) {
       savingsNote.textContent = perm ? TXT.savingsPerm : TXT.savingsMonthly;

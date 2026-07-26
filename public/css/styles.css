@@ -489,3 +489,30 @@ button { font: inherit; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
 }
+
+/* --- Accesos directos a las secciones de la tienda desde la portada --- */
+.hero__shop-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.hero__shop-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(53, 208, 183, .35);
+  background: rgba(53, 208, 183, .07);
+  font-size: .84rem;
+  font-weight: 700;
+  color: var(--teal-bright);
+  transition: color .18s ease, border-color .18s ease, background .18s ease, transform .18s ease;
+}
+.hero__shop-link:hover {
+  color: var(--gold-bright);
+  border-color: rgba(244, 197, 106, .5);
+  background: rgba(244, 197, 106, .1);
+  transform: translateY(-2px);
+}

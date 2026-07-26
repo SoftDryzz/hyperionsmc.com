@@ -2,65 +2,171 @@
   "_fuente": "docs/superpowers/specs/2026-07-26-datos-rangos-y-tienda-design.md",
   "_aviso": "Fuente de verdad del catalogo. Cambiar aqui primero; el HTML se compara contra este archivo.",
   "rango": {
-    "mortal":   { "homes": 1,  "multiplicador": "×1.0",  "protecciones": 3,  "llaves": "—",        "subastas": 3,  "kits": "—" },
-    "hero":     { "homes": 5,  "multiplicador": "×1.1",  "protecciones": 6,  "llaves": "1 Common", "subastas": 5,  "kits": 2 },
-    "demigod":  { "homes": 10, "multiplicador": "×1.25", "protecciones": 10, "llaves": "2 Common", "subastas": 8,  "kits": 3 },
-    "titan":    { "homes": 20, "multiplicador": "×1.5",  "protecciones": 15, "llaves": "1 Rare",   "subastas": 12, "kits": 6 },
-    "olympian": { "homes": 40, "multiplicador": "×2.0",  "protecciones": 20, "llaves": "1 Epic",   "subastas": 20, "kits": 8 }
+    "mortal": {
+      "homes": 1,
+      "multiplicador": "×1.0",
+      "protecciones": 3,
+      "llaves": "—",
+      "subastas": 3,
+      "kits": "—"
+    },
+    "hero": {
+      "homes": 5,
+      "multiplicador": "×1.1",
+      "protecciones": 6,
+      "llaves": "1 Common",
+      "subastas": 5,
+      "kits": 2
+    },
+    "demigod": {
+      "homes": 10,
+      "multiplicador": "×1.25",
+      "protecciones": 10,
+      "llaves": "2 Common",
+      "subastas": 8,
+      "kits": 3
+    },
+    "titan": {
+      "homes": 20,
+      "multiplicador": "×1.5",
+      "protecciones": 15,
+      "llaves": "1 Rare",
+      "subastas": 12,
+      "kits": 6
+    },
+    "olympian": {
+      "homes": 40,
+      "multiplicador": "×2.0",
+      "protecciones": 20,
+      "llaves": "1 Epic",
+      "subastas": 20,
+      "kits": 8
+    }
   },
   "precio": {
-    "hero":     { "mensual": "4,99 €",  "permanente": "18,46 €" },
-    "demigod":  { "mensual": "9,99 €",  "permanente": "36,96 €" },
-    "titan":    { "mensual": "19,99 €", "permanente": "73,96 €" },
-    "olympian": { "mensual": "34,99 €", "permanente": "129,46 €" }
+    "hero": {
+      "mensual": "4,99 €",
+      "permanente": "18,46 €"
+    },
+    "demigod": {
+      "mensual": "9,99 €",
+      "permanente": "36,96 €"
+    },
+    "titan": {
+      "mensual": "19,99 €",
+      "permanente": "73,96 €"
+    },
+    "olympian": {
+      "mensual": "34,99 €",
+      "permanente": "129,46 €"
+    }
   },
   "llave": {
-    "common":    { "x1": "1,40 €",  "x5": "6,30 €",   "x10": "11,20 €" },
-    "rare":      { "x1": "3,50 €",  "x5": "15,75 €",  "x10": "28,00 €",  "ingame": 5 },
-    "epic":      { "x1": "7,00 €",  "x5": "31,50 €",  "x10": "56,00 €",  "ingame": 10 },
-    "legendary": { "x1": "14,00 €", "x5": "63,00 €",  "x10": "112,00 €", "ingame": 15 },
-    "mythic":    { "x1": "28,00 €", "x5": "126,00 €", "x10": "224,00 €", "ingame": 30 }
+    "common": {
+      "x1": "1,40 €",
+      "x5": "6,30 €",
+      "x10": "11,20 €",
+      "x1Iva": "1,69 €",
+      "x5Iva": "7,62 €",
+      "x10Iva": "13,55 €"
+    },
+    "rare": {
+      "x1": "3,50 €",
+      "x5": "15,75 €",
+      "x10": "28,00 €",
+      "ingame": 5,
+      "x1Iva": "4,23 €",
+      "x5Iva": "19,06 €",
+      "x10Iva": "33,88 €"
+    },
+    "epic": {
+      "x1": "7,00 €",
+      "x5": "31,50 €",
+      "x10": "56,00 €",
+      "ingame": 10,
+      "x1Iva": "8,47 €",
+      "x5Iva": "38,12 €",
+      "x10Iva": "67,76 €"
+    },
+    "legendary": {
+      "x1": "14,00 €",
+      "x5": "63,00 €",
+      "x10": "112,00 €",
+      "ingame": 15,
+      "x1Iva": "16,94 €",
+      "x5Iva": "76,23 €",
+      "x10Iva": "135,52 €"
+    },
+    "mythic": {
+      "x1": "28,00 €",
+      "x5": "126,00 €",
+      "x10": "224,00 €",
+      "ingame": 30,
+      "x1Iva": "33,88 €",
+      "x5Iva": "152,46 €",
+      "x10Iva": "271,04 €"
+    }
   },
   "dracma": {
-    "p10":  { "cantidad": 10,  "precio": "7,00 €" },
-    "p25":  { "cantidad": 25,  "precio": "15,75 €" },
-    "p50":  { "cantidad": 50,  "precio": "28,00 €" },
-    "p100": { "cantidad": 100, "precio": "49,00 €" }
+    "p10": {
+      "cantidad": 10,
+      "precio": "7,00 €",
+      "conIva": "8,47 €"
+    },
+    "p25": {
+      "cantidad": 25,
+      "precio": "15,75 €",
+      "conIva": "19,06 €"
+    },
+    "p50": {
+      "cantidad": 50,
+      "precio": "28,00 €",
+      "conIva": "33,88 €"
+    },
+    "p100": {
+      "cantidad": 100,
+      "precio": "49,00 €",
+      "conIva": "59,29 €"
+    }
   },
-  "proteccion": { "precio": "22,00 €", "ingame": 31 },
+  "proteccion": {
+    "precio": "22,00 €",
+    "ingame": 31,
+    "conIva": "26,62 €"
+  },
   "_tebex": {
     "_nota": "IDs verificados contra la Headless API el 2026-07-26. Cada uno responde 200 en /package/<id>.",
     "raiz": "https://hyperionsmc.tebex.store",
     "apiKey": "13v7u-ae3d1af3be72a78c2990fcb8f6dd03c92d82de14",
     "paquetes": {
-      "precio.hero.permanente":     7564089,
-      "precio.demigod.permanente":  7564092,
-      "precio.titan.permanente":    7564096,
+      "precio.hero.permanente": 7564089,
+      "precio.demigod.permanente": 7564092,
+      "precio.titan.permanente": 7564096,
       "precio.olympian.permanente": 7564104,
-      "precio.hero.mensual":        7564114,
-      "precio.demigod.mensual":     7564116,
-      "precio.titan.mensual":       7564121,
-      "precio.olympian.mensual":    7564122,
-      "llave.common.x1":    7580832,
-      "llave.common.x5":    7580873,
-      "llave.common.x10":   7580875,
-      "llave.rare.x1":      7580878,
-      "llave.rare.x5":      7580883,
-      "llave.rare.x10":     7580888,
-      "llave.epic.x1":      7580890,
-      "llave.epic.x5":      7580891,
-      "llave.epic.x10":     7580895,
+      "precio.hero.mensual": 7564114,
+      "precio.demigod.mensual": 7564116,
+      "precio.titan.mensual": 7564121,
+      "precio.olympian.mensual": 7564122,
+      "llave.common.x1": 7580832,
+      "llave.common.x5": 7580873,
+      "llave.common.x10": 7580875,
+      "llave.rare.x1": 7580878,
+      "llave.rare.x5": 7580883,
+      "llave.rare.x10": 7580888,
+      "llave.epic.x1": 7580890,
+      "llave.epic.x5": 7580891,
+      "llave.epic.x10": 7580895,
       "llave.legendary.x1": 7580899,
       "llave.legendary.x5": 7580903,
-      "llave.legendary.x10":7580905,
-      "llave.mythic.x1":    7580906,
-      "llave.mythic.x5":    7580907,
-      "llave.mythic.x10":   7580909,
-      "dracma.p10.precio":  7580911,
-      "dracma.p25.precio":  7580913,
-      "dracma.p50.precio":  7580915,
+      "llave.legendary.x10": 7580905,
+      "llave.mythic.x1": 7580906,
+      "llave.mythic.x5": 7580907,
+      "llave.mythic.x10": 7580909,
+      "dracma.p10.precio": 7580911,
+      "dracma.p25.precio": 7580913,
+      "dracma.p50.precio": 7580915,
       "dracma.p100.precio": 7580918,
-      "proteccion.precio":  7580722
+      "proteccion.precio": 7580722
     }
   }
 }

@@ -378,8 +378,6 @@
 }
 
 /* --- Precio mensual bajo el precio permanente --- */
-.td-precio-mensual { font-size: .82rem; color: var(--faint); margin-top: 2px; }
-.td-precio-mensual[hidden] { display: none; }
 
 /* --- Perk destacado (p.ej. /fly en Titan) --- */
 .td-perk--star {
@@ -524,3 +522,75 @@
 }
 .td-llave__pack:hover { background: rgba(255, 255, 255, .06); }
 .td-llave__pack:hover .td-llave__precio { color: var(--tier, var(--text)); }
+
+/* --- Arte contenido: para ilustraciones que no son cuadradas --- */
+/* La Proteccion es 1024x900 y a sangre completa se veia gigante y pixelada. */
+.td-rango__art--contenida {
+  width: min(320px, 100%);
+  margin: 0 auto 18px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+}
+
+/* --- Accesos directos a las secciones de la tienda --- */
+/* Llaves y Dracmas quedaban muy abajo y no se encontraban. */
+.td-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 20px;
+}
+.td-jump__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-family: 'Montserrat', sans-serif;
+  font-size: .84rem;
+  font-weight: 800;
+  letter-spacing: .02em;
+  color: var(--muted);
+  transition: color .18s ease, border-color .18s ease, background .18s ease, transform .18s ease;
+}
+.td-jump__link:hover {
+  color: var(--gold-bright);
+  border-color: rgba(244, 197, 106, .5);
+  background: rgba(244, 197, 106, .08);
+  transform: translateY(-2px);
+}
+
+/* La barra sticky tapa el destino si el ancla salta al borde exacto */
+#rangos, #llaves, #dracmas, #proteccion { scroll-margin-top: 96px; }
+
+/* --- Importe con IVA bajo el precio base --- */
+/* El precio grande es la base sin impuestos; fuera de la UE es lo que se paga. */
+.td-precio-iva {
+  flex-basis: 100%;
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--teal-bright);
+  margin-top: 2px;
+}
+.td-dracma-pack__iva {
+  font-size: .76rem;
+  font-weight: 700;
+  color: var(--teal-bright);
+  margin-top: -2px;
+}
+
+/* La Proteccion es una sola tarjeta: sin acotar se estira a todo el ancho
+   de la rejilla y queda vacia a los lados. */
+#proteccion + .td-grid { max-width: 460px; }
+
+/* El importe con IVA de cada pack, en su propia linea dentro del enlace */
+.td-llave__iva {
+  flex-basis: 100%;
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--teal-bright);
+  margin-top: -2px;
+}
