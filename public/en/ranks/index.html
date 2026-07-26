@@ -89,24 +89,80 @@
               <tr>
                 <th class="rg-th-feature" scope="col">Perk / Command</th>
                 <th class="rg-th rg-th--dim" scope="col"><span class="rg-rank rg-rank--mortal">[Mortal]</span><div class="rg-price">FREE</div></th>
-                <th class="rg-th" scope="col"><span class="rg-rank rg-rank--hero">[HERO]</span><div class="rg-price">€4.99/MO</div></th>
-                <th class="rg-th" scope="col"><span class="rg-rank rg-rank--demigod">[DEMIGOD]</span><div class="rg-price">€9.99/MO</div></th>
-                <th class="rg-th" scope="col"><span class="rg-rank rg-rank--titan">[TITAN]</span><div class="rg-price">€19.99/MO</div></th>
-                <th class="rg-th rg-th--oly" scope="col"><span class="rg-rank rg-rank--oly">[OLYMPIAN]</span><div class="rg-price">€34.99/MO</div></th>
+                <th class="rg-th" scope="col"><span class="rg-rank rg-rank--hero">[HERO]</span><div class="rg-price"><span data-catalog="precio.hero.mensual">€4.99</span>/MO</div></th>
+                <th class="rg-th" scope="col"><span class="rg-rank rg-rank--demigod">[DEMIGOD]</span><div class="rg-price"><span data-catalog="precio.demigod.mensual">€9.99</span>/MO</div></th>
+                <th class="rg-th" scope="col"><span class="rg-rank rg-rank--titan">[TITAN]</span><div class="rg-price"><span data-catalog="precio.titan.mensual">€19.99</span>/MO</div></th>
+                <th class="rg-th rg-th--oly" scope="col"><span class="rg-rank rg-rank--oly">[OLYMPIAN]</span><div class="rg-price"><span data-catalog="precio.olympian.mensual">€34.99</span>/MO</div></th>
               </tr>
             </thead>
             <tbody>
               <tr><td colspan="6" class="rg-td-section">Base</td></tr>
               <tr>
                 <td class="rg-td-feature"><div class="rg-perk">Homes</div><div class="rg-perk-desc">/sethome · /home · /delhome</div></td>
-                <td class="rg-td rg-val-mortal">1</td>
-                <td class="rg-td rg-val-hero">5</td>
-                <td class="rg-td rg-val-demigod">10</td>
-                <td class="rg-td rg-val-titan">20</td>
-                <td class="rg-td rg-td--oly rg-val-oly">40</td>
+                <td class="rg-td rg-val-mortal"  data-catalog="rango.mortal.homes">1</td>
+                <td class="rg-td rg-val-hero"    data-catalog="rango.hero.homes">5</td>
+                <td class="rg-td rg-val-demigod" data-catalog="rango.demigod.homes">10</td>
+                <td class="rg-td rg-val-titan"   data-catalog="rango.titan.homes">20</td>
+                <td class="rg-td rg-td--oly rg-val-oly" data-catalog="rango.olympian.homes">40</td>
+              </tr>
+              <tr>
+                <td class="rg-td-feature"><div class="rg-perk">Money &amp; XP multiplier</div><div class="rg-perk-desc">money and XP you earn</div></td>
+                <td class="rg-td rg-val-mortal"  data-catalog="rango.mortal.multiplicador">×1.0</td>
+                <td class="rg-td rg-val-hero"    data-catalog="rango.hero.multiplicador">×1.1</td>
+                <td class="rg-td rg-val-demigod" data-catalog="rango.demigod.multiplicador">×1.25</td>
+                <td class="rg-td rg-val-titan"   data-catalog="rango.titan.multiplicador">×1.5</td>
+                <td class="rg-td rg-td--oly rg-val-oly" data-catalog="rango.olympian.multiplicador">×2.0</td>
+              </tr>
+              <tr>
+                <td class="rg-td-feature"><div class="rg-perk">Land claims</div><div class="rg-perk-desc">plots of land you can claim</div></td>
+                <td class="rg-td rg-val-mortal"  data-catalog="rango.mortal.protecciones">3</td>
+                <td class="rg-td rg-val-hero"    data-catalog="rango.hero.protecciones">6</td>
+                <td class="rg-td rg-val-demigod" data-catalog="rango.demigod.protecciones">10</td>
+                <td class="rg-td rg-val-titan"   data-catalog="rango.titan.protecciones">15</td>
+                <td class="rg-td rg-td--oly rg-val-oly" data-catalog="rango.olympian.protecciones">20</td>
+              </tr>
+              <tr>
+                <td class="rg-td-feature"><div class="rg-perk">Keys every 30 days</div><div class="rg-perk-desc">free just for having the rank</div></td>
+                <td class="rg-td rg-val-mortal"  data-catalog="rango.mortal.llaves">—</td>
+                <td class="rg-td rg-val-hero"    data-catalog="rango.hero.llaves">1 Common</td>
+                <td class="rg-td rg-val-demigod" data-catalog="rango.demigod.llaves">2 Common</td>
+                <td class="rg-td rg-val-titan"   data-catalog="rango.titan.llaves">1 Rare</td>
+                <td class="rg-td rg-td--oly rg-val-oly" data-catalog="rango.olympian.llaves">1 Epic</td>
+              </tr>
+              <tr>
+                <td class="rg-td-feature"><div class="rg-perk">Auction listings</div><div class="rg-perk-desc">simultaneous listings</div></td>
+                <td class="rg-td rg-val-mortal"  data-catalog="rango.mortal.subastas">3</td>
+                <td class="rg-td rg-val-hero"    data-catalog="rango.hero.subastas">5</td>
+                <td class="rg-td rg-val-demigod" data-catalog="rango.demigod.subastas">8</td>
+                <td class="rg-td rg-val-titan"   data-catalog="rango.titan.subastas">12</td>
+                <td class="rg-td rg-td--oly rg-val-oly" data-catalog="rango.olympian.subastas">20</td>
+              </tr>
+              <tr>
+                <td class="rg-td-feature"><div class="rg-perk">Exclusive kits</div><div class="rg-perk-desc">bundles of claimable items</div></td>
+                <td class="rg-td rg-val-mortal"  data-catalog="rango.mortal.kits">—</td>
+                <td class="rg-td rg-val-hero"    data-catalog="rango.hero.kits">2</td>
+                <td class="rg-td rg-val-demigod" data-catalog="rango.demigod.kits">3</td>
+                <td class="rg-td rg-val-titan"   data-catalog="rango.titan.kits">6</td>
+                <td class="rg-td rg-td--oly rg-val-oly" data-catalog="rango.olympian.kits">8</td>
+              </tr>
+              <tr>
+                <td class="rg-td-feature"><div class="rg-perk">Premium EnderChest</div><div class="rg-perk-desc">EnderChestCE · 54 slots per page</div></td>
+                <td class="rg-td"><span class="rg-dash">—</span></td>
+                <td class="rg-td"><span class="rg-dash">—</span></td>
+                <td class="rg-td"><span class="rg-dash">—</span></td>
+                <td class="rg-td rg-val-titan">1 page</td>
+                <td class="rg-td rg-td--oly rg-val-oly">2 pages</td>
               </tr>
               <tr>
                 <td class="rg-td-feature"><div class="rg-perk">Essentials (15 commands)</div><div class="rg-perk-desc">/spawn /tpa /msg /pay /warp /balance…</div></td>
+                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A9A4B8" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
+                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
+                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
+                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
+                <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              </tr>
+              <tr>
+                <td class="rg-td-feature"><div class="rg-perk">Daily reward</div><div class="rg-perk-desc">a prize for logging in every day</div></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A9A4B8" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
@@ -139,32 +195,16 @@
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
+              <tr>
+                <td class="rg-td-feature"><div class="rg-perk">Random TP</div><div class="rg-perk-desc">no wait time or cooldown</div></td>
+                <td class="rg-td"><span class="rg-dash">—</span></td>
+                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
+                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
+                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
+                <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              </tr>
 
               <tr><td colspan="6" class="rg-td-section">Demigod adds</td></tr>
-              <tr>
-                <td class="rg-td-feature"><div class="rg-perk">Instant TP <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2.2" class="rg-lock" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></div><div class="rg-perk-desc">teleport with no wait time</div></td>
-                <td class="rg-td"><span class="rg-dash">—</span></td>
-                <td class="rg-td"><span class="rg-dash">—</span></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-              </tr>
-              <tr>
-                <td class="rg-td-feature"><div class="rg-perk">/enderchest</div><div class="rg-perk-desc">portable ender chest</div></td>
-                <td class="rg-td"><span class="rg-dash">—</span></td>
-                <td class="rg-td"><span class="rg-dash">—</span></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-              </tr>
-              <tr>
-                <td class="rg-td-feature"><div class="rg-perk">/nick</div><div class="rg-perk-desc">change your nick, with colors</div></td>
-                <td class="rg-td"><span class="rg-dash">—</span></td>
-                <td class="rg-td"><span class="rg-dash">—</span></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-              </tr>
               <tr>
                 <td class="rg-td-feature"><div class="rg-perk">/feed</div><div class="rg-perk-desc">refill your hunger</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
@@ -182,7 +222,23 @@
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
               <tr>
+                <td class="rg-td-feature"><div class="rg-perk">/nick</div><div class="rg-perk-desc">change your nick, with colors</div></td>
+                <td class="rg-td"><span class="rg-dash">—</span></td>
+                <td class="rg-td"><span class="rg-dash">—</span></td>
+                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
+                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
+                <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              </tr>
+              <tr>
                 <td class="rg-td-feature"><div class="rg-perk">/tpahere</div><div class="rg-perk-desc">ask players to teleport to you</div></td>
+                <td class="rg-td"><span class="rg-dash">—</span></td>
+                <td class="rg-td"><span class="rg-dash">—</span></td>
+                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
+                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
+                <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              </tr>
+              <tr>
+                <td class="rg-td-feature"><div class="rg-perk">Instant TP <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2.2" class="rg-lock" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></div><div class="rg-perk-desc">teleport with no wait time</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
@@ -191,6 +247,19 @@
               </tr>
 
               <tr><td colspan="6" class="rg-td-section">Titan adds</td></tr>
+              <tr class="rg-tr--star">
+                <td class="rg-td-feature">
+                  <div class="rg-perk"><span class="rg-star">★</span> /fly
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2.2" class="rg-lock" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+                  </div>
+                  <div class="rg-perk-desc">fly across the world · Titan's flagship perk</div>
+                </td>
+                <td class="rg-td"><span class="rg-dash">—</span></td>
+                <td class="rg-td"><span class="rg-dash">—</span></td>
+                <td class="rg-td"><span class="rg-dash">—</span></td>
+                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
+                <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              </tr>
               <tr>
                 <td class="rg-td-feature"><div class="rg-perk">/heal <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2.2" class="rg-lock" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></div><div class="rg-perk-desc">heal yourself instantly</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
@@ -217,6 +286,14 @@
               </tr>
               <tr>
                 <td class="rg-td-feature"><div class="rg-perk">/tptoggle</div><div class="rg-perk-desc">block or allow TPs to you</div></td>
+                <td class="rg-td"><span class="rg-dash">—</span></td>
+                <td class="rg-td"><span class="rg-dash">—</span></td>
+                <td class="rg-td"><span class="rg-dash">—</span></td>
+                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
+                <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              </tr>
+              <tr>
+                <td class="rg-td-feature"><div class="rg-perk">/ec expanded (54 slots)</div><div class="rg-perk-desc">portable ender chest with more space</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
@@ -265,80 +342,16 @@
                 <td class="rg-td"><span class="rg-dash">—</span></td>
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
+              <tr>
+                <td class="rg-td-feature"><div class="rg-perk">2nd EnderChest page</div><div class="rg-perk-desc">another 54 slots of storage</div></td>
+                <td class="rg-td"><span class="rg-dash">—</span></td>
+                <td class="rg-td"><span class="rg-dash">—</span></td>
+                <td class="rg-td"><span class="rg-dash">—</span></td>
+                <td class="rg-td"><span class="rg-dash">—</span></td>
+                <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
+              </tr>
 
-              <tr><td colspan="6" class="rg-td-section">Included in your rank · activating soon</td></tr>
-              <tr>
-                <td class="rg-td-feature"><div class="rg-perk">XP/money multiplier <span class="rg-soon">COMING SOON</span></div><div class="rg-perk-desc">from 1.1x to 2x by rank</div></td>
-                <td class="rg-td"><span class="rg-dash">—</span></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-              </tr>
-              <tr>
-                <td class="rg-td-feature"><div class="rg-perk">Exclusive kits <span class="rg-soon">COMING SOON</span></div><div class="rg-perk-desc">from 2 to 10 kits by rank</div></td>
-                <td class="rg-td"><span class="rg-dash">—</span></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-              </tr>
-              <tr>
-                <td class="rg-td-feature"><div class="rg-perk">Crate keys <span class="rg-soon">COMING SOON</span></div><div class="rg-perk-desc">from 1 to 4 per month by rank</div></td>
-                <td class="rg-td"><span class="rg-dash">—</span></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-              </tr>
-              <tr>
-                <td class="rg-td-feature"><div class="rg-perk">Private vaults <span class="rg-soon">COMING SOON</span></div><div class="rg-perk-desc">from 1 to 5 by rank</div></td>
-                <td class="rg-td"><span class="rg-dash">—</span></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-              </tr>
-              <tr>
-                <td class="rg-td-feature"><div class="rg-perk">Chest shops <span class="rg-soon">COMING SOON</span></div><div class="rg-perk-desc">from 20 to 100 shops by rank</div></td>
-                <td class="rg-td"><span class="rg-dash">—</span></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-              </tr>
-              <tr>
-                <td class="rg-td-feature"><div class="rg-perk">Extra protections <span class="rg-soon">COMING SOON</span></div><div class="rg-perk-desc">from 2 to 5 claims by rank</div></td>
-                <td class="rg-td"><span class="rg-dash">—</span></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-              </tr>
-              <tr>
-                <td class="rg-td-feature"><div class="rg-perk">Cosmetics <span class="rg-soon">COMING SOON</span></div><div class="rg-perk-desc">particles, pets and wings</div></td>
-                <td class="rg-td"><span class="rg-dash">—</span></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-              </tr>
-              <tr>
-                <td class="rg-td-feature"><div class="rg-perk">/friends <span class="rg-soon">COMING SOON</span></div><div class="rg-perk-desc">from 15 to 30 friends by rank</div></td>
-                <td class="rg-td"><span class="rg-dash">—</span></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-              </tr>
-              <tr>
-                <td class="rg-td-feature"><div class="rg-perk">Daily reward <span class="rg-soon">COMING SOON</span></div><div class="rg-perk-desc">a prize for logging in every day</div></td>
-                <td class="rg-td"><span class="rg-dash">—</span></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-                <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-              </tr>
+              <tr><td colspan="6" class="rg-td-section">Coming soon</td></tr>
               <tr>
                 <td class="rg-td-feature"><div class="rg-perk">Priority queue <span class="rg-soon">COMING SOON</span></div><div class="rg-perk-desc">get in first when the server is full</div></td>
                 <td class="rg-td"><span class="rg-dash">—</span></td>
@@ -347,21 +360,13 @@
                 <td class="rg-td"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C7A0F5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
                 <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
               </tr>
-              <tr>
-                <td class="rg-td-feature"><div class="rg-perk">Custom prefix <span class="rg-soon">COMING SOON</span></div><div class="rg-perk-desc">your own unique prefix in chat</div></td>
-                <td class="rg-td"><span class="rg-dash">—</span></td>
-                <td class="rg-td"><span class="rg-dash">—</span></td>
-                <td class="rg-td"><span class="rg-dash">—</span></td>
-                <td class="rg-td"><span class="rg-dash">—</span></td>
-                <td class="rg-td rg-td--oly"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD97A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></td>
-              </tr>
             </tbody>
           </table>
         </div>
 
         <div class="rg-legend">
-          <span class="rg-legend__item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2.2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg> Locked in combat (ProCombat) · works normally out of combat.</span>
-          <span class="rg-legend__item"><span class="rg-soon rg-soon--lg">COMING SOON</span> Perk included in your rank; activates when the system launches.</span>
+          <span class="rg-legend__item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F4C56A" stroke-width="2.2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg> Locked in combat (ProCombat): works normally out of combat. <span class="rg-cmd-inline">/fly</span> included — we sell convenience, not a PvP edge.</span>
+          <span class="rg-legend__item"><span class="rg-soon rg-soon--lg">COMING SOON</span> Perk included in the rank; activates when the system launches.</span>
         </div>
 
         <!-- CTA band -->
