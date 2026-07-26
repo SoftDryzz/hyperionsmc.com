@@ -102,9 +102,12 @@ los precios. El HTML declara lo que afirma con atributos `data-catalog`:
 <td data-catalog="rango.hero.homes">5</td>
 ```
 
-`tools/check_catalogo.py` comprueba dos cosas: que todo `data-catalog` coincide
-con el JSON, y que toda clave del JSON aparece en la web española y en la
-inglesa. Corre en GitHub Actions en cada push y antes de cada deploy.
+`tools/check_catalogo.py` comprueba cuatro cosas: que todo `data-catalog`
+coincide con el JSON, que toda clave del JSON aparece en la web española y en
+la inglesa, que el precio base de cada paquete en Tebex cuadra con el JSON, y
+que cada botón de compra enlaza al paquete de Tebex que le corresponde (no
+solo a uno del mismo precio — ver más abajo). Corre en GitHub Actions en cada
+push y antes de cada deploy.
 
 El catálogo vive en cinco sitios: las cuatro páginas del repositorio (comparativa
 y tienda, en español e inglés) y **Tebex**, que es de donde sale el dinero. El
@@ -114,6 +117,13 @@ De Tebex se compara `base_price`, sin IVA: el impuesto lo aplica Tebex en el pag
 según el país del comprador, así que el total no es un número único contra el que
 medir. Si la API no responde, el check avisa y sigue — una caída de red no debe
 bloquear un deploy.
+
+Comparar solo por precio no basta para saber si un botón compra lo correcto:
+28,00 € es a la vez `llave.rare.x10`, `llave.mythic.x1` y `dracma.p50.precio`,
+así que dos enlaces podrían cruzarse sin que ninguna comprobación de precio lo
+note. Por eso cada `<a>` de compra lleva además `data-catalog-link="<clave>"`
+explícito, y el check verifica que su `href` apunta al paquete de Tebex de esa
+clave exacta.
 
 La clave `_tebex.apiKey` es la clave Headless pública de solo lectura, la misma
 que el propio Tebex sirve a cualquier visitante del escaparate.

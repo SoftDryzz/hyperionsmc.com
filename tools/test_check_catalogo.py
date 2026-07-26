@@ -18,6 +18,11 @@ class TestNormalize(unittest.TestCase):
     def test_espacios_colapsan(self):
         self.assertEqual(normalize('  1   Common \n'), '1 Common')
 
+    def test_nbsp_colapsa_igual_que_espacio_normal(self):
+        # '28,00\xa0€' es justo el patron real del HTML (precio + nbsp + €).
+        self.assertEqual(normalize('28,00\xa0€'), normalize('28,00 €'))
+        self.assertEqual(normalize('28,00\xa0€'), '28.00')
+
 
 class TestFlatten(unittest.TestCase):
     def test_claves_con_punto_y_valores_normalizados(self):

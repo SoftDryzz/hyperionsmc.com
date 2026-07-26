@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """Comprueba que el HTML publicado dice lo mismo que data/catalogo.json.
 
-Verifica dos cosas:
+Verifica cuatro cosas:
   1. Coincidencia — todo data-catalog del HTML cuadra con el JSON.
   2. Cobertura   — toda clave del JSON aparece en espanol y en ingles.
+  3. Tebex       — el precio base de cada paquete en Tebex cuadra con el JSON.
+  4. Enlaces     — cada <a data-catalog-link="clave"> apunta al paquete de
+                   Tebex que le corresponde (mismo ID, no solo mismo precio).
 
 Solo biblioteca estandar. Salida 0 si todo cuadra, 1 si no.
 """
@@ -34,8 +37,10 @@ def normalize(raw):
     '4,99 €' y '€4.99' dan ambos '4.99'. Un entero sin moneda se queda
     como esta: homes vale '5', no '5.00'.
     """
-    s = raw.replace(' ', ' ')  # nbsp -> espacio normal
-    s = ' '.join(s.split()).strip()
+    # El NBSP (\xa0) que separa numero y moneda ('28,00\xa0€') no hace falta
+    # sustituirlo aparte: str.split() sin argumentos ya lo trata como
+    # espacio en blanco igual que uno normal, y el join() de abajo lo colapsa.
+    s = ' '.join(raw.split()).strip()
     con_moneda = '€' in s
     s = s.replace('€', '').strip()
     if con_moneda or _DECIMAL.fullmatch(s):
