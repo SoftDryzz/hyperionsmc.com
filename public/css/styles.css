@@ -477,12 +477,19 @@ button { font: inherit; }
   .lang-switch { padding: 7px 7px; font-size: .7rem; letter-spacing: .04em; }
   .icon-btn { width: 38px; height: 38px; border-radius: 10px; }
   .btn-shop { padding: 9px 10px; font-size: .85rem; gap: 6px; }
+  /* El enlace "Rangos" desbordaba la cabecera por unos pocos px. Se oculta:
+     la seccion sigue alcanzable desde el pie y desde la propia tienda. */
+  .nav-link { display: none; }
 }
 @media (max-width: 374px) {
-  .nav-link { display: none; }
   .hero__badge { padding: 6px 12px; }
   .hero__badge-text { letter-spacing: .16em; font-size: .62rem; }
 }
+
+/* Red de seguridad: ningun hijo directo del layout puede provocar scroll
+   lateral. No usamos overflow-x:hidden en body porque rompe position:sticky. */
+.site-header__inner, .hero__container { max-width: 100%; }
+.site-header__actions { min-width: 0; }
 
 /* ---------- Accesibilidad: menos movimiento ---------- */
 @media (prefers-reduced-motion: reduce) {
