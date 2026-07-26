@@ -350,6 +350,8 @@ button { font: inherit; }
 }
 .card__title { margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.4rem; }
 .card__text { margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.6; }
+.card__strong { color: var(--gold-bright); font-weight: 800; }
+.card__cmd { font-family: ui-monospace, monospace; color: var(--teal-bright); }
 
 /* ---------- Sección: Stats en vivo ---------- */
 .section-stats { position: relative; padding: clamp(60px, 10vh, 120px) 0 clamp(76px, 13vh, 140px); }
