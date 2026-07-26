@@ -12,8 +12,11 @@ volvieron a comprobar. Los errores concretos:
 - `/enderchest` figura como perk de Demigod cuando es de Titan.
 - `/fly` no aparece en ninguna parte pese a ser el perk estrella de Titan.
 - `/back` figura como perk de Hero cuando lo tiene todo el mundo gratis.
-- La sección «PRÓXIMAMENTE» lista como futuros doce perks que ya están activos.
+- La sección «PRÓXIMAMENTE» marca como futuros perks que ya están activos.
 - Se anuncian «vaults privados» y «chest shops», que están descartados.
+- Se venden cuatro perks que el servidor no entrega: cosméticos y prefijo
+  personalizado no existen para ningún rango, y `/friends` y la recompensa
+  diaria figuran como perk de Hero siendo gratuitos para todos.
 
 A esto se suman dos problemas de credibilidad. La portada dice «miles de
 jugadores» mientras el contador en vivo de la misma página muestra 0/500, y se
@@ -41,28 +44,54 @@ Todos los rangos son acumulativos: cada uno incluye todo lo del anterior.
 | Kits exclusivos | — | 2 | 3 | 6 | 8 |
 | EnderChest premium | — | — | — | `/ec` ampliado · 54 slots | `/ec` ampliado · 2 páginas |
 
-`/back` pasa a la fila de comandos esenciales, que tiene marca en las cinco
-columnas.
+### Gratis para todos los rangos
+
+Estas filas van marcadas en las cinco columnas, Mortal incluido. No son perks de
+pago y anunciarlas como tales es el error que este trabajo corrige:
+
+- Comandos esenciales (15) — `/spawn`, `/tpa`, `/msg`, `/pay`, `/warp`,
+  `/balance` y demás.
+- `/back` — vuelve a tu última muerte o sitio anterior.
+- `/friends` — hasta 20 amigos. Límite plano, igual para todo el mundo.
+- Recompensa diaria — premio por conectarte cada día.
 
 ### Comandos que desbloquea cada rango
 
-- **Hero** — `/hat`, `/afk`, teletransporte aleatorio sin espera ni cooldown,
-  cosméticos, lista de amigos ampliada, recompensa diaria.
+- **Hero** — `/hat`, `/afk`, teletransporte aleatorio sin espera ni cooldown.
 - **Demigod** — `/feed`, `/near`, `/nick` (con colores), `/tpahere`,
   teletransporte instantáneo (sin cuenta atrás).
 - **Titan** — `/fly`, `/heal`, `/repair` (item y armadura), `/workbench`,
   `/tptoggle`, `/ec` ampliado a 54 slots, inmunidad al AFK-kick.
-- **Olympian** — `/anvil`, `/skull`, `/condense`, `/ping`, prefijo
-  personalizado, 2ª página del EnderChest.
+- **Olympian** — `/anvil`, `/skull`, `/condense`, `/ping`, 2ª página del
+  EnderChest.
 
 El teletransporte de Hero y el de Demigod son perks distintos: Hero quita la
 espera y el cooldown del teletransporte aleatorio; Demigod quita la cuenta atrás
 de todos los teletransportes.
 
+Hero se queda con solo tres comandos propios. Su propuesta de valor pasa a
+apoyarse en las cifras —5 homes, ×1.1, 6 protecciones, 2 kits, 1 llave Common
+cada 30 días— y no en la lista de comandos. Es la realidad del rango; inflarla
+con perks inexistentes es justo lo que estamos deshaciendo.
+
 ### Perks eliminados
 
-Fuera de la web por completo: **vaults privados** y **chest shops**. Están
-descartados y no van a existir.
+Fuera de la web por completo. Los dos primeros están descartados por decisión de
+producto; los cuatro siguientes se retiran porque la base de datos de permisos
+demuestra que el servidor no los entrega:
+
+| Perk | Dónde figuraba | Por qué se retira |
+|---|---|---|
+| Vaults privados | PRÓXIMAMENTE | Descartado, no va a existir |
+| Chest shops | PRÓXIMAMENTE | Descartado, no va a existir |
+| Cosméticos | Hero en adelante | El único permiso es `procosmetics.admin`. Ningún rango los concede: ProCosmetics es compra individual |
+| Lista de amigos ampliada | Hero en adelante | ProFriends `config.yml` fija `limits: default: 20`. No hay límites por rango ni en config ni en permisos |
+| Prefijo personalizado | Olympian | Cero usuarios con prefijo propio. Cada rango tiene el suyo, pero personalizado no existe, y choca con la regla de que el namespace de prefijo es exclusivo del rango de pago |
+| Recompensa diaria | Hero en adelante | Es para todos los jugadores. Mismo error que `/back`, y se corrige igual: baja a la fila gratuita |
+
+`/friends` y la recompensa diaria no desaparecen de la web: bajan a la sección
+gratuita con su dato verificado. Cosméticos y prefijo personalizado sí se
+eliminan por completo.
 
 ### Único perk pendiente
 
@@ -85,6 +114,14 @@ fórmula que ya está en producción en `js/tienda.js`.
 
 La oferta de lanzamiento (−50% permanente, −40% mensual, hasta el 17/08) se
 aplica **solo a los rangos**.
+
+El factor ×3,7 es una **decisión deliberada, no una fórmula heredada**. Sitúa el
+punto de equilibrio en el cuarto mes: a partir de ahí el permanente sale más
+barato, así que cualquiera que piense quedarse una temporada lo comprará y no
+generará ingreso recurrente. El estándar del sector está en ×6–×10. Se mantiene
+×3,7 porque el servidor arranca y prioriza caja inmediata sobre MRR. El factor
+vive en una sola constante de `js/tienda.js`, así que revisarlo más adelante es
+cambiar una línea.
 
 ### Llaves de cajas
 
@@ -211,7 +248,8 @@ y `createElement`, y ningún estilo ni script inline.
 
 ## Alcance
 
-Doce páginas en total, seis en español y seis en inglés. Los archivos afectados:
+El sitio tiene doce páginas; este trabajo toca seis, más estilos e
+infraestructura nueva.
 
 **Español**
 - `public/index.html` — copy de credibilidad y visibilidad Java/Bedrock
@@ -225,25 +263,107 @@ Doce páginas en total, seis en español y seis en inglés. Los archivos afectad
 - `public/en/store/index.html` — parte de 48 líneas de retraso respecto a la
   versión española: le faltan las tarjetas de Dracmas y Protección
 
+Las cuatro páginas de rangos y tienda reciben además los atributos
+`data-catalog` que hacen posible el check.
+
 **Estilos**
 - `public/css/rangos.css` — fila destacada de `/fly`
 - `public/css/tienda.css` — rejilla de llaves, packs de Dracmas, clases que
   sustituyen a los estilos inline
 
+**Infraestructura nueva**
+- `data/catalogo.json` — fuente de verdad legible por máquina
+- `tools/check-catalogo.py` — comprobación de coincidencia y cobertura
+- `.github/workflows/check-catalogo.yml` — ejecución en push y PR
+- `deploy.ps1` — envuelve el deploy del README y aborta si el check falla
+- `README.md` — documentar el check y sustituir los tres comandos sueltos por
+  el wrapper
+
 Todo el texto de cara al jugador va en español en la web española y en inglés en
 la inglesa. Los nombres de comandos y de rango se quedan en inglés en ambas.
 
-## Riesgo conocido
+## Comprobación automática del catálogo
 
-Cada perk vive escrito a mano en cuatro sitios: tabla ES, tarjeta ES, tabla EN y
-tarjeta EN. Esa duplicación es la causa raíz del error de `/enderchest` y va a
-seguir ahí después de este trabajo.
+### Por qué un documento no basta
 
-No se resuelve ahora porque la alternativa —renderizar el catálogo con
-JavaScript— sacrificaría el SEO y el funcionamiento sin JS en un sitio estático
-de marketing, que es precisamente su punto fuerte. La mitigación es parcial: los
-precios de rango ya están centralizados en `js/tienda.js` y este documento queda
-como referencia única de los datos verificados.
+Cada dato del catálogo vive escrito a mano en **cinco** sitios: tabla ES,
+tarjeta ES, tabla EN, tarjeta EN y **Tebex**, que es de donde sale el dinero de
+verdad. Esa duplicación es la causa raíz del error de `/enderchest`.
 
-Si el catálogo vuelve a crecer, merece la pena reconsiderar una generación
-estática en tiempo de build.
+Ya hubo antes un documento de referencia única, `Rangos-Hyperions.md`, y el
+catálogo derivó igual: llaves de 1 a 4, protecciones de 2 a 5, `/back` como perk
+de Hero. Un documento registra la deriva, no la impide. Este spec tampoco lo
+haría.
+
+Lo que sí la impide es un check automático, y no exige renderizar con JavaScript
+ni renunciar al SEO.
+
+### La quinta copia está desconectada, no solo desincronizada
+
+Los diez botones de compra apuntan a la raíz de la tienda, sin un solo enlace
+directo a paquete:
+
+```
+10 × https://hyperionsmc.tebex.store
+```
+
+Quien pulsa «Comprar TITAN» aterriza en un escaparate genérico y tiene que
+buscar Titan por su cuenta. Si el precio de Tebex no coincide con el de la web,
+la contradicción aparece en el checkout, que es el peor momento posible. Tebex
+entra en el check como una copia más.
+
+### Diseño del check
+
+**Fuente de verdad legible por máquina.** Un `data/catalogo.json` con las cifras
+por rango, los precios y los tiers de llaves. Este documento explica el porqué;
+el JSON es lo que se compara.
+
+**El HTML declara lo que afirma.** Cada elemento que muestra un dato del
+catálogo lleva un atributo que lo identifica:
+
+```html
+<td class="rg-td rg-val-hero" data-catalog="hero.homes">5</td>
+<span class="td-precio" data-catalog="price.hero.monthly">4,99 €</span>
+```
+
+Así el script no necesita conocer la estructura del HTML ni parsear texto libre,
+que es frágil. Recorre los atributos, busca cada clave en el JSON y compara el
+valor normalizado.
+
+**Dos afirmaciones que verifica:**
+
+1. *Coincidencia* — todo `data-catalog` del HTML cuadra con el JSON.
+2. *Cobertura* — toda clave del JSON aparece al menos en la página española y en
+   la inglesa. Así una traducción olvidada también falla, que es exactamente
+   cómo `/en/store/` se quedó 48 líneas atrás.
+
+**Tebex** se comprueba contra su Headless API pública
+(`/api/accounts/{token}/categories?includePackages=1`), comparando los precios
+con las claves `price.*`. Si la API no responde, el check avisa pero no falla:
+una caída de red no debe bloquear un deploy. Un precio que **sí** responde y no
+coincide falla en duro.
+
+### Dónde se ejecuta
+
+No hay build, ni CI, ni hooks: el deploy son tres comandos `scp` a mano. El
+check se engancha en dos sitios porque cubren cosas distintas:
+
+- **`.github/workflows/check-catalogo.yml`** — en cada push y PR. Cubre lo que
+  entra en git.
+- **`deploy.ps1`** — envuelve los tres comandos del README, ejecuta el check y
+  aborta antes del `scp` si falla. Cubre lo que llega al VPS, que no siempre es
+  lo que está en git.
+
+Solo con la Action se podría desplegar desde local código que nunca la pasó.
+Solo con el script local, un push a `main` entraría sin revisar.
+
+**Herramientas:** Python 3.12 en local y en la Action, sin dependencias externas
+(`json`, `html.parser`, `urllib` de la biblioteca estándar). Evita añadir
+`package.json` a un repo que hoy no tiene ninguno.
+
+### Límite conocido
+
+El check verifica **cifras**, no prosa. Que Hero prometa un comando que no
+existe seguirá siendo invisible para el script: `data-catalog` cubre números y
+precios, no listas de perks. Contra eso la única defensa sigue siendo comparar
+con la base de datos de permisos, como se ha hecho aquí.
