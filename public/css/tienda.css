@@ -594,3 +594,63 @@
   color: var(--teal-bright);
   margin-top: -2px;
 }
+
+/* --- "sin impuestos" junto al precio base --- */
+/* Sin esto, el numero grande no decia que era una base: quedaba ambiguo
+   frente a la linea de abajo, que si aclara "con IVA". */
+.td-precio-tag {
+  align-self: center;
+  margin-right: 7px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-family: 'Montserrat', sans-serif;
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--faint);
+  white-space: nowrap;
+}
+/* Una sola etiqueta por tarjeta: en las filas de pack no cabia y cortaba el
+   texto, porque la tarjeta mide ~180px y ya lleva cantidad, precio y descuento. */
+.td-llave__sinimp {
+  padding: 0 16px 6px;
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.td-llave__tag {
+  margin-left: 6px;
+  font-size: .64rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--faint);
+  white-space: nowrap;
+}
+
+/* La etiqueta va en su propia linea, justo bajo el precio. Intentar meterla
+   en la misma linea que la nota no cabe en las tarjetas de rango (~270px) y
+   quedaba en unas si y en otras no segun lo que ocupara el importe. */
+.td-precio-sub {
+  flex-basis: 100%;
+  margin-top: 4px;
+}
+.td-precio-sub .td-precio-tag {
+  display: inline-block;
+  margin: 0 0 4px;
+}
+.td-precio-sub .td-precio-nota {
+  display: block;
+  flex-basis: auto;
+}
+.td-dracma-pack__sinimp {
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-top: -4px;
+}
