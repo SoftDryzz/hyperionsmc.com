@@ -1,5 +1,5 @@
 import unittest
-from check_catalogo import normalize, flatten, extract_claims, check_match, check_coverage
+from check_catalogo import normalize, flatten, extract_claims, check_match, check_coverage, check_tebex
 
 
 class TestNormalize(unittest.TestCase):
@@ -74,6 +74,33 @@ class TestCheckCoverage(unittest.TestCase):
         self.assertEqual(
             check_coverage({'rango.hero.homes': '5'},
                            {'rango.hero.homes'}, {'rango.hero.homes'}), [])
+
+
+class TestCheckTebex(unittest.TestCase):
+    CAT = {'_tebex': {'apiKey': 'k', 'paquetes': {'precio.hero.mensual': 111}}}
+
+    def test_precio_divergente_falla(self):
+        errs = check_tebex(self.CAT, {'precio.hero.mensual': '4.99'},
+                           fetch=lambda k: {111: 5.99})
+        self.assertEqual(len(errs), 1)
+        self.assertIn('precio.hero.mensual', errs[0])
+
+    def test_precio_correcto_no_da_error(self):
+        self.assertEqual(
+            check_tebex(self.CAT, {'precio.hero.mensual': '4.99'},
+                        fetch=lambda k: {111: 4.99}), [])
+
+    def test_paquete_ausente_en_tebex_falla(self):
+        errs = check_tebex(self.CAT, {'precio.hero.mensual': '4.99'},
+                           fetch=lambda k: {})
+        self.assertEqual(len(errs), 1)
+        self.assertIn('111', errs[0])
+
+    def test_api_caida_avisa_pero_no_falla(self):
+        def caida(k):
+            raise OSError('sin red')
+        self.assertEqual(
+            check_tebex(self.CAT, {'precio.hero.mensual': '4.99'}, fetch=caida), [])
 
 
 if __name__ == '__main__':

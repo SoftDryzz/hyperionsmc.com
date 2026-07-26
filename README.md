@@ -106,6 +106,18 @@ los precios. El HTML declara lo que afirma con atributos `data-catalog`:
 con el JSON, y que toda clave del JSON aparece en la web española y en la
 inglesa. Corre en GitHub Actions en cada push y antes de cada deploy.
 
+El catálogo vive en cinco sitios: las cuatro páginas del repositorio (comparativa
+y tienda, en español e inglés) y **Tebex**, que es de donde sale el dinero. El
+check compara los cinco.
+
+De Tebex se compara `base_price`, sin IVA: el impuesto lo aplica Tebex en el pago
+según el país del comprador, así que el total no es un número único contra el que
+medir. Si la API no responde, el check avisa y sigue — una caída de red no debe
+bloquear un deploy.
+
+La clave `_tebex.apiKey` es la clave Headless pública de solo lectura, la misma
+que el propio Tebex sirve a cualquier visitante del escaparate.
+
 **Para cambiar un precio o una cifra: primero el JSON, después el HTML.**
 Si el check falla, el error está en el HTML.
 

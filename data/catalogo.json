@@ -29,7 +29,38 @@
   },
   "proteccion": { "precio": "22,00 €", "ingame": 31 },
   "_tebex": {
-    "_nota": "Sin enlaces directos a paquete: la tienda es una sola pagina sin rutas. Rellenar con .../package/<id> cuando se saquen los IDs del panel.",
-    "raiz": "https://hyperionsmc.tebex.store"
+    "_nota": "IDs verificados contra la Headless API el 2026-07-26. Cada uno responde 200 en /package/<id>.",
+    "raiz": "https://hyperionsmc.tebex.store",
+    "apiKey": "13v7u-ae3d1af3be72a78c2990fcb8f6dd03c92d82de14",
+    "paquetes": {
+      "precio.hero.permanente":     7564089,
+      "precio.demigod.permanente":  7564092,
+      "precio.titan.permanente":    7564096,
+      "precio.olympian.permanente": 7564104,
+      "precio.hero.mensual":        7564114,
+      "precio.demigod.mensual":     7564116,
+      "precio.titan.mensual":       7564121,
+      "precio.olympian.mensual":    7564122,
+      "llave.common.x1":    7580832,
+      "llave.common.x5":    7580873,
+      "llave.common.x10":   7580875,
+      "llave.rare.x1":      7580878,
+      "llave.rare.x5":      7580883,
+      "llave.rare.x10":     7580888,
+      "llave.epic.x1":      7580890,
+      "llave.epic.x5":      7580891,
+      "llave.epic.x10":     7580895,
+      "llave.legendary.x1": 7580899,
+      "llave.legendary.x5": 7580903,
+      "llave.legendary.x10":7580905,
+      "llave.mythic.x1":    7580906,
+      "llave.mythic.x5":    7580907,
+      "llave.mythic.x10":   7580909,
+      "dracma.p10.precio":  7580911,
+      "dracma.p25.precio":  7580913,
+      "dracma.p50.precio":  7580915,
+      "dracma.p100.precio": 7580918,
+      "proteccion.precio":  7580722
+    }
   }
 }

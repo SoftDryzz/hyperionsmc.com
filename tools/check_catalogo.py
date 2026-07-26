@@ -10,6 +10,7 @@ Solo biblioteca estandar. Salida 0 si todo cuadra, 1 si no.
 import json
 import re
 import sys
+import urllib.request
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -119,8 +120,59 @@ def check_coverage(flat, claims_es, claims_en):
     return errores
 
 
+TEBEX_API = 'https://headless.tebex.io/api/accounts/{key}/categories?includePackages=1'
+
+
+def fetch_tebex(api_key):
+    """Devuelve {id_paquete: base_price} desde la Headless API publica."""
+    url = TEBEX_API.format(key=api_key)
+    with urllib.request.urlopen(url, timeout=15) as r:
+        datos = json.loads(r.read().decode('utf-8'))
+    precios = {}
+    for categoria in datos.get('data', []):
+        for paquete in categoria.get('packages', []):
+            precios[paquete['id']] = paquete['base_price']
+    return precios
+
+
+def check_tebex(catalog, flat, fetch=fetch_tebex):
+    """Compara el precio base de cada paquete de Tebex con el catalogo.
+
+    Se compara base_price, no total_price: Tebex anade el IVA segun el pais
+    del comprador, asi que el total no es un valor unico contra el que medir.
+
+    Si la API no responde se avisa y se devuelve [] — una caida de red no debe
+    bloquear un deploy. Un precio que si responde y no cuadra falla en duro.
+    """
+    tebex = catalog.get('_tebex', {})
+    paquetes = tebex.get('paquetes', {})
+    if not paquetes:
+        return []
+    try:
+        precios = fetch(tebex.get('apiKey', ''))
+    except Exception as e:
+        print(f'AVISO: no se pudo consultar Tebex ({e}). Se omite esa comprobacion.')
+        return []
+
+    errores = []
+    for clave, pkg_id in sorted(paquetes.items()):
+        if clave not in flat:
+            errores.append(f'tebex: "{clave}" no existe en el catalogo')
+        elif pkg_id not in precios:
+            errores.append(f'tebex: el paquete {pkg_id} ("{clave}") no esta en la tienda')
+        else:
+            esperado = flat[clave]
+            real = normalize(f'{float(precios[pkg_id]):.2f} €')
+            if real != esperado:
+                errores.append(
+                    f'tebex: el paquete {pkg_id} ("{clave}") cuesta {real}, '
+                    f'el catalogo dice {esperado}')
+    return errores
+
+
 def main():
-    flat = flatten(json.loads(CATALOGO.read_text(encoding='utf-8')))
+    catalogo = json.loads(CATALOGO.read_text(encoding='utf-8'))
+    flat = flatten(catalogo)
     errores, vistas_es, vistas_en = [], set(), set()
 
     for grupo, acumulador in ((ES_FILES, vistas_es), (EN_FILES, vistas_en)):
@@ -134,6 +186,7 @@ def main():
             acumulador.update(claims)
 
     errores += check_coverage(flat, vistas_es, vistas_en)
+    errores += check_tebex(catalogo, flat)
 
     if errores:
         print(f'FALLO: {len(errores)} problema(s) de catalogo\n')
