@@ -3,8 +3,8 @@
    (tienda, rangos y los anuncios de portada). */
 window.HY_SALE = {
   end: Date.parse('2026-08-17T23:59:59+02:00'),
-  perm: 0.50,     /* descuento en pagos permanentes */
-  monthly: 0.40,  /* descuento en pagos mensuales */
+  perm: 0.20,     /* descuento en pagos permanentes */
+  monthly: 0.15,  /* descuento en pagos mensuales */
 };
 window.HY_SALE.active = function () { return Date.now() < this.end; };
 
