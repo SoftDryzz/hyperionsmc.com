@@ -447,7 +447,9 @@ button { font: inherit; }
 .site-footer__legal { font-size: .76rem; opacity: .8; }
 
 /* ---------- Anuncio de oferta (píldora) ---------- */
-.sale-pill-row { margin: -6px 0 clamp(18px, 3.5vh, 28px); animation: hy-rise .7s cubic-bezier(.2,.7,.2,1) .05s both; }
+/* El margen superior era -6px y la pildora pisaba la ultima linea del texto
+   del hero cuando este ocupa tres lineas. Se separa en positivo. */
+.sale-pill-row { margin: clamp(14px, 2vh, 20px) 0 clamp(18px, 3.5vh, 28px); animation: hy-rise .7s cubic-bezier(.2,.7,.2,1) .05s both; }
 .sale-pill {
   display: inline-flex; align-items: center; gap: 8px; max-width: 100%;
   padding: 8px 16px; border-radius: 100px;
