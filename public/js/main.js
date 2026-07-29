@@ -132,7 +132,9 @@
 
       if (data && data.online === true) {
         const boundedMax = toBoundedInt(data.players && data.players.max, 1, MAX_PLAYERS_CAP);
-        const max = boundedMax === null ? 500 : boundedMax;
+        /* 125 es el max real de Velocity. Solo se usa si la API no responde:
+           cuando lo hace, manda su valor. */
+        const max = boundedMax === null ? 125 : boundedMax;
         const boundedOnline = toBoundedInt(data.players && data.players.online, 0, max);
         const online = boundedOnline === null ? 0 : boundedOnline;
 
