@@ -29,8 +29,14 @@ Son condiciones del encargo, no preferencias de estilo:
    Las cifras van en tablas, no enterradas en párrafos.
 5. **Nada de promesas de obtención sin confirmar.** Si un sistema existe pero no
    está documentado cómo se consigue, se dice.
-6. **La wiki no menciona la modalidad Prison**, que no está lanzada. La regla es
-   solo para la wiki: la sección de Prison OP de la portada se queda como está.
+6. **Se ve en móvil.** El buscador encuentra por comando (`/ec`) y por concepto
+   («bóveda», «vault»).
+
+Y una séptima que **no viene del encargo sino del owner** (2026-07-29), anotada
+aparte para que no se confunda con las anteriores:
+
+7. **La wiki no menciona la modalidad Prison**, que no está lanzada. Aplica solo
+   a la wiki: la sección de Prison OP de la portada se queda como está.
 
 ## Marca
 
@@ -137,8 +143,40 @@ cabecera, sin pie. Empieza directamente por el primer `<h2>`: el `<h1>` con el
 título lo pone el generador desde `paginas.json`, para que no pueda
 desincronizarse del que aparece en el menú y en el buscador.
 
-Un cuerpo no puede contener la secuencia `{{` salvo para invocar una clave del
-catálogo. Si hiciera falta escribirla literalmente se escapa como `{{{{`.
+### Las tres formas de `{{ }}`
+
+El generador reconoce exactamente tres, y falla ante cualquier otra:
+
+| Forma | Produce |
+|---|---|
+| `{{clave.del.catalogo}}` | `<span data-catalog="clave.del.catalogo">valor</span>` |
+| `{{nexo.vida(tier, miembros)}}` | El número calculado, sin `data-catalog` |
+| `{{{{` | Un `{{` literal, sin intentar resolver nada |
+
+El desescapado de `{{{{` ocurre **después** de resolver las otras dos, para que
+un literal escapado no pueda convertirse en una invocación. `}}` no necesita
+escape: fuera de una invocación abierta es texto normal.
+
+**Por qué existe la forma calculada.** Las tablas del Nexo contienen unas 25
+cifras que son cuentas, no datos: `1.6`, `3.1`, `6.1`, los topes por tier, los
+porcentajes de ventaja. Ninguna puede salir de una clave del catálogo. Si se
+teclean a mano se teclean **dos veces, una por idioma**, que es exactamente el
+riesgo que la inyección existe para eliminar. `{{nexo.vida(T5, 4)}}` lo calcula
+el generador desde `baseT5`, `porMiembro` y `tope`, y sale idéntico en los dos
+idiomas por construcción.
+
+No lleva `data-catalog` porque no hay clave que verificar: el valor es una
+función de otras claves que sí lo llevan.
+
+### Formato decimal por idioma
+
+El catálogo guarda `10.0` con punto. El español escribe `10,0` con coma, igual
+que el resto del sitio escribe `4,99 €`.
+
+El generador formatea los decimales según el idioma de la página: coma en `/wiki/`
+y punto en `/en/wiki/`. El verificador no se entera porque `normalize()` ya
+equipara `10,0` y `10.0` — es la misma función que permite que la tienda muestre
+`4,99 €` y `€4.99` para la misma clave.
 
 ### Qué envuelve el generador
 
@@ -154,10 +192,51 @@ La plantilla produce, en este orden:
 6. El cuerpo del archivo.
 7. Pie del sitio, con el enlace de Discord.
 
+### La página índice
+
+Es la única sin slug. En `paginas.json` lleva `"slug": ""` en ambos idiomas y
+`"seccion": null`, y el generador la escribe en `public/wiki/index.html` y
+`public/en/wiki/index.html` — sin carpeta intermedia.
+
+Tiene cuerpo propio como cualquier otra, en `wiki/es/index.html` y
+`wiki/en/index.html`. Lo que la distingue es que el generador le añade, después
+del cuerpo, el listado completo de secciones y páginas.
+
 ### Dónde cuelga la wiki
 
 Entrada nueva **Wiki** en la cabecera del sitio, junto a «Rangos», y en la
 columna «Servidor» del pie. En los dos idiomas.
+
+### El punto de entrada en móvil
+
+La cabecera no vale por sí sola. `public/css/styles.css` oculta `.nav-link` por
+debajo de 460 px —se añadió el 29/07 porque «Rangos» desbordaba— así que una
+entrada «Wiki» al lado sería **invisible en cualquier teléfono**. El encargo pone
+el móvil como criterio de éxito.
+
+Se añade un **botón de menú** en la cabecera, visible solo por debajo de 460 px,
+que despliega Rangos, Wiki y Tienda. Resuelve de paso el problema que ya existe:
+hoy «Rangos» solo se alcanza desde el pie en móvil.
+
+Requisitos: se abre y se cierra con teclado, `aria-expanded` en el botón, y se
+cierra al pulsar fuera o al navegar. Sin `innerHTML` y sin estilos inline, como
+todo lo demás.
+
+### Dónde vive la plantilla y qué queda duplicado
+
+La plantilla es un archivo propio, `wiki/plantilla.html`, con marcadores que el
+generador rellena. No se incrusta en el código del generador: así se puede
+editar el cascarón sin tocar Python.
+
+**Queda una duplicación conocida.** Esa plantilla reproduce la cabecera y el pie
+que siguen escritos a mano en las 12 páginas actuales. Un cambio de cascarón hay
+que aplicarlo en dos sitios, y los tres cambios de este mismo spec —lema, entrada
+«Wiki» y menú móvil— son justo de ese tipo.
+
+No se resuelve ahora: absorber las 12 páginas al generador es un trabajo aparte,
+con su propio riesgo sobre páginas que ya funcionan y posicionan. Queda anotado
+como deuda, y el `git diff --exit-code` de la Action al menos garantiza que la
+mitad generada no se desvía en silencio.
 
 ### El generador
 
@@ -316,6 +395,7 @@ saber antes de comprarlo:
 | 1 | 1.6 | 3.5 | +119% |
 | 4 | 3.1 | 5.0 | +61% |
 | 10 | 6.1 | 8.0 | +31% |
+| 14 | 8.1 | 10.0 | +23% |
 | 18 | 10.0 | 10.0 | **0%** |
 
 **A partir de 18 miembros los dos llegan al tope y el T5 no aporta vida.** Es un
@@ -407,6 +487,17 @@ Contenido de cada una:
 - **Kits y misiones** — fusionadas: el material da dos frases de cada una.
 - **Comandos** — los 20 confirmados, con qué hace cada uno y quién puede usarlo.
 
+### Qué pasa con «Ganar dinero»
+
+Es una sección de la estructura propuesta en el encargo y **no tiene página
+propia en la fase 1**. Su contenido está repartido, no perdido: `/jobs` y
+`/missions` en «Primeros pasos» y en «Kits y misiones», `/shop`, `/sell` y
+`/worth` en «Primeros pasos», y las subastas en su propia página.
+
+Se agrupará cuando haya material que hoy no existe —tablas de precios de `/shop`,
+niveles de `/jobs`— y no antes: una página que solo enlaza a otras tres no
+resuelve ninguna duda.
+
 ### Fuera de la fase 1
 
 - **La Fosa.** Solo quedaba un dato propio —los traidores van a Prisión— y la
@@ -421,8 +512,12 @@ Contenido de cada una:
 
 ### Fase 2
 
-Los tres anteriores cuando haya material, más protecciones de base y clanes en
-detalle: de momento viven dentro de «Primeros pasos» con una línea cada uno.
+Cuando haya material: **Cajas**, **Elevadores** y **Amigos**, más protecciones de
+base y clanes en detalle —hoy viven dentro de «Primeros pasos» con una línea cada
+uno— y la agrupación de «Ganar dinero».
+
+**La Fosa no vuelve en la fase 2** mientras rija la regla 7: su único dato propio
+es que los traidores van a Prisión.
 
 ## Buscador
 
@@ -474,8 +569,45 @@ function counterpart() {
 }
 ```
 
+**Hace falta una guarda contra bucle.** El mapa codificado no podía devolver la
+ruta actual; un `href` leído del documento sí, si una página se declara como su
+propia alternativa o el generador cruza mal un `par`. Sin guarda, eso es una
+recarga infinita:
+
+```js
+const destino = counterpart();
+const actual = location.pathname.endsWith('/') ? location.pathname : location.pathname + '/';
+if (destino !== actual) location.replace(destino);
+```
+
+Y `build_wiki.py` valida que los dos miembros de cada `par` se enlazan
+mutuamente, para que el caso no llegue a producirse.
+
 El archivo lo comparten las 12 páginas actuales, así que el cambio de idioma se
 verifica **una por una** antes de desplegar.
+
+## Metadatos de cada página generada
+
+El generador los compone; ninguno se escribe a mano. Sin esto, quien implemente
+tendría que inventarlos para 26 archivos.
+
+| Etiqueta | Contenido |
+|---|---|
+| `<html lang>` | `es` o `en` |
+| `<title>` | `<titulo> — Wiki de Hyperions MC` / `— Hyperions MC Wiki` |
+| `<meta name="description">` | El `resumen` de `paginas.json` |
+| `<link rel="canonical">` | La URL absoluta de la propia página |
+| `<link rel="alternate" hreflang="es">` | La URL absoluta de su pareja española |
+| `<link rel="alternate" hreflang="en">` | La URL absoluta de su pareja inglesa |
+| `<link rel="alternate" hreflang="x-default">` | Apunta a la inglesa, como el resto del sitio |
+| `og:type` · `og:site_name` · `og:image` | Los mismos valores que el resto del sitio |
+| `og:title` · `og:description` · `og:url` | Título, resumen y canónica de la página |
+| `og:locale` | `es_ES` o `en_US` |
+
+**Los `<link rel="alternate">` van antes de `<script src="/js/lang.js">`**, y el
+generador lo garantiza. No es cosmético: `lang.js` los lee de forma síncrona
+antes del primer pintado, y si el script se adelantara el fallo sería silencioso
+y solo visible en producción.
 
 ## Estructura de direcciones
 
@@ -530,6 +662,19 @@ sin la cual la wiki no se verifica ni se despliega.
    tests del generador. Hoy solo ejecuta `test_check_catalogo` por nombre, así
    que un `tools/test_build_wiki.py` nuevo **no se ejecutaría en CI** aunque sí
    en el deploy.
+
+## Pruebas
+
+`tools/test_build_wiki.py`, con la misma técnica que los tests existentes:
+biblioteca estándar, sin red y sin tocar archivos reales.
+
+Cubre lo que el generador promete rechazar —clave inexistente, cuerpo que falta,
+slug duplicado, archivo huérfano, página sin pareja, `par` mal cruzado— más la
+sustitución en sus tres formas y el formateo decimal por idioma.
+
+`deploy.ps1` ya los ejecutaría, porque usa `unittest discover`. **La Action no**:
+hoy invoca `test_check_catalogo` por nombre. Cambiar eso es parte del punto 6 de
+«Cambios fuera de la wiki».
 
 ## Decisiones registradas
 
