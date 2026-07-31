@@ -2,7 +2,7 @@
 
 **Fecha:** 2026-07-29
 **Estado:** aprobado, pendiente de plan de implementación
-**Encargo original:** `wiki-brief.md` (raíz del repositorio)
+**Encargo:** `docs/wiki-encargo.md`
 
 ## Problema
 
@@ -49,14 +49,28 @@ Dos orígenes, con reparto claro:
 | Para esto | Manda |
 |---|---|
 | Cifras de rango, precios de tienda, llaves | `data/catalogo.json` |
-| Mecánicas del servidor (Nexo, muerte, subastas, ender, cosméticos) | El prompt del encargo, transcrito de los carteles in-game |
+| Mecánicas del servidor (Nexo, muerte, subastas, ender, cosméticos) | `docs/wiki-encargo.md`, transcrito de los carteles in-game |
 
 Ninguna página de la wiki puede contradecir a `data/catalogo.json`. Cuando una
 cifra ya vive ahí, la wiki **no la reescribe**: la inyecta.
 
-Verificado que el contenido nuevo no contradice lo publicado: huecos de subasta
-3→20, homes 5→40, multiplicadores ×1.1→×2.0, una llave cada 30 días y el
-EnderChest de Titan a 1 página coinciden con `catalogo.json`.
+### Dónde el encargo y el catálogo no dicen lo mismo
+
+El encargo describe los rangos de pago; el catálogo describe los cinco rangos.
+Cuatro puntos difieren y **manda el catálogo**, que es más preciso:
+
+| El encargo dice | El catálogo dice | Qué escribe la wiki |
+|---|---|---|
+| homes 5 → 40 | 1 · 5 · 10 · 20 · 40 | El reparto completo, con Mortal en 1 |
+| multiplicador ×1.1 → ×2.0 | ×1.0 · ×1.1 · ×1.25 · ×1.5 · ×2.0 | El reparto completo, con Mortal en ×1.0 |
+| «una llave cada 30 días» | Demigod 2 Common · Olympian 1 Epic + 1 Legendary | «Llaves cada 30 días», en plural y sin número |
+| huecos de subasta 3 → 20 | 3 · 5 · 8 · 12 · 20 | El reparto completo |
+
+La wiki nunca escribe «una llave»: Demigod recibe dos y Olympian dos de tipos
+distintos. El sitio publicado ya lo dice así.
+
+Las cifras del EnderChest **no están en el catálogo**: entran ahora como claves
+`wiki.ec.*`. No había nada con lo que contrastarlas.
 
 ## Arquitectura
 
@@ -221,9 +235,51 @@ especial.
 | `wiki.ec.precio2` | 34 💎 |
 | `wiki.ec.precio3` | 58 💎 |
 
-**Toda clave añadida tiene que usarse en la fase 1.** La comprobación de
-cobertura exige que cada clave aparezca en alguna página española y en alguna
-inglesa; una clave declarada y sin usar rompe el check desde el primer build.
+### El verificador tiene que ver las páginas de la wiki
+
+`tools/check_catalogo.py` lleva la lista de archivos escrita a mano:
+
+```python
+ES_FILES = ['public/index.html', 'public/rangos/index.html', 'public/tienda/index.html']
+EN_FILES = ['public/en/index.html', 'public/en/ranks/index.html', 'public/en/store/index.html']
+```
+
+Las páginas generadas no están ahí. Añadir las 28 claves sin tocar ese archivo
+produce **56 errores de cobertura** —28 claves × 2 idiomas— y `deploy.ps1` aborta.
+Comprobado ejecutándolo.
+
+Las dos listas pasan a construirse por patrón, de modo que cualquier página
+futura entre sola:
+
+```python
+ES_FILES = ['public/index.html', 'public/rangos/index.html', 'public/tienda/index.html'] \
+    + sorted(str(p.relative_to(RAIZ)) for p in (RAIZ / 'public/wiki').rglob('index.html'))
+```
+
+Y su equivalente para `public/en/wiki`.
+
+**Las dos mitades del verificador no valen lo mismo sobre HTML generado**, y
+conviene no confundirlas:
+
+- La **coincidencia** (que el valor del HTML cuadre con el JSON) no puede fallar
+  sobre una página generada: el generador acaba de sacar ese valor de ese JSON.
+  Es redundante, y es a lo que se refiere el apartado «Integración» cuando dice
+  que sería una garantía aparente.
+- La **cobertura** (que cada clave aparezca en ES y en EN) sí aporta: detecta una
+  clave declarada y nunca usada, o usada solo en un idioma. Es la que obliga a
+  que el reparto de abajo se cumpla de verdad.
+
+**Toda clave añadida tiene que usarse en la fase 1**, o la cobertura falla desde
+el primer build.
+
+Reparto de las 28:
+
+| Claves | Página que las usa |
+|---|---|
+| `wiki.nexo.*` (15) | Las tres del Nexo |
+| `wiki.muerte.*` (2) · `wiki.bounty.*` (3) · `wiki.combatlog.clon` | Matar y morir |
+| `wiki.subasta.*` (2) | Casa de subastas |
+| `wiki.ec.*` (5) | Bóveda del Ender |
 
 Los huecos de subasta no se añaden: ya existen como `rango.*.subastas`.
 
@@ -328,7 +384,7 @@ Va en «Cómo se pierde», que es donde el jugador llega con la duda.
 | objetos | Kits y misiones | `kits-y-misiones` | `kits-and-missions` |
 | referencia | Comandos | `comandos` | `commands` |
 
-Veintiséis archivos generados. Seis secciones: `empezar`, `base`, `combate`,
+Veintiséis archivos generados. Siete secciones: `empezar`, `base`, `combate`,
 `progresion`, `economia`, `objetos` y `referencia`.
 
 Contenido de cada una:
@@ -457,12 +513,23 @@ de producirlo desde ese mismo catálogo— y sería una garantía aparente.
 
 ## Cambios fuera de la wiki
 
-Tres, todos derivados de decisiones tomadas con el owner:
+Seis. Los tres primeros son de contenido; los tres últimos son la infraestructura
+sin la cual la wiki no se verifica ni se despliega.
 
 1. **El lema se unifica** a «Tu leyenda comienza aquí» / «Your legend starts
-   here» en la portada, sustituyendo a «El Olimpo de los Supervivientes».
+   here». Vive en tres sitios por idioma: el `og:title`, el titular del hero y
+   el pie (`footer-brand__desc`, en las 12 páginas). Los tres cambian.
 2. **Entrada «Wiki»** en la cabecera y en el pie de las 12 páginas actuales.
+   Ver «El punto de entrada en móvil», porque la cabecera no vale por sí sola.
 3. **`lang.js`** deja de usar su mapa de rutas.
+4. **`tools/check_catalogo.py`** — las listas de archivos pasan a construirse por
+   patrón para incluir la wiki.
+5. **`deploy.ps1`** — regenera la wiki antes de comprobar nada. Hoy no genera.
+6. **`.github/workflows/check-catalogo.yml`** — regenera, comprueba con
+   `git diff --exit-code` que lo generado coincide con lo commiteado, y corre los
+   tests del generador. Hoy solo ejecuta `test_check_catalogo` por nombre, así
+   que un `tools/test_build_wiki.py` nuevo **no se ejecutaría en CI** aunque sí
+   en el deploy.
 
 ## Decisiones registradas
 
