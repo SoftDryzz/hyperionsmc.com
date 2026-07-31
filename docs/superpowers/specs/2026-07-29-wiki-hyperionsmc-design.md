@@ -245,6 +245,31 @@ La fórmula completa es **base del tier + 0.5 por miembro**, con tope en 10.0:
 Esa tabla va en «Qué es el Nexo». Es la información que un jugador busca de
 verdad —cuánta vida tengo y cuánta me falta— y responde de un vistazo.
 
+El Tier 5 se marca como **de pago**, con enlace a `/tienda/`. El encargo obliga
+a decir cómo se obtiene cada cosa, y ocultarlo dejaría a medias justo a quien
+está haciendo la cuenta de cuánto aguanta su base.
+
+### Lo que el Tier 5 cambia de verdad
+
+Sube la vida inicial y el área protegida; nada más. Su peso depende del tamaño
+del clan, y conviene que la wiki lo diga porque es lo que el jugador quiere
+saber antes de comprarlo:
+
+| Miembros | Tiers 1–3 | Tier 5 | Ventaja |
+|---|---|---|---|
+| 1 | 1.6 | 3.5 | +119% |
+| 4 | 3.1 | 5.0 | +61% |
+| 10 | 6.1 | 8.0 | +31% |
+| 18 | 10.0 | 10.0 | **0%** |
+
+**A partir de 18 miembros los dos llegan al tope y el T5 no aporta vida.** Es un
+refuerzo para quien juega solo o en grupo pequeño, no una ventaja permanente.
+
+Queda anotado que esto convive con la frase «nunca poder en PvP» de la portada.
+El owner lo considera una mejora de protección de terreno y no una ventaja de
+combate, y la portada se queda como está. La tabla de arriba permite a cualquiera
+juzgarlo por su cuenta, que es lo que corresponde a una wiki.
+
 ### La regla del tope, redactada con cuidado
 
 El material recibido dice «tope 10.0» y «a partir de 20 miembros ya no suma».
