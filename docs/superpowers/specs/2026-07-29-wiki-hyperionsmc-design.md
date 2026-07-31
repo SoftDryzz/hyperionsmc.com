@@ -29,6 +29,18 @@ Son condiciones del encargo, no preferencias de estilo:
    Las cifras van en tablas, no enterradas en párrafos.
 5. **Nada de promesas de obtención sin confirmar.** Si un sistema existe pero no
    está documentado cómo se consigue, se dice.
+6. **La wiki no menciona la modalidad Prison**, que no está lanzada. La regla es
+   solo para la wiki: la sección de Prison OP de la portada se queda como está.
+
+## Marca
+
+- **Lema:** «Tu leyenda comienza aquí» / «Your legend starts here». **Se unifica
+  en toda la web**: la portada pasa a usarlo en lugar de «El Olimpo de los
+  Supervivientes».
+- **Discord:** `discord.gg/w4aDfwE68`, el que ya está publicado en las 42
+  apariciones del repositorio. El enlace que aparecía en el prompt
+  (`szhxEdmQv9`) queda descartado.
+- **Tienda:** las páginas existentes `/tienda/` y `/en/store/`.
 
 ## Fuente de verdad
 
@@ -37,11 +49,14 @@ Dos orígenes, con reparto claro:
 | Para esto | Manda |
 |---|---|
 | Cifras de rango, precios de tienda, llaves | `data/catalogo.json` |
-| Mecánicas del servidor (ender, muerte, bounty, cosméticos) | `wiki-brief.md`, transcrito de los carteles in-game |
+| Mecánicas del servidor (Nexo, muerte, subastas, ender, cosméticos) | El prompt del encargo, transcrito de los carteles in-game |
 
 Ninguna página de la wiki puede contradecir a `data/catalogo.json`. Cuando una
-cifra ya vive ahí, la wiki **no la reescribe**: la inyecta (ver «Las cifras se
-inyectan»).
+cifra ya vive ahí, la wiki **no la reescribe**: la inyecta.
+
+Verificado que el contenido nuevo no contradice lo publicado: huecos de subasta
+3→20, homes 5→40, multiplicadores ×1.1→×2.0, una llave cada 30 días y el
+EnderChest de Titan a 1 página coinciden con `catalogo.json`.
 
 ## Arquitectura
 
@@ -49,8 +64,8 @@ inyectan»).
 
 Cada página del sitio actual es un 52% de plantilla repetida —cabecera, pie y
 metadatos idénticos— medido sobre `/soporte/`: 7,5 KB de contenido real frente a
-8 KB de cascarón. Con 12 páginas se lleva; la wiki completa son ~29 páginas por
-dos idiomas, y copiar 58 cascarones garantiza que se desincronicen.
+8 KB de cascarón. Con 12 páginas se lleva; la wiki son 13 páginas por dos
+idiomas solo en la fase 1, y copiar 26 cascarones garantiza que se desincronicen.
 
 El generador elimina esa copia sin renunciar a nada: la salida sigue siendo HTML
 estático, indexable y funcional sin JavaScript.
@@ -64,9 +79,9 @@ wiki/
 └─ en/<slug>.html
 ```
 
-`paginas.json` reúne los metadatos de todas las páginas en un único archivo, en
-vez de repartirlos en cabeceras por documento. Así la estructura de la wiki se ve
-de un vistazo y el menú se genera de ahí.
+`paginas.json` reúne los metadatos en un único archivo, en vez de repartirlos en
+cabeceras por documento. Así la estructura de la wiki se ve de un vistazo y el
+menú se genera de ahí.
 
 ```json
 {
@@ -101,20 +116,15 @@ cambio de idioma no saque al visitante de donde estaba.
 
 ### El cuerpo se escribe en HTML
 
-Sin Markdown y sin parser. La decisión y su motivo constan en «Decisiones
-registradas»; en resumen: un parser propio es la pieza más frágil que se puede
-meter en un generador, y añadir una dependencia por comodidad de sintaxis no
-compensa cuando el autor puede usar directamente las clases de tabla que el sitio
-ya tiene.
+Sin Markdown y sin parser. El motivo consta en «Decisiones registradas».
 
 Cada archivo contiene solo lo que va dentro del artículo. Sin `<html>`, sin
 cabecera, sin pie. Empieza directamente por el primer `<h2>`: el `<h1>` con el
-título de la página lo pone el generador desde `paginas.json`, para que no pueda
+título lo pone el generador desde `paginas.json`, para que no pueda
 desincronizarse del que aparece en el menú y en el buscador.
 
 Un cuerpo no puede contener la secuencia `{{` salvo para invocar una clave del
-catálogo. Si algún día hace falta escribirla literalmente, se escapa como
-`{{{{`; el generador la convierte en `{{` y no intenta resolverla.
+catálogo. Si hiciera falta escribirla literalmente se escapa como `{{{{`.
 
 ### Qué envuelve el generador
 
@@ -126,16 +136,14 @@ La plantilla produce, en este orden:
    la wiki desde Google, no siempre por la portada.
 4. **Migas de pan**: Wiki › Sección › Página.
 5. `<h1>` con el título y, debajo, el resumen de `paginas.json`. Es la respuesta
-   inmediata que pide el brief: la página abre con el dato, no con una
-   introducción.
+   inmediata que pide el brief.
 6. El cuerpo del archivo.
-7. Pie del sitio, el mismo que el resto.
+7. Pie del sitio, con el enlace de Discord.
 
 ### Dónde cuelga la wiki
 
 Entrada nueva **Wiki** en la cabecera del sitio, junto a «Rangos», y en la
-columna «Servidor» del pie. Ambas en los dos idiomas. Son los dos únicos sitios
-del resto de la web que hay que tocar.
+columna «Servidor» del pie. En los dos idiomas.
 
 ### El generador
 
@@ -146,34 +154,54 @@ del resto de la web que hay que tocar.
 - `public/js/wiki-index.js` con el índice del buscador
 
 **Falla y no genera nada** si encuentra: una clave `{{...}}` que no existe en el
-catálogo, un cuerpo que falta, un slug duplicado, un archivo de cuerpo que no
-está declarado en `paginas.json`, o una página sin su pareja en el otro idioma.
+catálogo, un cuerpo que falta, un slug duplicado, un archivo de cuerpo no
+declarado en `paginas.json`, o una página sin su pareja en el otro idioma.
 
 ### Las cifras se inyectan
 
 En el cuerpo se escribe la clave, nunca el número:
 
 ```html
-<td>{{rango.hero.homes}}</td>
+<td>{{wiki.nexo.tope}}</td>
 ```
 
-El generador emite `<span data-catalog="rango.hero.homes">5</span>` con el valor
-tomado del catálogo. **El autor no puede teclear mal una cifra porque no la
-teclea.** El atributo `data-catalog` deja además la página cubierta por
-`tools/check_catalogo.py`, igual que el resto del sitio.
+El generador emite `<span data-catalog="wiki.nexo.tope">10.0</span>` con el valor
+del catálogo.
 
-### Cifras nuevas que entran al catálogo
+Esto importa especialmente aquí porque **cada cifra aparece dos veces, una por
+idioma**. Que la página española diga 40 min y la inglesa 45 es un fallo
+plausible y silencioso; inyectando, no puede ocurrir.
 
-Del brief salen datos que hoy no están vigilados en ningún sitio. Se añaden a
-`data/catalogo.json` bajo `wiki`:
+## Cifras que entran al catálogo
+
+Bajo la clave `wiki`. Todas son idénticas en ambos idiomas —cifras, símbolos y
+unidades—, así que la comprobación de cobertura las cubre sin tratamiento
+especial.
+
+### Nexo
 
 | Clave | Valor |
 |---|---|
-| `wiki.ec.paginas` | 3 |
-| `wiki.ec.slots` | 54 |
-| `wiki.ec.precio1` | 20 💎 |
-| `wiki.ec.precio2` | 34 💎 |
-| `wiki.ec.precio3` | 58 💎 |
+| `wiki.nexo.baseT13` | 1.1 |
+| `wiki.nexo.baseT4` | 2.1 |
+| `wiki.nexo.baseT5` | 3.0 |
+| `wiki.nexo.porMiembro` | 0.5 |
+| `wiki.nexo.tope` | 10.0 |
+| `wiki.nexo.pvp` | −1.0 |
+| `wiki.nexo.mob` | −0.5 |
+| `wiki.nexo.netherMult` | ×1.5 |
+| `wiki.nexo.endMult` | ×2 |
+| `wiki.nexo.raidMin` | 40 min |
+| `wiki.nexo.regenMin` | 60 min |
+| `wiki.nexo.ofrendaDiamantes` | 8 |
+| `wiki.nexo.ofrendaResta` | 1 min |
+| `wiki.nexo.ofrendaTope` | 20 min |
+| `wiki.nexo.gracia` | 24 h |
+
+### Combate
+
+| Clave | Valor |
+|---|---|
 | `wiki.muerte.penalizacion` | 5% |
 | `wiki.muerte.cooldown` | 15 min |
 | `wiki.bounty.minimo` | 100 |
@@ -181,24 +209,139 @@ Del brief salen datos que hoy no están vigilados en ningún sitio. Se añaden a
 | `wiki.bounty.autocabeza` | 1% |
 | `wiki.combatlog.clon` | 45 s |
 
-Todas son idénticas en ambos idiomas —cifras, símbolos y unidades—, así que la
-comprobación de cobertura las cubre sin tratamiento especial.
+### Subastas y bóveda
 
-**Toda clave que se añada tiene que usarse en la fase 1.** La comprobación de
-cobertura exige que cada clave del catálogo aparezca en alguna página española y
-en alguna inglesa; una clave declarada y sin usar rompe el check desde el primer
-build. Reparto en la fase 1:
-
-| Claves | Página que las usa |
+| Clave | Valor |
 |---|---|
-| `wiki.ec.*` (5) | Bóveda del Ender |
-| `wiki.muerte.*` (2) · `wiki.bounty.*` (3) · `wiki.combatlog.clon` | Matar y morir |
+| `wiki.subasta.comision` | 5% |
+| `wiki.subasta.duracion` | 48 h |
+| `wiki.ec.paginas` | 3 |
+| `wiki.ec.slots` | 54 |
+| `wiki.ec.precio1` | 20 💎 |
+| `wiki.ec.precio2` | 34 💎 |
+| `wiki.ec.precio3` | 58 💎 |
 
-`wiki.combatlog.clon` va en «Matar y morir» y no en «La Fosa», donde el brief lo
-coloca. El clon punible por desconectarse es una consecuencia del combate, no una
-regla de La Fosa, y encaja mejor junto a la penalización por muerte y al bounty.
-Deja además a La Fosa con un único dato —los traidores van a Prisión—, lo que
-confirma que no da para página propia todavía.
+**Toda clave añadida tiene que usarse en la fase 1.** La comprobación de
+cobertura exige que cada clave aparezca en alguna página española y en alguna
+inglesa; una clave declarada y sin usar rompe el check desde el primer build.
+
+Los huecos de subasta no se añaden: ya existen como `rango.*.subastas`.
+
+## El Nexo
+
+Es el sistema más complejo del servidor y el que más tráfico va a tener. Tres
+páginas en la sección `base`.
+
+### La vida base depende del tier de protección
+
+La fórmula completa es **base del tier + 0.5 por miembro**, con tope en 10.0:
+
+| Tier de protección | Base | Solo | 4 miembros | 10 miembros | Llega al tope con |
+|---|---|---|---|---|---|
+| Tiers 1–3 | 1.1 | 1.6 | 3.1 | 6.1 | 18 miembros |
+| Tier 4 | 2.1 | 2.6 | 4.1 | 7.1 | 16 miembros |
+| Tier 5 (de pago) | 3.0 | 3.5 | 5.0 | 8.0 | 14 miembros |
+
+Esa tabla va en «Qué es el Nexo». Es la información que un jugador busca de
+verdad —cuánta vida tengo y cuánta me falta— y responde de un vistazo.
+
+### La regla del tope, redactada con cuidado
+
+El material recibido dice «tope 10.0» y «a partir de 20 miembros ya no suma».
+Las dos se pisan: el tope llega antes que los 20 miembros en los tres tiers, y
+en el T5 llega con 14.
+
+Confirmado con el owner: **la regla real es el tope de 10.0.** Un clan puede
+seguir admitiendo gente, pero no suma vida.
+
+Por eso la wiki escribe «sube 0.5 por miembro hasta un máximo de 10.0» y
+acompaña la tabla de arriba. **No se menciona el límite de 20 miembros**: haría
+creer a un clan de 14 en T5 que todavía le queda margen, que es justo el tipo de
+error que esta wiki existe para no cometer.
+
+### Las tres páginas
+
+| Página | Slug ES | Slug EN | Contenido |
+|---|---|---|---|
+| Qué es el Nexo | `nexo` | `nexus` | Qué es, fórmula de vida, tabla de referencia por miembros |
+| Cómo se pierde | `como-se-pierde-el-nexo` | `losing-your-nexus` | Daño por tipo de muerte, multiplicadores de dimensión, ejemplo trabajado |
+| Raid y regeneración | `raid-y-regeneracion` | `raid-and-regen` | Ventana de raid, regeneración, ofrendas, gracia inicial |
+
+### El ejemplo trabajado
+
+El brief lo pide y su aritmética está verificada:
+
+> Clan de 4 miembros con protección de tier 1–3: vida `1.1 + 0.5×4 = 3.1`.
+> Dos muertes en PvP en el Nether: `1.0 × 1.5 = 1.5` cada una, `−3.0` en
+> total. Queda **0.1**.
+>
+> El mismo clan con Protección T5 partiría de `3.0 + 2.0 = 5.0` y aguantaría
+> esas dos muertes con 2.0 de sobra.
+
+**El ejemplo dice de qué tier habla.** Sin eso, un jugador con T5 haría la
+cuenta con la base equivocada y le saldría casi el doble de vida perdida.
+
+Va en «Cómo se pierde», que es donde el jugador llega con la duda.
+
+## Alcance
+
+### Fase 1 — trece páginas
+
+| Sección | Página | Slug ES | Slug EN |
+|---|---|---|---|
+| — | Índice | `/wiki/` | `/en/wiki/` |
+| empezar | Primeros pasos | `primeros-pasos` | `getting-started` |
+| base | Qué es el Nexo | `nexo` | `nexus` |
+| base | Cómo se pierde el Nexo | `como-se-pierde-el-nexo` | `losing-your-nexus` |
+| base | Raid y regeneración | `raid-y-regeneracion` | `raid-and-regen` |
+| combate | Matar y morir | `matar-y-morir` | `killing-and-dying` |
+| progresion | Rangos y Dracma | `rangos-y-dracma` | `ranks-and-dracma` |
+| progresion | Clasificaciones | `clasificaciones` | `leaderboards` |
+| economia | Casa de subastas | `casa-de-subastas` | `auction-house` |
+| objetos | Bóveda del Ender | `boveda-del-ender` | `ender-vault` |
+| objetos | Cosméticos | `cosmeticos` | `cosmetics` |
+| objetos | Kits y misiones | `kits-y-misiones` | `kits-and-missions` |
+| referencia | Comandos | `comandos` | `commands` |
+
+Veintiséis archivos generados. Seis secciones: `empezar`, `base`, `combate`,
+`progresion`, `economia`, `objetos` y `referencia`.
+
+Contenido de cada una:
+
+- **Índice** — navegación, buscador y las rutas de entrada más comunes.
+- **Primeros pasos** — los seis pasos del tutorial, cada uno con su comando:
+  `/kits` y `/daily`; `/jobs` y `/missions`; `/shop`, `/sell` y `/worth`; `/p`
+  antes de construir nada serio; `/sethome` y `/home`; `/clan`.
+- **Nexo** (3 páginas) — según el apartado anterior.
+- **Matar y morir** — penalización, cooldown del mismo asesino, bounty y el clon
+  por desconectar en combate.
+- **Rangos y Dracma** — cómo funcionan y qué cambia al subir; enlaza a `/rangos/`
+  y a `/tienda/`.
+- **Clasificaciones** — `/leaderboards`, y que una muerte solo cuenta al K/D si
+  te mató otro jugador.
+- **Casa de subastas** — `/ah sell`, la comisión al publicar y no al vender, las
+  48 horas, `/ah expired` y que no se pierde nada.
+- **Bóveda del Ender** — las 3 páginas, precios, cómo cambiar y qué no es.
+- **Cosméticos** — qué dan y que se apagan al entrar en combate.
+- **Kits y misiones** — fusionadas: el material da dos frases de cada una.
+- **Comandos** — los 20 confirmados, con qué hace cada uno y quién puede usarlo.
+
+### Fuera de la fase 1
+
+- **La Fosa.** Solo quedaba un dato propio —los traidores van a Prisión— y la
+  regla 6 prohíbe mencionar Prison en la wiki. Sin ese dato no queda página. El
+  clon por desconectar, que el material coloca aquí, se traslada a «Matar y
+  morir»: es una consecuencia del combate, no una regla de La Fosa.
+- **Cajas.** «Mutaciones, alas y mascotas místicas» y nada sobre cómo se
+  consiguen. Se menciona de pasada en «Rangos y Dracma» —una llave cada 30
+  días— y se enlaza a la tienda; no tiene página propia hasta saber más.
+- **Elevadores** y **Amigos.** Sin texto verificado, por indicación expresa del
+  encargo.
+
+### Fase 2
+
+Los tres anteriores cuando haya material, más protecciones de base y clanes en
+detalle: de momento viven dentro de «Primeros pasos» con una línea cada uno.
 
 ## Buscador
 
@@ -217,9 +360,9 @@ Es un archivo `.js` normal, así que **la CSP actual no se toca**: `script-src
 porque `connect-src` está limitado a la API de estado del servidor y un índice
 descargado por `fetch` quedaría bloqueado.
 
-`public/js/wiki-search.js` filtra sobre título, resumen, comandos y alias. Buscar
-«vault», «bóveda» o `/ec` lleva al mismo sitio. Los resultados se pintan con
-`createElement` y `textContent`, nunca con `innerHTML`.
+`public/js/wiki-search.js` filtra sobre título, resumen, comandos y alias.
+Buscar «vault», «bóveda» o `/ec` lleva al mismo sitio. Los resultados se pintan
+con `createElement` y `textContent`, nunca con `innerHTML`.
 
 ## Corrección de `lang.js`
 
@@ -231,10 +374,9 @@ return isEn ? (REV[path] || '/') : (MAP[path] || '/en/');
 ```
 
 Como el script redirige antes del primer pintado, un visitante con preferencia
-inglesa que abra una página española de la wiki acabaría en `/en/` sin llegar a
-ver lo que buscaba. Incumple un criterio explícito del brief —«el cambio de
-idioma no te saca de la página»— y es además un fallo latente para cualquier
-página futura del sitio.
+inglesa que abriera una página española de la wiki acabaría en `/en/` sin llegar
+a ver lo que buscaba. Incumple un criterio explícito del encargo y es además un
+fallo latente para cualquier página futura del sitio.
 
 El mapa desaparece. Cada página ya declara su equivalente y esos `<link>` están
 en el `<head>` **antes** del script, así que se pueden leer de forma síncrona:
@@ -254,113 +396,11 @@ function counterpart() {
 El archivo lo comparten las 12 páginas actuales, así que el cambio de idioma se
 verifica **una por una** antes de desplegar.
 
-## Alcance
-
-### Fase 1 — siete páginas
-
-Solo lo que tiene material verificado suficiente:
-
-| Sección | Página | Slug ES | Slug EN |
-|---|---|---|---|
-| — | Índice | `/wiki/` | `/en/wiki/` |
-| empezar | Kits y misiones | `kits-y-misiones` | `kits-and-missions` |
-| progresion | Rangos y Dracma | `rangos-y-dracma` | `ranks-and-dracma` |
-| combate | Matar y morir | `matar-y-morir` | `killing-and-dying` |
-| objetos | Bóveda del Ender | `boveda-del-ender` | `ender-vault` |
-| objetos | Cosméticos | `cosmeticos` | `cosmetics` |
-| referencia | Comandos | `comandos` | `commands` |
-
-Contenido de cada una:
-
-- **Índice** — navegación, buscador y los primeros pasos confirmados del brief
-  (`/kits`, `/daily`, `/jobs`, `/missions`).
-- **Kits y misiones** — qué son, que el rango decide cuáles puedes usar, que cada
-  kit tiene su espera y que los premium están en `/shop`; diarias contra
-  contratos.
-- **Rangos y Dracma** — cómo funcionan y qué cambia al subir; enlaza a `/rangos/`
-  y a `/tienda/`.
-- **Matar y morir** — penalización, cooldown del mismo asesino, bounty y el clon
-  por desconectar en combate.
-- **Bóveda del Ender** — las 3 páginas, precios, cómo cambiar y qué no es.
-- **Cosméticos** — qué dan y que se apagan al entrar en combate.
-- **Comandos** — los 11 confirmados, con qué hace cada uno y quién puede usarlo.
-
-Catorce archivos generados. **Kits y misiones van juntas a propósito**: el brief
-da dos frases de cada una y dos frases no sostienen una página.
-
-Las secciones de la fase 1 son cinco: `empezar`, `progresion`, `combate`,
-`objetos` y `referencia`. La fase 2 añade `base` y `mundo`.
-
-### Fuera de la fase 1
-
-`La Fosa` tiene dos frases y `Cajas` una, sin documentar cómo se consiguen. Se
-quedan fuera hasta tener material: publicar una página de una línea contradice el
-tono que pide el brief.
-
-### Fase 2
-
-Cuando haya transcripción de los carteles que faltan: el Nexo y las raids,
-subastas, clanes, protecciones de base, elevadores, amigos y clasificaciones.
-
-## El Nexo
-
-Es el sistema con más peso de los que faltan y el que peor tolera una página a
-medias: de él dependen las raids, y una regla mal contada sobre cuándo se pierde
-un Nexo es la clase de error que cuesta una comunidad.
-
-Del brief solo se puede extraer que existe, que tiene vida, que se puede perder y
-que hay raids. Nada más. **Con eso no se escribe una página**, así que aquí queda
-fijada la estructura y la lista exacta de lo que falta por transcribir.
-
-### Las tres páginas
-
-Sección `base`, en este orden:
-
-| Página | Slug ES | Slug EN | Responde a |
-|---|---|---|---|
-| Qué es el Nexo | `nexo` | `nexus` | Qué es, para qué sirve, cómo se consigue el primero |
-| Vida del Nexo | `vida-del-nexo` | `nexus-health` | Cuánta vida tiene, cómo se regenera, cómo se pierde |
-| Raids | `raids` | `raids` | Quién puede atacar, cuándo, qué se gana y qué se pierde |
-
-### Qué hace falta transcribir
-
-Cada línea es una pregunta que la wiki tiene que poder responder con una cifra o
-una regla, no con una aproximación:
-
-**Qué es el Nexo**
-- Qué es exactamente: ¿un bloque, una estructura, un objeto que se coloca?
-- ¿Cómo consigue un jugador su primer Nexo? ¿Se compra, se craftea, se da al
-  entrar?
-- ¿Es por jugador o por clan?
-- ¿Cuántos puede tener uno?
-- ¿Qué comando lo gestiona, si hay alguno?
-
-**Vida del Nexo**
-- ¿Cuánta vida tiene? Cifra exacta.
-- ¿Se regenera? ¿A qué ritmo?
-- ¿Qué le quita vida, y cuánta?
-- ¿Qué pasa exactamente cuando llega a cero? ¿Se pierde la base, el terreno, los
-  objetos?
-- ¿Hay forma de repararlo o de recuperarlo?
-
-**Raids**
-- ¿Quién puede atacar un Nexo y bajo qué condiciones?
-- ¿Hay horario o ventana de raid? ¿Hay protección para jugadores nuevos o
-  desconectados?
-- ¿Cuánto dura una raid?
-- ¿Qué gana el atacante y qué pierde el defensor? Cifras.
-- ¿Qué relación tiene con las protecciones de base y con los clanes?
-
-Hasta que eso esté transcrito, las tres páginas no se crean. **No se publican con
-el cuerpo vacío ni con un «próximamente»**: una página de wiki que no responde
-nada es peor que no tenerla, porque el jugador ya ha gastado el clic.
-
 ## Estructura de direcciones
 
 `/wiki/<slug-es>/` y `/en/wiki/<slug-en>/`, con slug traducido en cada idioma
 para que cada versión posicione en su mercado. La correspondencia la mantiene
-`par` en `paginas.json` y se materializa en los `<link rel="alternate">` de cada
-página generada.
+`par` en `paginas.json` y se materializa en los `<link rel="alternate">`.
 
 ## Sin duplicar lo que ya existe
 
@@ -373,8 +413,8 @@ Una sola tabla de cifras en todo el sitio: la que ya existe y ya está vigilada.
 ## Presentación
 
 `public/css/wiki.css`, nuevo. Barra lateral con las secciones, buscador,
-tipografía de artículo y el plegado del menú en móvil, que el brief pide de forma
-explícita porque mucha gente consulta desde el teléfono mientras juega.
+tipografía de artículo y el plegado del menú en móvil, que el encargo pide de
+forma explícita porque mucha gente consulta desde el teléfono mientras juega.
 
 Sin estilos ni scripts inline: la CSP de producción los descarta y el fallo solo
 se ve tras desplegar.
@@ -390,15 +430,23 @@ generado a mano, o que tocó un cuerpo y olvidó regenerar. Comparar el HTML
 generado contra el catálogo, en cambio, no puede fallar nunca —el generador acaba
 de producirlo desde ese mismo catálogo— y sería una garantía aparente.
 
+## Cambios fuera de la wiki
+
+Tres, todos derivados de decisiones tomadas con el owner:
+
+1. **El lema se unifica** a «Tu leyenda comienza aquí» / «Your legend starts
+   here» en la portada, sustituyendo a «El Olimpo de los Supervivientes».
+2. **Entrada «Wiki»** en la cabecera y en el pie de las 12 páginas actuales.
+3. **`lang.js`** deja de usar su mapa de rutas.
+
 ## Decisiones registradas
 
 **Cuerpo en HTML y no en Markdown.** Se valoraron tres opciones: un parser propio
 de un subconjunto de Markdown, la librería `markdown`, y HTML directo. El parser
 propio se descartó por ser la pieza más frágil del sistema y de fallo sutil. La
-librería se descartó porque sería la primera dependencia del repositorio, con su
-`requirements.txt` y su `pip install` en la Action, a cambio solo de comodidad de
-sintaxis. HTML directo no necesita ninguna de las dos cosas y además da acceso a
-las clases de tabla que el sitio ya tiene.
+librería se descartó porque sería la primera dependencia del repositorio, a
+cambio solo de comodidad de sintaxis. HTML directo no necesita ninguna de las dos
+cosas y da acceso a las clases de tabla que el sitio ya tiene.
 
 Conviene dejar constancia de que la restricción de «sin dependencias» venía del
 script de verificación, que corre en CI, y no es una regla del repositorio: el
@@ -406,9 +454,11 @@ README dice «sin build» refiriéndose al sitio desplegado, no a las herramient
 La decisión se sostiene igualmente por el argumento de fragilidad.
 
 **Metadatos centralizados.** Un `paginas.json` en lugar de cabeceras por archivo,
-para poder ver la estructura completa de la wiki y generar el menú sin recorrer
-todos los cuerpos.
+para ver la estructura completa y generar el menú sin recorrer todos los cuerpos.
 
 **El generador falla en vez de improvisar.** Ante una clave desconocida o un
 archivo huérfano no genera nada. Un aviso que se ignora acaba publicando una
 página rota.
+
+**El tope del Nexo se cuenta como tope, no como límite de miembros.** Ver «La
+regla del tope, redactada con cuidado».
