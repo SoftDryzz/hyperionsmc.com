@@ -107,8 +107,35 @@ meter en un generador, y añadir una dependencia por comodidad de sintaxis no
 compensa cuando el autor puede usar directamente las clases de tabla que el sitio
 ya tiene.
 
-Cada archivo contiene solo lo que va dentro de `<main>`. Sin `<html>`, sin
-cabecera, sin pie.
+Cada archivo contiene solo lo que va dentro del artículo. Sin `<html>`, sin
+cabecera, sin pie. Empieza directamente por el primer `<h2>`: el `<h1>` con el
+título de la página lo pone el generador desde `paginas.json`, para que no pueda
+desincronizarse del que aparece en el menú y en el buscador.
+
+Un cuerpo no puede contener la secuencia `{{` salvo para invocar una clave del
+catálogo. Si algún día hace falta escribirla literalmente, se escapa como
+`{{{{`; el generador la convierte en `{{` y no intenta resolverla.
+
+### Qué envuelve el generador
+
+La plantilla produce, en este orden:
+
+1. Cabecera del sitio, la misma que el resto de páginas.
+2. **Barra lateral** con las secciones y sus páginas, marcando la actual.
+3. **Buscador**, en todas las páginas y no solo en el índice: el jugador llega a
+   la wiki desde Google, no siempre por la portada.
+4. **Migas de pan**: Wiki › Sección › Página.
+5. `<h1>` con el título y, debajo, el resumen de `paginas.json`. Es la respuesta
+   inmediata que pide el brief: la página abre con el dato, no con una
+   introducción.
+6. El cuerpo del archivo.
+7. Pie del sitio, el mismo que el resto.
+
+### Dónde cuelga la wiki
+
+Entrada nueva **Wiki** en la cabecera del sitio, junto a «Rangos», y en la
+columna «Servidor» del pie. Ambas en los dos idiomas. Son los dos únicos sitios
+del resto de la web que hay que tocar.
 
 ### El generador
 
@@ -233,18 +260,36 @@ verifica **una por una** antes de desplegar.
 
 Solo lo que tiene material verificado suficiente:
 
-| Página | Contenido |
-|---|---|
-| Índice | Navegación, buscador y los primeros pasos confirmados |
-| Bóveda del Ender | Las 3 páginas, precios, cómo cambiar, qué no es |
-| Rangos y Dracma | Cómo funcionan; enlaza a `/rangos/` y `/tienda/` |
-| Matar y morir | Penalización, cooldown, bounty y el clon por desconectar |
-| Cosméticos | Qué dan y que se apagan en combate |
-| Kits y misiones | Fusionadas |
-| Comandos | Los 11 confirmados |
+| Sección | Página | Slug ES | Slug EN |
+|---|---|---|---|
+| — | Índice | `/wiki/` | `/en/wiki/` |
+| empezar | Kits y misiones | `kits-y-misiones` | `kits-and-missions` |
+| progresion | Rangos y Dracma | `rangos-y-dracma` | `ranks-and-dracma` |
+| combate | Matar y morir | `matar-y-morir` | `killing-and-dying` |
+| objetos | Bóveda del Ender | `boveda-del-ender` | `ender-vault` |
+| objetos | Cosméticos | `cosmeticos` | `cosmetics` |
+| referencia | Comandos | `comandos` | `commands` |
+
+Contenido de cada una:
+
+- **Índice** — navegación, buscador y los primeros pasos confirmados del brief
+  (`/kits`, `/daily`, `/jobs`, `/missions`).
+- **Kits y misiones** — qué son, que el rango decide cuáles puedes usar, que cada
+  kit tiene su espera y que los premium están en `/shop`; diarias contra
+  contratos.
+- **Rangos y Dracma** — cómo funcionan y qué cambia al subir; enlaza a `/rangos/`
+  y a `/tienda/`.
+- **Matar y morir** — penalización, cooldown del mismo asesino, bounty y el clon
+  por desconectar en combate.
+- **Bóveda del Ender** — las 3 páginas, precios, cómo cambiar y qué no es.
+- **Cosméticos** — qué dan y que se apagan al entrar en combate.
+- **Comandos** — los 11 confirmados, con qué hace cada uno y quién puede usarlo.
 
 Catorce archivos generados. **Kits y misiones van juntas a propósito**: el brief
 da dos frases de cada una y dos frases no sostienen una página.
+
+Las secciones de la fase 1 son cinco: `empezar`, `progresion`, `combate`,
+`objetos` y `referencia`. La fase 2 añade `base` y `mundo`.
 
 ### Fuera de la fase 1
 
@@ -256,6 +301,59 @@ tono que pide el brief.
 
 Cuando haya transcripción de los carteles que faltan: el Nexo y las raids,
 subastas, clanes, protecciones de base, elevadores, amigos y clasificaciones.
+
+## El Nexo
+
+Es el sistema con más peso de los que faltan y el que peor tolera una página a
+medias: de él dependen las raids, y una regla mal contada sobre cuándo se pierde
+un Nexo es la clase de error que cuesta una comunidad.
+
+Del brief solo se puede extraer que existe, que tiene vida, que se puede perder y
+que hay raids. Nada más. **Con eso no se escribe una página**, así que aquí queda
+fijada la estructura y la lista exacta de lo que falta por transcribir.
+
+### Las tres páginas
+
+Sección `base`, en este orden:
+
+| Página | Slug ES | Slug EN | Responde a |
+|---|---|---|---|
+| Qué es el Nexo | `nexo` | `nexus` | Qué es, para qué sirve, cómo se consigue el primero |
+| Vida del Nexo | `vida-del-nexo` | `nexus-health` | Cuánta vida tiene, cómo se regenera, cómo se pierde |
+| Raids | `raids` | `raids` | Quién puede atacar, cuándo, qué se gana y qué se pierde |
+
+### Qué hace falta transcribir
+
+Cada línea es una pregunta que la wiki tiene que poder responder con una cifra o
+una regla, no con una aproximación:
+
+**Qué es el Nexo**
+- Qué es exactamente: ¿un bloque, una estructura, un objeto que se coloca?
+- ¿Cómo consigue un jugador su primer Nexo? ¿Se compra, se craftea, se da al
+  entrar?
+- ¿Es por jugador o por clan?
+- ¿Cuántos puede tener uno?
+- ¿Qué comando lo gestiona, si hay alguno?
+
+**Vida del Nexo**
+- ¿Cuánta vida tiene? Cifra exacta.
+- ¿Se regenera? ¿A qué ritmo?
+- ¿Qué le quita vida, y cuánta?
+- ¿Qué pasa exactamente cuando llega a cero? ¿Se pierde la base, el terreno, los
+  objetos?
+- ¿Hay forma de repararlo o de recuperarlo?
+
+**Raids**
+- ¿Quién puede atacar un Nexo y bajo qué condiciones?
+- ¿Hay horario o ventana de raid? ¿Hay protección para jugadores nuevos o
+  desconectados?
+- ¿Cuánto dura una raid?
+- ¿Qué gana el atacante y qué pierde el defensor? Cifras.
+- ¿Qué relación tiene con las protecciones de base y con los clanes?
+
+Hasta que eso esté transcrito, las tres páginas no se crean. **No se publican con
+el cuerpo vacío ni con un «próximamente»**: una página de wiki que no responde
+nada es peor que no tenerla, porque el jugador ya ha gastado el clic.
 
 ## Estructura de direcciones
 
